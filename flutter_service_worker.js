@@ -8,26 +8,27 @@ const RESOURCES = {
 "canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
 "canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
-"main.dart.js": "76d9fb9b652716eea43b1cea3db20be6",
+"main.dart.js": "2986e67adc0411fce20432c268fb2c5b",
 "version.json": "45e0c378be6db7f276e8bb020b873f73",
 "assets/assets/building.jpg": "5ff82c9fddf8ba97fd975bbdc4dc72d1",
 "assets/assets/1.jpg": "ce2826936e5708f896d5c9b22fde081f",
 "assets/assets/2.jpg": "e7933019abb7e46aa45de3f7af6a2d77",
 "assets/assets/banner-3.jpg": "3a5e924d30d19bcbc5e4d790cb3434dc",
 "assets/assets/8.jpg": "21e1662df7f88eb031e17494a27400b9",
+"assets/assets/google_logo.png": "935c7d797b0cfd91e3819690b3f71c4e",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
-"assets/AssetManifest.json": "f968ed12f6f5ef85ff553a7aa680dc0f",
+"assets/AssetManifest.json": "d64940b11c838ab07dffa05b03e277e3",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/NOTICES": "07583ed9a430ed1bd3ee49c3ba98a0ad",
+"assets/NOTICES": "b97deb9c06e9533b1d2e83381f6e7c9e",
 "manifest.json": "0ac501f85a8d09001ea1cb6e41c7f7a4",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"index.html": "45ceaedd16c67d12d627652a91a26219",
-"/": "45ceaedd16c67d12d627652a91a26219"
+"index.html": "147d4ab247401e96ec694d3dad3b9dcd",
+"/": "147d4ab247401e96ec694d3dad3b9dcd"
 };
 
 // The application shell files that are downloaded before a service worker can
