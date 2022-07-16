@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/feature_property.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/featured_project.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/PropertySearchTablet.dart';
 import 'package:the_asset_zone_web/screens/home/widgets/home_screen_widgets.dart';
 import 'package:the_asset_zone_web/screens/home/widgets/navigation_bar.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/properties_for_rent_cards.dart';
 import '../../responsive.dart';
+import '../../widgets/helper_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   final String title = '';
@@ -15,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     print(MediaQuery.of(context).size);
     return Scaffold(
       appBar: Responsive.isDesktop(context)
@@ -40,19 +38,22 @@ class HomeScreen extends StatelessWidget {
                       Column(
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsets.fromLTRB(width * 0.14, 0, 0, 50),
+                            padding: EdgeInsets.fromLTRB(
+                                width > 500 ? width * 0.07 : 10, 0, 0, 50),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const FrontLeft(),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 35, 0, 0),
-                                  child: Text(
-                                      'Residences can be classified by and connected to residences. Different types of housing can be use same    \nphysical type.',
-                                      style: GoogleFonts.rubik(fontSize: 15),
-                                      textAlign: TextAlign.start),
+                                const Divider(height: 50,),
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: SizedBox(
+                                    width: width * 0.6,
+                                    child: Text(
+                                        'Residences can be classified by and connected to residences. Different types of housing can be use same    \nphysical type.',
+                                        style: GoogleFonts.rubik(fontSize: 15),
+                                        textAlign: TextAlign.start),
+                                  ),
                                 ),
                                 Row(
                                   children: [
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                const PropertySearchPanel(),
+                                width < 950 ? PropertySearchTablet() : PropertySearchPanel(),
                                 const SizedBox(
                                   height: 250,
                                 ),
@@ -86,30 +87,30 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          PropertiesForRentCards(),
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          const FeaturedProject(
-                            firstImageName: 'assets/banner-3.jpg',
-                            secondImageName: 'assets/2.jpg',
-                            cityName: "nashik city",
-                            projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
-                            projectType: "Open house",
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 32.0),
-                            child: Text(
-                              "Featured Property",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 45, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            "Residences can be classified into different type of housing tenure can used for same physical type.",
-                            style: GoogleFonts.rubik(fontSize: 20),
-                          ),
-                          const FeatureProperty(),
+                          // width< 950 ? PropertiesForRentTablet() : PropertiesForRentCards(),
+                          // const SizedBox(
+                          //   height: 100,
+                          // ),
+                          // const FeaturedProject(
+                          //   firstImageName: 'assets/banner-3.jpg',
+                          //   secondImageName: 'assets/2.jpg',
+                          //   cityName: "nashik city",
+                          //   projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
+                          //   projectType: "Open house",
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+                          //   child: Text(
+                          //     "Featured Property",
+                          //     style: GoogleFonts.rubik(
+                          //         fontSize: 45, fontWeight: FontWeight.w500),
+                          //   ),
+                          // ),
+                          // Text(
+                          //   "Residences can be classified into different type of housing tenure can used for same physical type.",
+                          //   style: GoogleFonts.rubik(fontSize: 20),
+                          // ),
+                          // width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
                           const SizedBox(
                             height: 100,
                           )

@@ -3,55 +3,29 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import '../../../controllers/search_panel_controller.dart';
+import '../../../widgets/helper_widgets.dart';
 
 class FrontLeft extends StatelessWidget {
   const FrontLeft({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-      child: Text(
-        "You're Local Real Estate \nProfessionals",
-        style: GoogleFonts.rubik(
-            fontSize: 55,
-            fontWeight: FontWeight.bold,
-            wordSpacing: 3,
-            letterSpacing: 3),
-      ),
-    );
-  }
-}
-
-class MyButton extends StatefulWidget {
-  final String title;
-
-  MyButton({Key? key, required this.title}) : super(key: key);
-
-  @override
-  State<MyButton> createState() => _MyButtonState();
-}
-
-class _MyButtonState extends State<MyButton> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 50,
-      decoration: BoxDecoration(
-          color: kSecondaryColor, borderRadius: BorderRadius.circular(8)),
-      child: InkWell(
-        highlightColor: Colors.white38,
-        splashColor: Colors.white,
-        onTap: () {
-          print("Clicked on me who");
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Center(
+      padding: EdgeInsets.fromLTRB(0, width > 1200 ? 100 : width > 800 ? 50: width > 500 ? 30 : 10, 0, 0),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
             child: Text(
-              widget.title,
-              style: GoogleFonts.rubik(color: Colors.white, fontSize: 17),
+              "You're Local Real Estate \nProfessionals",
+              style: GoogleFonts.rubik(
+                  fontSize: 55,
+                  fontWeight: FontWeight.bold,
+                  wordSpacing: 3,
+                  letterSpacing: 3),
             ),
           ),
         ),
@@ -59,6 +33,8 @@ class _MyButtonState extends State<MyButton> {
     );
   }
 }
+
+
 
 class PropertySearchPanel extends StatefulWidget {
   const PropertySearchPanel({Key? key}) : super(key: key);
@@ -68,15 +44,6 @@ class PropertySearchPanel extends StatefulWidget {
 }
 
 class _PropertySearchPanelState extends State<PropertySearchPanel> {
-  // List dropdownItemList = [
-  //   {'label': 'apple', 'value': 'apple'}, // label is required and unique
-  //   {'label': 'banana', 'value': 'banana'},
-  //   {'label': 'grape', 'value': 'grape'},
-  //   {'label': 'pineapple', 'value': 'pineapple'},
-  //   {'label': 'grape fruit', 'value': 'grape fruit'},
-  //   {'label': 'kiwi', 'value': 'kiwi'},
-  // ];
-
   final _searchPanelController = Get.put(SearchPanelController());
 
   String propertyType = "Property Type";
@@ -84,49 +51,20 @@ class _PropertySearchPanelState extends State<PropertySearchPanel> {
 
   List<DropdownMenuItem<String>> subPropertyitems = [];
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    propertySubType = maxRoomsDD[propertyType]![0];
-    subPropertyitems = getPropertySubType(propertyType);
-    print("***************8");
-    print(subPropertyitems);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   propertySubType = maxRoomsDD[propertyType]![0];
+  //   subPropertyitems = getPropertySubType(propertyType);
+  //   print("***************8");
+  //   print(subPropertyitems);
+  //   super.initState();
+  // }
 
   @override
   void setState(VoidCallback fn) {
     // TODO: implement setState
     super.setState(fn);
-  }
-
-  List<DropdownMenuItem<String>> getMenuItems(Map<String, List<String>> items) {
-    List<DropdownMenuItem<String>> menuItems = [];
-    items.forEach((key, List<String> value) {
-      menuItems.add(DropdownMenuItem(
-          value: key,
-          child: Text(
-            textAlign: TextAlign.center,
-            key,
-          )));
-      for (int i = 0; i < value.length; i++) {
-        menuItems.add(DropdownMenuItem(value: value[i], child: Text(value[i])));
-      }
-    });
-    return menuItems;
-  }
-
-  List<DropdownMenuItem<String>> getPropertySubType(String propertyType) {
-    List<DropdownMenuItem<String>> menuItems = [];
-    List<String>? items = maxRoomsDD[propertyType];
-    items?.forEach((element) {
-      menuItems.add(DropdownMenuItem(
-          value: element,
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Text(element))));
-    });
-    return menuItems;
   }
 
   Widget build(BuildContext context) {
@@ -180,28 +118,24 @@ class _PropertySearchPanelState extends State<PropertySearchPanel> {
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(8.0),
-                            border:
-                                Border.all(width: 1.0, color: Colors.black12),
+                            border: Border.all(width: 1.0, color: Colors.black12),
                           ),
                           child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
+                            key: _searchPanelController.dropDownKey,
+                            child: DropdownButton<String>(
                               alignment: AlignmentDirectional.center,
-                              value:
-                                  _searchPanelController.selectedPropertyType,
+                              value: _searchPanelController.selectedPropertyType,
                               items: getMenuItems(propertySearch),
                               onChanged: (String? value) {
                                 setState(() {
                                   if (value != null) {
-                                    _searchPanelController
-                                        .selectedPropertyType = value;
-                                    getPropertySubType(_searchPanelController
-                                        .selectedPropertyType);
-                                    _searchPanelController
-                                            .selectedPropertySubType =
-                                        maxRoomsDD[_searchPanelController
-                                            .selectedPropertyType]![0];
+                                    _searchPanelController.selectedPropertyType = value;
+                                    getPropertySubType(
+                                        _searchPanelController.selectedPropertyType);
+                                    _searchPanelController.selectedPropertySubType = maxRoomsDD[
+                                    _searchPanelController.selectedPropertyType]![0];
                                     print(
-                                        "Selected property type is ${_searchPanelController.selectedPropertyType}");
+                                        "Selected property type is ${_searchPanelController.selectedPropertyType} and selected sub property is ${_searchPanelController.selectedPropertySubType}");
                                   }
                                 });
                               },
@@ -211,6 +145,7 @@ class _PropertySearchPanelState extends State<PropertySearchPanel> {
                       ),
                     ),
                     Expanded(
+                      key: _searchPanelController.dropDownKey,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
                         child: DecoratedBox(
@@ -318,6 +253,82 @@ class _PropertySearchPanelState extends State<PropertySearchPanel> {
             )),
       );
     });
+  }
+}
+
+class PropertySearchDropDownButton extends StatefulWidget {
+
+  List<DropdownMenuItem<String>> items = [];
+
+  PropertySearchDropDownButton({
+    Key? key,
+    required List<DropdownMenuItem<String>> items
+  }) : super(key: key);
+
+  @override
+  State<PropertySearchDropDownButton> createState() =>
+      _PropertySearchDropDownButtonState();
+}
+
+class _PropertySearchDropDownButtonState extends State<PropertySearchDropDownButton> {
+  final _searchPanelController = Get.put(SearchPanelController());
+
+  String propertyType = "Property Type";
+  String propertySubType = "";
+
+  List<DropdownMenuItem<String>> subPropertyitems = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    propertySubType = maxRoomsDD[propertyType]![0];
+    subPropertyitems = getPropertySubType(propertyType);
+    print("***************8");
+    print(subPropertyitems);
+    super.initState();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(width: 1.0, color: Colors.black12),
+          ),
+          child: DropdownButtonHideUnderline(
+            key: _searchPanelController.dropDownKey,
+            child: DropdownButton<String>(
+              alignment: AlignmentDirectional.center,
+              value: _searchPanelController.selectedPropertyType,
+              items: widget.items,
+              onChanged: (String? value) {
+                setState(() {
+                  if (value != null) {
+                    _searchPanelController.selectedPropertyType = value;
+                    getPropertySubType(
+                        _searchPanelController.selectedPropertyType);
+                    _searchPanelController.selectedPropertySubType = maxRoomsDD[
+                        _searchPanelController.selectedPropertyType]![0];
+                    print(
+                        "Selected property type is ${_searchPanelController.selectedPropertyType} and selected sub property is ${_searchPanelController.selectedPropertySubType}");
+                  }
+                });
+              },
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

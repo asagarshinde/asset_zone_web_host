@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:the_asset_zone_web/screens/login/auth_dialog.dart';
 import '../../../constants/constants.dart';
 
 class MyNavigationBar extends StatefulWidget {
@@ -51,14 +51,18 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             ),
             ...getMenuItems(),
             const SizedBox(width: 40),
-            const Expanded(
-              flex: 3,
-              child: Icon(
-                size: 45,
-                Icons.person_outline_rounded,
-                color: kIconColor,
-              ),
-            ),
+            Expanded(
+                flex: 3,
+                child: IconButton(
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => const AuthDialog()),
+                  icon: Icon(
+                    size: 45,
+                    Icons.person_outline_rounded,
+                    color: kIconColor,
+                  ),
+                )),
           ],
         ),
       ),

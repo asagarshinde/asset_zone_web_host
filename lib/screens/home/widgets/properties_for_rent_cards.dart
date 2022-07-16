@@ -9,7 +9,7 @@ class PropertiesForRentCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return      Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         propertyTile(inputImagePath: 'assets/2.jpg'),
@@ -30,3 +30,40 @@ class PropertiesForRentCards extends StatelessWidget {
   }
 }
 
+class PropertiesForRentTablet extends StatelessWidget {
+  const PropertiesForRentTablet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            propertyTile(inputImagePath: 'assets/2.jpg'),
+            const SizedBox(
+              width: 15,
+            ),
+            propertyTile(inputImagePath: 'assets/2.jpg'),
+            const SizedBox(
+              width: 15,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            propertyTile(inputImagePath: 'assets/2.jpg'),
+            const SizedBox(
+              width: 15,
+            ),
+            propertyTile(inputImagePath: 'assets/2.jpg'),
+            const SizedBox(
+              width: 15,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
