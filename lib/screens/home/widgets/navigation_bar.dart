@@ -52,17 +52,17 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             ...getMenuItems(),
             const SizedBox(width: 40),
             Expanded(
-                flex: 3,
-                child: IconButton(
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => const AuthDialog()),
-                  icon: Icon(
-                    size: 45,
-                    Icons.person_outline_rounded,
-                    color: kIconColor,
-                  ),
-                )),
+              flex: 3,
+              child: IconButton(
+                onPressed: () => showDialog(
+                    context: context, builder: (context) => const AuthDialog()),
+                icon: Icon(
+                  size: 45,
+                  Icons.person_outline_rounded,
+                  color: kIconColor,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -94,22 +94,66 @@ class _AppBarDropDownButtonState extends State<AppBarDropDownButton> {
     return Container(
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
-            isDense: true,
-            isExpanded: false,
-            value: widget.itemString[0],
-            items: widget.itemString.map(
-              (String item) {
-                return DropdownMenuItem(
-                  value: item,
-                  child: Text(item, style: kMenuItemStyle),
-                );
-              },
-            ).toList(),
-            onChanged: (selectedValue) {
-              setState(() {
+          isDense: true,
+          isExpanded: false,
+          value: widget.itemString[0],
+          items: widget.itemString.map(
+            (String item) {
+              return DropdownMenuItem(
+                alignment: Alignment.centerLeft,
+                value: item,
+                child: Text(item, style: kMenuItemStyle),
+              );
+            },
+          ).toList(),
+          onChanged: (selectedValue) {
+            setState(
+              () {
                 selectedValue = selectedValue.toString();
-              });
-            }),
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
+  getDrawerItems() {
+    List<Widget> myMenuItems = [];
+    menus.forEach(
+      (key, value) {
+        myMenuItems.add(
+          AppBarDropDownButton(
+            itemString: [key.toUpperCase(), ...value],
+          ),
+        );
+        myMenuItems.add(
+          const SizedBox(
+            height: 10,
+          ),
+        );
+      },
+    );
+    return myMenuItems;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+              child: Text(
+            "The Assets Zone",
+            style: Theme.of(context).textTheme.headline6,
+          )),
+          ...getDrawerItems()
+        ],
       ),
     );
   }

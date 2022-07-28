@@ -1,336 +1,60 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-import '../../../controllers/search_panel_controller.dart';
 import '../../../widgets/helper_widgets.dart';
 
-class FrontLeft extends StatelessWidget {
-  const FrontLeft({Key? key}) : super(key: key);
+class HomePageText extends StatelessWidget {
+  const HomePageText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, width > 1200 ? 100 : width > 800 ? 50: width > 500 ? 30 : 10, 0, 0),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              "You're Local Real Estate \nProfessionals",
-              style: GoogleFonts.rubik(
-                  fontSize: 55,
-                  fontWeight: FontWeight.bold,
-                  wordSpacing: 3,
-                  letterSpacing: 3),
-            ),
+      padding: EdgeInsets.fromLTRB(
+          width > 1200 ? width * 0.14 : 10,
+          width > 1200
+              ? 110
+              : width > 800
+                  ? 50
+                  : width > 500
+                      ? 30
+                      : 10,
+          0,
+          0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AutoSizeText(
+            "You're Local Real Estate \nProfessionals",
+            maxLines: 3,
+            textAlign: TextAlign.start,
+            // textScaleFactor: width/1600,
+            minFontSize: 16,
+            textScaleFactor: width < 500 ? 0.6 : 1,
+            style: GoogleFonts.montserrat(
+                fontSize: 60,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF1c2d3a),
+                wordSpacing: 3,
+                letterSpacing: 1.68),
           ),
-        ),
+          const SizedBox(
+            height: 30,
+          ),
+          AutoSizeText(
+              softWrap: true,
+              textScaleFactor: width < 500 ? 0.8 : 1,
+              'Residences can be classified by and connected to residences. Different types of housing can be use \nsame physical type.',
+              style: GoogleFonts.rubik(fontSize: 18, color: Colors.black, ),
+              textAlign: TextAlign.start),
+        ],
       ),
     );
   }
 }
 
-
-
-class PropertySearchPanel extends StatefulWidget {
-  const PropertySearchPanel({Key? key}) : super(key: key);
-
-  @override
-  State<PropertySearchPanel> createState() => _PropertySearchPanelState();
-}
-
-class _PropertySearchPanelState extends State<PropertySearchPanel> {
-  final _searchPanelController = Get.put(SearchPanelController());
-
-  String propertyType = "Property Type";
-  String propertySubType = "";
-
-  List<DropdownMenuItem<String>> subPropertyitems = [];
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   propertySubType = maxRoomsDD[propertyType]![0];
-  //   subPropertyitems = getPropertySubType(propertyType);
-  //   print("***************8");
-  //   print(subPropertyitems);
-  //   super.initState();
-  // }
-
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    super.setState(fn);
-  }
-
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constaints) {
-      return Container(
-        width: 850,
-        child: Card(
-            color: Colors.white,
-            // elevation: 1.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0)),
-            margin: const EdgeInsets.all(0.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border:
-                                Border.all(width: 1.0, color: Colors.black12),
-                          ),
-                          child: TextFormField(
-                            onChanged: (value) {
-                              setState(() {
-                                _searchPanelController.searchLocation = value;
-                              });
-                            },
-                            onSaved: (value) {
-                              setState(() {
-                                _searchPanelController.searchLocation = value!;
-                              });
-                            },
-                            decoration: const InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 15.0),
-                                border: InputBorder.none),
-                            initialValue: "Search Location",
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(width: 1.0, color: Colors.black12),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            key: _searchPanelController.dropDownKey,
-                            child: DropdownButton<String>(
-                              alignment: AlignmentDirectional.center,
-                              value: _searchPanelController.selectedPropertyType,
-                              items: getMenuItems(propertySearch),
-                              onChanged: (String? value) {
-                                setState(() {
-                                  if (value != null) {
-                                    _searchPanelController.selectedPropertyType = value;
-                                    getPropertySubType(
-                                        _searchPanelController.selectedPropertyType);
-                                    _searchPanelController.selectedPropertySubType = maxRoomsDD[
-                                    _searchPanelController.selectedPropertyType]![0];
-                                    print(
-                                        "Selected property type is ${_searchPanelController.selectedPropertyType} and selected sub property is ${_searchPanelController.selectedPropertySubType}");
-                                  }
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      key: _searchPanelController.dropDownKey,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border:
-                                Border.all(width: 1.0, color: Colors.black12),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                                alignment: AlignmentDirectional.center,
-                                value: _searchPanelController
-                                    .selectedPropertySubType,
-                                items: getPropertySubType(_searchPanelController
-                                    .selectedPropertyType),
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _searchPanelController
-                                        .selectedPropertySubType = value!;
-                                    print(
-                                        "selected Property sub type is ${_searchPanelController.selectedPropertySubType}");
-                                  });
-                                }),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(
-                                "Budget ",
-                                style: khomePagePropertySearchPanelDDPanel,
-                              ),
-                            ),
-                            Text(
-                              "${_searchPanelController.currentRangeValuesPrice.start / 1000}K - ",
-                              // "${_currentRangeValuesPrice.start.toInt()} - ",
-                              style: khomePagePropertySearchPanelDDPanel,
-                            ),
-                            Text(
-                              "${_searchPanelController.currentRangeValuesPrice.end / 1000}K",
-                              // "${_currentRangeValuesPrice.end.toInt()}",
-                              style: khomePagePropertySearchPanelDDPanel,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        flex: 8,
-                        child: RangeSlider(
-                          values:
-                              _searchPanelController.currentRangeValuesPrice,
-                          max: _searchPanelController.maxBudget,
-                          divisions: 1000,
-                          activeColor: kPrimaryColor,
-                          inactiveColor: Colors.black12,
-                          labels: RangeLabels(
-                            _searchPanelController.currentRangeValuesPrice.start
-                                .round()
-                                .toString(),
-                            _searchPanelController.currentRangeValuesPrice.end
-                                .round()
-                                .toString(),
-                          ),
-                          onChanged: (RangeValues values) {
-                            setState(() {
-                              _searchPanelController.currentRangeValuesPrice =
-                                  values;
-                            });
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              child: Padding(
-                                padding: const EdgeInsets.all(2.0),
-                                child:
-                                    Container(child: MyButton(title: "Search")),
-                              ),
-                            ),
-                            // const SizedBox(
-                            //   width: 120,
-                            // )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            )),
-      );
-    });
-  }
-}
-
-class PropertySearchDropDownButton extends StatefulWidget {
-
-  List<DropdownMenuItem<String>> items = [];
-
-  PropertySearchDropDownButton({
-    Key? key,
-    required List<DropdownMenuItem<String>> items
-  }) : super(key: key);
-
-  @override
-  State<PropertySearchDropDownButton> createState() =>
-      _PropertySearchDropDownButtonState();
-}
-
-class _PropertySearchDropDownButtonState extends State<PropertySearchDropDownButton> {
-  final _searchPanelController = Get.put(SearchPanelController());
-
-  String propertyType = "Property Type";
-  String propertySubType = "";
-
-  List<DropdownMenuItem<String>> subPropertyitems = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    propertySubType = maxRoomsDD[propertyType]![0];
-    subPropertyitems = getPropertySubType(propertyType);
-    print("***************8");
-    print(subPropertyitems);
-    super.initState();
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    super.setState(fn);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(width: 1.0, color: Colors.black12),
-          ),
-          child: DropdownButtonHideUnderline(
-            key: _searchPanelController.dropDownKey,
-            child: DropdownButton<String>(
-              alignment: AlignmentDirectional.center,
-              value: _searchPanelController.selectedPropertyType,
-              items: widget.items,
-              onChanged: (String? value) {
-                setState(() {
-                  if (value != null) {
-                    _searchPanelController.selectedPropertyType = value;
-                    getPropertySubType(
-                        _searchPanelController.selectedPropertyType);
-                    _searchPanelController.selectedPropertySubType = maxRoomsDD[
-                        _searchPanelController.selectedPropertyType]![0];
-                    print(
-                        "Selected property type is ${_searchPanelController.selectedPropertyType} and selected sub property is ${_searchPanelController.selectedPropertySubType}");
-                  }
-                });
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class propertyTile extends StatefulWidget {
   final String inputImagePath;

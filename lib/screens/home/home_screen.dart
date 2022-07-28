@@ -1,8 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/PropertySearchTablet.dart';
+import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/feature_property.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/featured_project.dart';
 import 'package:the_asset_zone_web/screens/home/widgets/home_screen_widgets.dart';
 import 'package:the_asset_zone_web/screens/home/widgets/navigation_bar.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/properties_for_rent_cards.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/property_search_desktop_view.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/property_search_mobile_view.dart';
+import 'package:the_asset_zone_web/screens/home/widgets/property_search_tablet_view.dart';
 import '../../responsive.dart';
 import '../../widgets/helper_widgets.dart';
 
@@ -14,14 +21,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    print(MediaQuery.of(context).size);
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
               preferredSize: Size(MediaQuery.of(context).size.width, 70),
               child: const MyNavigationBar(),
             )
-          : AppBar(),
+          : AppBar(backgroundColor: kPrimaryColor),
+      drawer: const MyDrawer(),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return SingleChildScrollView(
@@ -33,27 +40,25 @@ class HomeScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.asset('assets/building.jpg')),
+                        width: double.infinity,
+                        height: 1000,
+                        child: Image.asset(
+                          'assets/building.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const HomePageText(),
                           Padding(
                             padding: EdgeInsets.fromLTRB(
-                                width > 500 ? width * 0.07 : 10, 0, 0, 50),
+                                width > 1200 ? width * 0.12 : 10, 0, 0, 50),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const FrontLeft(),
-                                const Divider(height: 50,),
-                                FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: SizedBox(
-                                    width: width * 0.6,
-                                    child: Text(
-                                        'Residences can be classified by and connected to residences. Different types of housing can be use same    \nphysical type.',
-                                        style: GoogleFonts.rubik(fontSize: 15),
-                                        textAlign: TextAlign.start),
-                                  ),
+                                const SizedBox(
+                                  height: 50,
                                 ),
                                 Row(
                                   children: [
@@ -69,51 +74,64 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                width < 950 ? PropertySearchTablet() : PropertySearchPanel(),
-                                const SizedBox(
-                                  height: 250,
+                                const SizedBox(height: 40),
+                                width < 700
+                                    ? const PropertySearchMobileView()
+                                    : width < 950
+                                        ? const PropertySearchTabletView()
+                                        : const PropertySearchPanel(),
+                                SizedBox(
+                                  height: constraints.maxWidth < 900 ? 50 : 250,
                                 ),
-                                Text(
+                                AutoSizeText(
                                   "Properties for rent.",
-                                  style: GoogleFonts.rubik(
-                                      fontSize: 55,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black54),
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color(0xFF586167)),
                                 ),
-                                // Text("Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening", style: GoogleFonts.rubik(fontSize: 15,  color: Colors.black54),),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                AutoSizeText(
+                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 19, color: const Color(0xFF586167)),
+                                ),
                                 const SizedBox(
                                   height: 50,
                                 ),
                               ],
                             ),
                           ),
-                          // width< 950 ? PropertiesForRentTablet() : PropertiesForRentCards(),
-                          // const SizedBox(
-                          //   height: 100,
-                          // ),
-                          // const FeaturedProject(
-                          //   firstImageName: 'assets/banner-3.jpg',
-                          //   secondImageName: 'assets/2.jpg',
-                          //   cityName: "nashik city",
-                          //   projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
-                          //   projectType: "Open house",
-                          // ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(vertical: 32.0),
-                          //   child: Text(
-                          //     "Featured Property",
-                          //     style: GoogleFonts.rubik(
-                          //         fontSize: 45, fontWeight: FontWeight.w500),
-                          //   ),
-                          // ),
-                          // Text(
-                          //   "Residences can be classified into different type of housing tenure can used for same physical type.",
-                          //   style: GoogleFonts.rubik(fontSize: 20),
-                          // ),
-                          // width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
+                          // const Expanded(child: PropertiesForRentGrid()),
+                          // width< 950 ? const PropertiesForRentTablet() : const PropertiesForRentCards(),
                           const SizedBox(
                             height: 100,
-                          )
+                          ),
+                          const FeaturedProject(
+                            firstImageName: 'assets/banner-3.jpg',
+                            secondImageName: 'assets/2.jpg',
+                            cityName: "nashik city",
+                            projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
+                            projectType: "Open house",
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 32.0),
+                            child: Text(
+                              "Featured Property",
+                              style: GoogleFonts.rubik(
+                                  fontSize: 45, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Text(
+                            "Residences can be classified into different type of housing tenure can used for same physical type.",
+                            style: GoogleFonts.rubik(fontSize: 20),
+                          ),
+                          width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
+                          const SizedBox(
+                            height: 100,
+                          ),
                         ],
                       ),
                     ],

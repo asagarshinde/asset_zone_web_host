@@ -15,7 +15,7 @@ const menus = {
 };
 
 const propertySearch = {
-  "Property Type": ["Residential", "Commercial", "Plot", "Indstrial"]
+  "Property Type": ["Residential", "Commercial", "Plot", "Industrial"]
 };
 
 const maxRoomsDD = {
@@ -26,9 +26,10 @@ const maxRoomsDD = {
   "Industrial": ["Factory", "Shed"]
 };
 
-TextStyle kMenuItemStyle = GoogleFonts.rubik(fontSize: 18);
+TextStyle kMenuItemStyle = GoogleFonts.rubik(fontSize: 15, fontWeight: FontWeight.w500, color: kTextColor);
 const kIconColor = Color.fromRGBO(243, 68, 81, 1);
 const kIconBackgroundColor = Color.fromRGBO(254, 237, 238, 1);
+const kTextColor = Color(0xFF586167);
 
 const kdropDownTitleStyle = 15.0;
 TextStyle khomePagePropertySearchPanelDDPanel =
