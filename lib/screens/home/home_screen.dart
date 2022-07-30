@@ -122,23 +122,23 @@ class HomeScreen extends StatelessWidget {
                             child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
                           ),
                           SizedBox(height: 50,),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 32.0),
-                            child: AutoSizeText(
-                              "Featured Property",
-                              minFontSize: 25,
-                              style: GoogleFonts.rubik(
-                                  fontSize: 35, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            "Residences can be classified into different type of housing tenure can used for same physical type.",
-                            style: GoogleFonts.rubik(fontSize: 20),
-                          ),
-                          width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
-                          const SizedBox(
-                            height: 100,
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+                          //   child: AutoSizeText(
+                          //     "Featured Property",
+                          //     minFontSize: 25,
+                          //     style: GoogleFonts.rubik(
+                          //         fontSize: 35, fontWeight: FontWeight.w500),
+                          //   ),
+                          // ),
+                          // Text(
+                          //   "Residences can be classified into different type of housing tenure can used for same physical type.",
+                          //   style: GoogleFonts.rubik(fontSize: 20),
+                          // ),
+                          // width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
+                          // const SizedBox(
+                          //   height: 100,
+                          // ),
                         ],
                       ),
                     ],
