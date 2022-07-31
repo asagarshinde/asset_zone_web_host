@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constants/constants.dart';
@@ -99,7 +100,7 @@ class PropertySearchCardSearchRangeSliderSelectedValue extends StatelessWidget {
       var myselect = select == "end"
           ? _searchPanelController.currentRangeValuesPrice.value.end
           : _searchPanelController.currentRangeValuesPrice.value.start;
-      return Text(
+      return AutoSizeText(
         select == "end" ? "${myselect / 1000}K" : "${myselect / 1000}K - ",
         // "${_currentRangeValuesPrice.end.toInt()}",
         style: khomePagePropertySearchPanelDDPanel,
