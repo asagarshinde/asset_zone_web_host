@@ -29,7 +29,7 @@ class PropertySearchMobileView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.only(left:8.0),
                       child: Text(
                         "Budget ",
                         style: khomePagePropertySearchPanelDDPanel,

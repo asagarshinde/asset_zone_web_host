@@ -31,7 +31,7 @@ const kIconColor = Color.fromRGBO(243, 68, 81, 1);
 const kIconBackgroundColor = Color.fromRGBO(254, 237, 238, 1);
 const kTextColor = Color(0xFF586167);
 
-const kdropDownTitleStyle = 15.0;
+const kdropDownTitleStyle = 14.0;
 TextStyle khomePagePropertySearchPanelDDPanel =
     GoogleFonts.rubik(fontSize: kdropDownTitleStyle, color: Colors.black);
 

@@ -12,7 +12,7 @@ class HomePageText extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          width > 1200 ? width * 0.14 : 10,
+          width > 1200 ? width * 0.08 : 10,
           width > 1200
               ? 110
               : width > 800
@@ -91,89 +91,91 @@ class _propertyTileState extends State<propertyTile> {
       onTap: () {
         print("Clicked on property card");
       },
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-        child: Container(
-          height: 350,
-          width: 400,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(widget.inputImagePath),
-              fit: BoxFit.cover,
-            ),
-          ),
+      child: Center(
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0))),
           child: Container(
+            height: 350,
+            width: 380,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withOpacity(0.7),
-                ],
+              image: DecorationImage(
+                image: AssetImage(widget.inputImagePath),
+                fit: BoxFit.cover,
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    color: kSecondaryColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  width: 80,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Rent",
-                      style:
-                          GoogleFonts.rubik(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Govind Nagar",
-                            style: GoogleFonts.rubik(
-                                fontSize: 25, color: Colors.white70),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
-                          child: Text(
-                            "₹13,000/month",
-                            style: GoogleFonts.rubik(
-                                fontSize: 15, color: Colors.white70),
-                          ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                      child: MyButton(title: "Details"),
-                    ),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.7),
                   ],
                 ),
-                if (_isHover)
-                  AnimatedOpacity(
-                      opacity: _isHover ? 1 : 0,
-                      duration: Duration(milliseconds: _isHover ? 1000 : 100),
-                      child: onHoverStrip())
-              ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: kSecondaryColor,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                    ),
+                    width: 80,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Rent",
+                        style:
+                            GoogleFonts.rubik(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Govind Nagar",
+                              style: GoogleFonts.rubik(
+                                  fontSize: 25, color: Colors.white70),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
+                            child: Text(
+                              "₹13,000/month",
+                              style: GoogleFonts.rubik(
+                                  fontSize: 15, color: Colors.white70),
+                            ),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+                        child: MyButton(title: "Details"),
+                      ),
+                    ],
+                  ),
+                  if (_isHover)
+                    AnimatedOpacity(
+                        opacity: _isHover ? 1 : 0,
+                        duration: Duration(milliseconds: _isHover ? 1000 : 100),
+                        child: onHoverStrip())
+                ],
+              ),
             ),
           ),
         ),

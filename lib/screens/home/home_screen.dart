@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    print(width);
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                           const HomePageText(),
                           Padding(
                             padding: EdgeInsets.fromLTRB(
-                                width > 1200 ? width * 0.12 : 10, 0, 0, 50),
+                                width > 1200 ? width * 0.08 : 10, 0, 0, 50),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -96,7 +97,8 @@ class HomeScreen extends StatelessWidget {
                                 AutoSizeText(
                                   "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
                                   style: GoogleFonts.roboto(
-                                      fontSize: 19, color: const Color(0xFF586167)),
+                                      fontSize: 19,
+                                      color: const Color(0xFF586167)),
                                 ),
                                 const SizedBox(
                                   height: 50,
@@ -104,34 +106,39 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // const Expanded(child: PropertiesForRentGrid()),
-                          // width< 950 ? const PropertiesForRentTablet() : const PropertiesForRentCards(),
+                          // const PropertiesForRentGrid(),
+                          width < 850
+                              ? PropertiesForRentMobile()
+                              : width < 1600
+                                  ? const PropertiesForRentTablet()
+                                  : const PropertiesForRentCardsDesktop(),
                           const SizedBox(
                             height: 100,
                           ),
-                          const FeaturedProject(
-                            firstImageName: 'assets/banner-3.jpg',
-                            secondImageName: 'assets/2.jpg',
-                            cityName: "nashik city",
-                            projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
-                            projectType: "Open house",
+                          Container(
+                            color: Colors.red,
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 32.0),
-                            child: Text(
-                              "Featured Property",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 45, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            "Residences can be classified into different type of housing tenure can used for same physical type.",
-                            style: GoogleFonts.rubik(fontSize: 20),
-                          ),
-                          width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
-                          const SizedBox(
-                            height: 100,
-                          ),
+                          SizedBox(height: 50,),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+                          //   child: AutoSizeText(
+                          //     "Featured Property",
+                          //     minFontSize: 25,
+                          //     style: GoogleFonts.rubik(
+                          //         fontSize: 35, fontWeight: FontWeight.w500),
+                          //   ),
+                          // ),
+                          // Text(
+                          //   "Residences can be classified into different type of housing tenure can used for same physical type.",
+                          //   style: GoogleFonts.rubik(fontSize: 20),
+                          // ),
+                          // width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
+                          // const SizedBox(
+                          //   height: 100,
+                          // ),
                         ],
                       ),
                     ],
