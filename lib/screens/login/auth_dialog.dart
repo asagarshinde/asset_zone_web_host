@@ -163,8 +163,8 @@ class _AuthDialogState extends State<AuthDialog> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                     left: 20.0,
                     bottom: 8,
                   ),
@@ -271,7 +271,7 @@ class _AuthDialogState extends State<AuthDialog> {
                                           Navigator.of(context)
                                               .pushReplacement(MaterialPageRoute(
                                             fullscreenDialog: true,
-                                            builder: (context) => const HomeScreen(title: "Ater Auth"),
+                                            builder: (context) => const HomeScreen(title: "After Auth"),
                                           ));
                                         });
                                   }

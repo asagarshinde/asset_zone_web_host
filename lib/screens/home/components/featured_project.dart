@@ -2,106 +2,26 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/responsive.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/home_screen_widgets.dart';
+import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 import '../../../constants/constants.dart';
 
-class FeaturedProject extends StatelessWidget {
-  final String firstImageName;
-  final String secondImageName;
-  final String cityName;
-  final String projectType;
-  final String projectDescription;
-
-  const FeaturedProject(
-      {Key? key,
-      required this.firstImageName,
-      required this.secondImageName,
-      required this.cityName,
-      required this.projectType,
-      required this.projectDescription})
-      : super(key: key);
+class FeatureProjectLayer2 extends StatelessWidget {
+  const FeatureProjectLayer2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (builder, constraints) {
-      final width = constraints.maxWidth;
-      return Stack(
-        children: [
-          Card(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.1),
-              ),
-              width: width,
-              child: Image.asset(
-                firstImageName,
-                color: Colors.black.withOpacity(0.46),
-                colorBlendMode: BlendMode.srcOver,
-              ),
-            ),
-          ),
-          Column(
-            children: const [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
-                child: Center(
-                  child: CustomTextStyle(
-                    title: 'Featured Project',
-                    fontWeight: FontWeight.bold,
-                    size: 35,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 200,
-                child: Divider(
-                  color: Colors.white,
-                  thickness: 3,
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-                width < 900
-                    ? width * 0.1
-                    : width < 1200
-                        ? width * 0.22
-                        : width * 0.33,
-                width * 0.1,
-                300,
-                0),
-            child: Card(
-              color: Colors.black.withOpacity(0),
-              clipBehavior: Clip.antiAlias,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              child: SizedBox(
-                child: Image.asset(
-                  secondImageName,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-                width < 900 ? 150 : 350, width < 900 ? 150 : 350, 0, 0),
-            child: Container(
-                width: width * 0.4,
-                // height: 350,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white),
-                child: FeaturedProjectDescriptionTile(
-                  cityName: cityName,
-                  projectType: projectType,
-                  projectDescription: projectDescription,
-                )),
-          )
-        ],
-      );
-    });
+    return Card(
+      color: Colors.black.withOpacity(0),
+      clipBehavior: Clip.antiAlias,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      child: SizedBox(
+        child: Image.asset(
+          'assets/3.jpg',
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
   }
 }
 
@@ -328,27 +248,6 @@ class FeaturedProjectDesktop extends StatelessWidget {
     );
   }
 }
-
-class FeatureProjectLayer2 extends StatelessWidget {
-  const FeatureProjectLayer2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.black.withOpacity(0),
-      clipBehavior: Clip.antiAlias,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      child: SizedBox(
-        child: Image.asset(
-          'assets/3.jpg',
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
 
 class FeaturedProjectTablet extends StatelessWidget {
   const FeaturedProjectTablet({Key? key}) : super(key: key);

@@ -193,7 +193,7 @@ class _PropertySubTypeDropDownState extends State<PropertySubTypeDropDown> {
                     alignment: AlignmentDirectional.center,
                     value: searchPanelController.selectedPropertySubType.value,
                     // items: searchPanelController.setItems(),
-                    hint: const Text("Property Sub Type"),
+                    // hint: Center(child: const Text("Property Sub Type")),
                     items: searchPanelController.propertySubTypeMenu,
                     onChanged: (value) {
                       setState(() {

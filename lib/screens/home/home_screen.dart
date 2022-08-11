@@ -2,19 +2,20 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/feature_property.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/featured_project.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/home_screen_widgets.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/navigation_bar.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/properties_for_rent_cards.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_desktop_view.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_mobile_view.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_tablet_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/feature_property.dart';
+import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
+import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
+import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
+import 'package:the_asset_zone_web/screens/home/components/properties_for_rent_cards.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_desktop_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/what_are_you_looking_for.dart';
 import '../../responsive.dart';
 import '../../widgets/helper_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-  final String title = '';
+  final String title = 'The Assets Zone';
 
   const HomeScreen({Key? key, required String title}) : super(key: key);
 
@@ -122,6 +123,7 @@ class HomeScreen extends StatelessWidget {
                             child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
                           ),
                           SizedBox(height: 50,),
+                          // WhatAreYouLookingFor(),
                           // Padding(
                           //   padding: const EdgeInsets.symmetric(vertical: 32.0),
                           //   child: AutoSizeText(
