@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       title: 'The Assets Zone',
       theme: themeData,
       // home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      home: HomeScreen(title: "The Asset Zone"),
+      home: HomeScreen(title: "dsf"),
     );
   }
 }
