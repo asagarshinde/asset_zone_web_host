@@ -4,7 +4,13 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
+import 'package:the_asset_zone_web/screens/city/city_screen.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
+import 'package:the_asset_zone_web/screens/project/project_screen.dart';
+import 'package:the_asset_zone_web/screens/property/property_screen.dart';
+import 'package:the_asset_zone_web/screens/services/services_screen.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
+import 'package:go_router/go_router.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -22,7 +28,7 @@ void main() async {
         messagingSenderId: "1001122158865",
         appId: "1:1001122158865:web:e458ae8a32388d4b2d54b0"),
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,9 +40,51 @@ class MyApp extends StatelessWidget {
     debugPaintSizeEnabled = false;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'The Assets Zone',
       theme: themeData,
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      // home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      home: HomeScreen(title: "dsf"),
     );
   }
 }
+
+final GoRouter _router = GoRouter(
+  routes: <GoRoute>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomeScreen(title: "The Asset Zone");
+      },
+    ),
+    GoRoute(
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) {
+        return HomeScreen(title: "The Asset Zone");
+      },
+    ),
+    GoRoute(
+      path: '/property',
+      builder: (BuildContext context, GoRouterState state) {
+        return const PropertyScreen();
+      },
+    ),
+    GoRoute(
+      path: '/project',
+      builder: (BuildContext context, GoRouterState state) {
+        return const ProjectScreen();
+      },
+    ),
+    GoRoute(
+      path: '/services',
+      builder: (BuildContext context, GoRouterState state) {
+        return const ServicesScreen();
+      },
+    ),
+    GoRoute(
+      path: '/city',
+      builder: (BuildContext context, GoRouterState state) {
+        return const CityScreen();
+      },
+    ),
+  ],
+);

@@ -15,7 +15,7 @@ class SearchPanelController extends GetxController {
   var maxBudget = 1000000.0.obs;
   List<String> items2 = ["1", "2", "3"].obs;
   var currentRangeValuesPrice = RangeValues(100000, 1000000).obs;
-  List<DropdownMenuItem<String>> propertySubTypeMenu = [DropdownMenuItem<String>(child: Text("Property Sub Type"), value: "Property Sub Type")].obs();
+  List<DropdownMenuItem<String>> propertySubTypeMenu = [DropdownMenuItem<String>(child: Center(child: Text("Property Sub Type")), value: "Property Sub Type")].obs();
 
   setSelectedPropertyType(value){
     selectedPropertyType = value;
@@ -33,9 +33,9 @@ class SearchPanelController extends GetxController {
     items?.forEach((element) {
       menuItems.add(DropdownMenuItem(
           value: element,
-          child: RichText(text: TextSpan(
-              text: element
-          ),)));
+          child: Center(
+            child: Text(element),
+          )));
     });
     // propertySubTypeMenu = menuItems;
     propertySubTypeMenu= menuItems;
@@ -48,12 +48,14 @@ List<DropdownMenuItem<String>> getMenuItems(Map<String, List<String>> myitems) {
   myitems.forEach((key, List<String> value) {
     menuItems.add(DropdownMenuItem(
         value: key,
-        child: Text(
-          textAlign: TextAlign.center,
-          key,
+        child: Center(
+          child: Text(
+            textAlign: TextAlign.center,
+            key,
+          ),
         )));
     for (int i = 0; i < value.length; i++) {
-      menuItems.add(DropdownMenuItem(value: value[i], child: Text(value[i])));
+      menuItems.add(DropdownMenuItem(value: value[i], child: Center(child: Text(value[i]))));
     }
   });
   return menuItems;
@@ -65,9 +67,7 @@ List<DropdownMenuItem<String>> getPropertySubType(String propertyType) {
   items?.forEach((element) {
     menuItems.add(DropdownMenuItem(
         value: element,
-        child: RichText(text: TextSpan(
-          text: element
-        ),)));
+        child: Center(child: Text(element, textAlign: TextAlign.center,))));
   });
   return menuItems;
 }
