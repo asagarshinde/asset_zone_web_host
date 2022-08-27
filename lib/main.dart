@@ -12,6 +12,8 @@ import 'package:the_asset_zone_web/screens/services/services_screen.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
 
+import 'controllers/home_page_card_controller.dart';
+
 // void main() {
 //   runApp(const MyApp());
 // }
@@ -42,8 +44,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      // home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      home: HomeScreen(title: "dsf"),
+      home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      // home: SinglePagePropertyView(),
     );
   }
 }

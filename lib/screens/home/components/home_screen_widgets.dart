@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import '../../../widgets/helper_widgets.dart';
 
 class HomePageText extends StatelessWidget {
