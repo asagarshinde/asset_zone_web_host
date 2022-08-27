@@ -60,7 +60,10 @@ class HomePageText extends StatelessWidget {
 class propertyTile extends StatefulWidget {
   final String inputImagePath;
 
-  propertyTile({Key? key, required this.inputImagePath}) : super(key: key);
+  final String propertyType;
+  final String propertyStatus;
+
+  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus}) : super(key: key);
 
   @override
   State<propertyTile> createState() => _propertyTileState();
@@ -134,7 +137,7 @@ class _propertyTileState extends State<propertyTile> {
                     ),
                     child: Center(
                       child: Text(
-                        "Rent",
+                        widget.propertyType,
                         style:
                             GoogleFonts.rubik(color: Colors.white, fontSize: 20),
                       ),
@@ -149,7 +152,7 @@ class _propertyTileState extends State<propertyTile> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "Govind Nagar",
+                              widget.propertyStatus,
                               style: GoogleFonts.rubik(
                                   fontSize: 25, color: Colors.white70),
                             ),
