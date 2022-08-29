@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_asset_zone_web/models/list_mode.dart';
 import 'home_screen_widgets.dart';
 
 class PropertiesForRentCardsDesktop extends StatelessWidget {
@@ -7,23 +8,11 @@ class PropertiesForRentCardsDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PropertiesList pl = PropertiesList();
+    var l = pl.propertyList();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "rent", propertyStatus: "For Sale"),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-      ],
+      children: l,
     );
   }
 }
@@ -33,35 +22,27 @@ class PropertiesForRentTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "rent", propertyStatus: "For Sale"),
-            const SizedBox(
-              width: 15,
-            ),
-            propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-            const SizedBox(
-              width: 15,
-            ),
-          ],
+    PropertiesList pl = PropertiesList();
+    var l = pl.propertyList();
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder<List<String>>(
+          future: l,
+          builder: (context, snapshot) {
+            return snapshot.connectionState == ConnectionState.waiting
+                ? const CircularProgressIndicator()
+                : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(snapshot.data!.length,
+                    (index) {
+                  return Text(snapshot.data?[index] ?? "null") ;
+                },
+              ),
+            );
+          },
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-            const SizedBox(
-              width: 15,
-            ),
-            propertyTile(inputImagePath: 'assets/2.jpg', propertyType: "buy", propertyStatus: "For Sale"),
-            const SizedBox(
-              width: 15,
-            ),
-          ],
-        )
-      ],
+      ),
     );
   }
 }
