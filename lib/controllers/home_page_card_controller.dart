@@ -20,11 +20,12 @@ class PropertyDetailsFirestore extends GetxController {
 
   }
 
-  Future<List<dynamic>> retrievePropertyDetails() async {
+  Future<List<Map<String, dynamic>>> retrievePropertyDetails() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
     await firestoreDB.collection("PropertyDetails").get();
     return snapshot.docs
         .map((docSnapshot) => docSnapshot.data())//.fromDocumentSnapshot(docSnapshot).toMap())
+        // .map((docSnapshot) => PropertyDetails.fromDocumentSnapshot(docSnapshot).toMap())
         .toList();
   }
 

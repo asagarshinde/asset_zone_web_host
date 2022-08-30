@@ -13,6 +13,7 @@ import 'package:the_asset_zone_web/screens/single_property_page/single_page_prop
 import 'package:go_router/go_router.dart';
 
 import 'controllers/home_page_card_controller.dart';
+import 'screens/test_screen/test_screen.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -44,8 +45,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      // home: SinglePagePropertyView(),
+      // home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      home: TestPageScreen(),
     );
   }
 }

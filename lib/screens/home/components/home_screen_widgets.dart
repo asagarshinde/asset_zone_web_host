@@ -62,8 +62,10 @@ class propertyTile extends StatefulWidget {
 
   final String propertyType;
   final String propertyStatus;
+  final String price;
+  final String values;
 
-  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus}) : super(key: key);
+  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus, required this.price, required this.values}) : super(key: key);
 
   @override
   State<propertyTile> createState() => _propertyTileState();
@@ -160,7 +162,7 @@ class _propertyTileState extends State<propertyTile> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
                             child: Text(
-                              "₹13,000/month",
+                              widget.price,
                               style: GoogleFonts.rubik(
                                   fontSize: 15, color: Colors.white70),
                             ),
@@ -177,7 +179,7 @@ class _propertyTileState extends State<propertyTile> {
                     AnimatedOpacity(
                         opacity: _isHover ? 1 : 0,
                         duration: Duration(milliseconds: _isHover ? 1000 : 100),
-                        child: onHoverStrip())
+                        child: onHoverStrip(values: widget.values,))
                 ],
               ),
             ),
@@ -189,7 +191,9 @@ class _propertyTileState extends State<propertyTile> {
 }
 
 class onHoverStrip extends StatelessWidget {
-  onHoverStrip({Key? key}) : super(key: key);
+  static List<String> values = [];
+
+  onHoverStrip({Key? key, values}) : super(key: key);
   List<Widget> items = [];
   List<Color> colors = [
     Colors.black38,
@@ -198,12 +202,12 @@ class onHoverStrip extends StatelessWidget {
     Colors.black87
   ];
   List<String> text1 = ["Beds", "Baths", "Carpet Area"];
-  List<String> text2 = ["1", "2", "1000m2"];
+  List<String> text2 = values;
 
   List<Widget> getTiles() {
     for (int i = 0; i <= 2; i++) {
       items.add(onHoverSingleTile(
-          color: colors[i], text1: text1[i], text2: text2[i]));
+          color: colors[i], text1: text1[i], text2: values[i]));
     }
     return items;
   }
