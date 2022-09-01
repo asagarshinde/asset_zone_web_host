@@ -16,7 +16,7 @@ class PropertiesList{
       propertyType: property["property_about"]["property_type"],
       inputImagePath: property["gallery"][0],
       price: property["property_about"]["price"],
-      values: property["property_about"],);
+      values: property["property_about"].getTiles());
     property_list.add(tile);
   }
   return property_list;
