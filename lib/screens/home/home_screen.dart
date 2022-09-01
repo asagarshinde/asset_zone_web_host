@@ -109,10 +109,10 @@ class HomeScreen extends StatelessWidget {
                           ),
                           // const PropertiesForRentGrid(),
                           width < 850
-                              ? PropertiesForRentMobile()
+                              ? PropertiesForCardsView()
                               : width < 1600
-                                  ? const PropertiesForRentTablet()
-                                  : const PropertiesForRentCardsDesktop(),
+                                  ? const PropertiesForCardsView()
+                                  : const PropertiesForCardsView(),
                           const SizedBox(
                             height: 100,
                           ),

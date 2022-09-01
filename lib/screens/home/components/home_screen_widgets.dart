@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import '../../../widgets/helper_widgets.dart';
 
 class HomePageText extends StatelessWidget {
@@ -59,7 +60,12 @@ class HomePageText extends StatelessWidget {
 class propertyTile extends StatefulWidget {
   final String inputImagePath;
 
-  propertyTile({Key? key, required this.inputImagePath}) : super(key: key);
+  final String propertyType;
+  final String propertyStatus;
+  final String price;
+  final List<String> values;
+
+  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus, required this.price, required this.values}) : super(key: key);
 
   @override
   State<propertyTile> createState() => _propertyTileState();
@@ -91,91 +97,89 @@ class _propertyTileState extends State<propertyTile> {
       onTap: () {
         print("Clicked on property card");
       },
-      child: Center(
-        child: Card(
-          clipBehavior: Clip.antiAlias,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
-          child: Container(
-            height: 350,
-            width: 380,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(widget.inputImagePath),
-                fit: BoxFit.cover,
-              ),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.0))),
+        child: Container(
+          height: 350,
+          width: 380,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(widget.inputImagePath),
+              fit: BoxFit.cover,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withOpacity(0.7),
-                  ],
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: kSecondaryColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(5),
-                      ),
-                    ),
-                    width: 80,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Rent",
-                        style:
-                            GoogleFonts.rubik(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Govind Nagar",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 25, color: Colors.white70),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
-                            child: Text(
-                              "₹13,000/month",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 15, color: Colors.white70),
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                        child: MyButton(title: "Details"),
-                      ),
-                    ],
-                  ),
-                  if (_isHover)
-                    AnimatedOpacity(
-                        opacity: _isHover ? 1 : 0,
-                        duration: Duration(milliseconds: _isHover ? 1000 : 100),
-                        child: onHoverStrip())
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.black.withOpacity(0.7),
                 ],
               ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    color: kSecondaryColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  width: 80,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 4,
+                  ),
+                  child: Center(
+                    child: Text(
+                      widget.propertyType,
+                      style:
+                          GoogleFonts.rubik(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.propertyStatus,
+                            style: GoogleFonts.rubik(
+                                fontSize: 25, color: Colors.white70),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
+                          child: Text(
+                            widget.price,
+                            style: GoogleFonts.rubik(
+                                fontSize: 15, color: Colors.white70),
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+                      child: MyButton(title: "Details"),
+                    ),
+                  ],
+                ),
+                if (_isHover)
+                  AnimatedOpacity(
+                      opacity: _isHover ? 1 : 0,
+                      duration: Duration(milliseconds: _isHover ? 1000 : 100),
+                      child: onHoverStrip(values: widget.values,))
+              ],
             ),
           ),
         ),
@@ -185,7 +189,9 @@ class _propertyTileState extends State<propertyTile> {
 }
 
 class onHoverStrip extends StatelessWidget {
-  onHoverStrip({Key? key}) : super(key: key);
+  // static List<String> values = [];
+
+  onHoverStrip({Key? key, required this.values}) : super(key: key);
   List<Widget> items = [];
   List<Color> colors = [
     Colors.black38,
@@ -194,12 +200,13 @@ class onHoverStrip extends StatelessWidget {
     Colors.black87
   ];
   List<String> text1 = ["Beds", "Baths", "Carpet Area"];
-  List<String> text2 = ["1", "2", "1000m2"];
+  final List<String> values;
+  // List<String> text2 = values;
 
   List<Widget> getTiles() {
     for (int i = 0; i <= 2; i++) {
       items.add(onHoverSingleTile(
-          color: colors[i], text1: text1[i], text2: text2[i]));
+          color: colors[i], text1: text1[i], text2: values[i]));
     }
     return items;
   }

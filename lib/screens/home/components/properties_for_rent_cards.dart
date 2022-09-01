@@ -1,101 +1,52 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
+
 import 'home_screen_widgets.dart';
 
-class PropertiesForRentCardsDesktop extends StatelessWidget {
-  const PropertiesForRentCardsDesktop({Key? key}) : super(key: key);
+class PropertiesForCardsView extends StatefulWidget {
+  const PropertiesForCardsView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        propertyTile(inputImagePath: 'assets/2.jpg'),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg'),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg'),
-        const SizedBox(
-          width: 15,
-        ),
-        propertyTile(inputImagePath: 'assets/2.jpg'),
-      ],
-    );
-  }
+  State<PropertiesForCardsView> createState() => _PropertiesForCardsViewState();
 }
 
-class PropertiesForRentTablet extends StatelessWidget {
-  const PropertiesForRentTablet({Key? key}) : super(key: key);
+class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            propertyTile(inputImagePath: 'assets/2.jpg'),
-            const SizedBox(
-              width: 15,
-            ),
-            propertyTile(inputImagePath: 'assets/2.jpg'),
-            const SizedBox(
-              width: 15,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            propertyTile(inputImagePath: 'assets/2.jpg'),
-            const SizedBox(
-              width: 15,
-            ),
-            propertyTile(inputImagePath: 'assets/2.jpg'),
-            const SizedBox(
-              width: 15,
-            ),
-          ],
-        )
-      ],
-    );
+  Future<List<Widget>?> getData() async{
+    PropertiesList propertiesList = PropertiesList();
+    List<Widget>? pl = await propertiesList.propertyList();
+    // await Future.delayed(Duration(seconds: 5));
+    print(pl);
+    return pl;
   }
-}
-
-
-class PropertiesForRentMobile extends StatelessWidget {
-  const PropertiesForRentMobile({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          propertyTile(inputImagePath: 'assets/2.jpg'),
-          const SizedBox(
-            width: 25,
-          ),
-          propertyTile(inputImagePath: 'assets/2.jpg'),
-          const SizedBox(
-            width: 25,
-          ),
-          propertyTile(inputImagePath: 'assets/2.jpg'),
-          const SizedBox(
-            width: 25,
-          ),
-          propertyTile(inputImagePath: 'assets/2.jpg'),
-          const SizedBox(
-            width: 25,
-          )
-        ],
-      ),
+    return FutureBuilder<List?>(
+      future: getData(),
+      builder: (context, snapshot){
+        print(snapshot.error);
+        print(snapshot.data);
+        if (snapshot.hasData){
+
+          List<Widget> data = snapshot.data! as List<Widget>;
+          return Center(
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runAlignment: WrapAlignment.center,
+              children: data,
+            ),
+          );
+        }
+        else if (snapshot.hasError){
+          return Text("${snapshot.error}");
+        }
+        else {
+          return CircularProgressIndicator();
+        }
+        // return CircularProgressIndicator();
+      },
     );
   }
 }
