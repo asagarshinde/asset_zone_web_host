@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
+import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 
 
 class PropertyDetailsFirestore extends GetxController {
@@ -28,69 +29,32 @@ class PropertyDetailsFirestore extends GetxController {
         // .map((docSnapshot) => PropertyDetails.fromDocumentSnapshot(docSnapshot).toMap())
         .toList();
   }
-
-
-
-
-
-// getSummaryForCards(int number_of_properties ){
-  //   StreamBuilder(
-  //     stream: firestoreDB,
-  //     builder: (context,snapshots){
-  //       if(!snapshots.hasData) return CircularProgressIndicator();
-  //       return ListView.builder(
-  //           itemCount: (snapshots.data! as QuerySnapshot).docs.length,
-  //           itemBuilder: (context,int index){
-  //             return Text((snapshots.data! as QuerySnapshot).docs[index]['S6FEKO6jbsHRdvnqPCZR']);
-  //           }
-  //       );
-  //     },
-  //   );
-  //
-  // }
-  //
-  // getPropertyDetailsFromId(var propertyId){
-  //
-  // }
-  //
-
 }
 
-// class FirebaseData extends StatefulWidget {
-//   const FirebaseData({Key? key, required String title}) : super(key: key);
-//
-//   @override
-//   State<FirebaseData> createState() => _FirebaseDataState();
-// }
-//
-// class _FirebaseDataState extends State<FirebaseData> {
-//   var firestoreDB = FirebaseFirestore.instance.collection("PropertyDetails").snapshots();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: [
-//           Container(
-//             height: 20,
-//             child: StreamBuilder(
-//               stream: firestoreDB,
-//               builder: (context,snapshots){
-//                 if(!snapshots.hasData) return CircularProgressIndicator();
-//                 return ListView.builder(
-//                     itemCount: (snapshots.data! as QuerySnapshot).docs.length,
-//                     itemBuilder: (context,int index){
-//                       return Text((snapshots.data! as QuerySnapshot).docs[index]['Property Type']);
-//
-//
-//                     }
-//                 );
-//               },
-//             ),
-//
-//           ),
-//
-//         ],
-//       ),
-//     );
-//   }
-// }
+
+class PropertiesList{
+  Future<List<Widget>?> propertyList() async {
+    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    List<Widget> property_list = [];
+    var properties = await dbservice.retrievePropertyDetails();
+    // print(properties);
+    for (var property in properties)
+    {
+      // print(property["video"]);
+      Widget dummy = Text(property.toString());
+      List<String> values = [
+        property["property_about"]["bedrooms"].toString(),
+        property["property_about"]["bathroom"].toString(),
+        property["property_about"]["property_size"].toString(),
+      ];
+      Widget tile = propertyTile(
+          propertyStatus: property["property_about"]["property_status"],
+          propertyType: property["property_about"]["property_type"],
+          inputImagePath: property["gallery"][0],
+          price: property["property_about"]["price"].toString(),
+          values: values);
+      property_list.add(tile);
+    }
+    return property_list;
+  }
+}

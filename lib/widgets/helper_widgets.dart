@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
-import 'package:the_asset_zone_web/models/list_mode.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 
 import '../constants/constants.dart';

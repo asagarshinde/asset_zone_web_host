@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_asset_zone_web/models/list_mode.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
+// import 'package:the_asset_zone_web/controllers/list_mode.dart';
 
 class TestPageScreen extends StatefulWidget {
   const TestPageScreen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
     PropertiesList propertiesList = PropertiesList();
     List<Widget>? pl = await propertiesList.propertyList();
     // await Future.delayed(Duration(seconds: 5));
+    print(pl);
     return pl;
   }
   @override
@@ -24,12 +26,19 @@ class _TestPageScreenState extends State<TestPageScreen> {
             child: FutureBuilder<List?>(
               future: getData(),
               builder: (context, snapshot){
+                print(snapshot.error);
+                print(snapshot.data);
                 if (snapshot.hasData){
+
                   List<Widget> data = snapshot.data! as List<Widget>;
                   return Column(
                     children: data,
                   );
-                }else {
+                }
+                else if (snapshot.hasError){
+                  return Text("${snapshot.error}");
+                }
+                else {
                 return CircularProgressIndicator();
                 }
                 // return CircularProgressIndicator();
