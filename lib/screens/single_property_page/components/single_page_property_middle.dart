@@ -3,8 +3,8 @@ import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_property_middle_about_container.dart';
 
 class SinglePagePropertyMiddleDesktop extends StatefulWidget {
-  const SinglePagePropertyMiddleDesktop({Key? key}) : super(key: key);
-
+  SinglePagePropertyMiddleDesktop({Key? key,required this.propertyDetails}) : super(key: key);
+  final propertyDetails;
   @override
   State<SinglePagePropertyMiddleDesktop> createState() =>
       _SinglePagePropertyMiddleDesktopState();
@@ -31,7 +31,7 @@ class _SinglePagePropertyMiddleDesktopState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(children: buildMenuBar()),
-                  const SinglePagePropertyMiddleAboutContainer()
+                  SinglePagePropertyMiddleAboutContainer(propertyDetails: widget.propertyDetails,)
                 ],
               ),
             ),
@@ -57,7 +57,7 @@ class _SinglePagePropertyMiddleDesktopState
   List<Widget> buildMenuBar() {
     List<Widget> menu = [];
     for (var element in [
-      "About",
+      "ABOUT",
       "FEATURE",
       "GALLERY",
       "VIDEO",

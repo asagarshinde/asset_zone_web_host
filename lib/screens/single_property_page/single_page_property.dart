@@ -42,7 +42,7 @@ class SinglePagePropertyView extends StatelessWidget {
                 const SizedBox(
                   height: 60,
                 ),
-                const SinglePagePropertyMiddleDesktop()
+                SinglePagePropertyMiddleDesktop(propertyDetails: this.propertyDetails,)
               ],
             ),
           )
