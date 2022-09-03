@@ -2,11 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import 'package:the_asset_zone_web/responsive.dart';
 import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 
+import '../../home/components/home_screen_widgets.dart';
+
 class leftColumn extends StatelessWidget {
-  const leftColumn({Key? key}) : super(key: key);
+  const leftColumn({Key? key, required this.propertyDetails}) : super(key: key);
+  final propertyDetails;
 
   List<Widget> getFlatDetailsRow(
       context, bedrooms, halls, area, bathrooms, garage) {
@@ -34,6 +38,7 @@ class leftColumn extends StatelessWidget {
             Icon(
               flatDetailsIcons[i],
               color: const Color(0xFF1c2d3a),
+
             ),
             Padding(
               padding: const EdgeInsets.all(3.0),
@@ -112,17 +117,17 @@ class leftColumn extends StatelessWidget {
           ),
           Responsive.isDesktop(context)
               ? Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: Row(
-              children:
-              getFlatDetailsRow(context, "2", "2", "300", "2", "0"),
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                 child: Row(
+                  children:
+                  getFlatDetailsRow(context, propertyDetails["property_about"]["bedrooms"].toString(), propertyDetails["property_about"]["bathroom"].toString(), propertyDetails["property_about"]["balcony"].toString(), "2", "0"),
             ),
           )
               : Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: Column(
-              children:
-              getFlatDetailsRow(context, "2", "2", "300", "2", "0"),
+                 padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Column(
+                    children:
+                    getFlatDetailsRow(context, "2", "2", "300", "2", "0"),
             ),
           ),
           Padding(
@@ -316,3 +321,5 @@ class leftColumnMobile extends StatelessWidget {
     );
   }
 }
+
+

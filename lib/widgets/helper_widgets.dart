@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 
 import '../constants/constants.dart';
 
@@ -36,10 +38,15 @@ class _MyButtonState extends State<MyButton> {
           //dbservice.addPropertyDetails(propertyDetails);
           // Future<List<PropertyDetails>> out = dbservice.retrievePropertyDetails();
           // print(out.toString());
-          PropertiesList pl = PropertiesList();
-          var l = pl.propertyList();
-          print(l);
-          print("Clicked on me who");
+          //PropertiesList pl = PropertiesList();
+          // var l = pl.propertyList();
+          // print(l);
+          // print("Clicked on me who");
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => SinglePagePropertyView()),
+          // );
+
         },
         child:  Center(
           child: Text(

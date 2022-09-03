@@ -21,11 +21,16 @@ class PropertyDetailsFirestore extends GetxController {
 
   }
 
-  Future<List<Map<String, dynamic>>> retrievePropertyDetails() async {
+  Future<List<Map>> retrievePropertyDetails() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
     await firestoreDB.collection("PropertyDetails").get();
     return snapshot.docs
-        .map((docSnapshot) => docSnapshot.data())//.fromDocumentSnapshot(docSnapshot).toMap())
+        .map((docSnapshot) {
+          Map out = {};
+          out..addAll(docSnapshot.data());
+          out["id"] = docSnapshot.id;
+          return out;
+        })//.fromDocumentSnapshot(docSnapshot).toMap())
         // .map((docSnapshot) => PropertyDetails.fromDocumentSnapshot(docSnapshot).toMap())
         .toList();
   }
@@ -40,7 +45,7 @@ class PropertiesList{
     // print(properties);
     for (var property in properties)
     {
-      // print(property["video"]);
+      print(property);
       Widget dummy = Text(property.toString());
       List<String> values = [
         property["property_about"]["bedrooms"].toString(),
@@ -52,7 +57,8 @@ class PropertiesList{
           propertyType: property["property_about"]["property_type"],
           inputImagePath: property["gallery"][0],
           price: property["property_about"]["price"].toString(),
-          values: values);
+          values: values,
+      propertyDetails: property);
       property_list.add(tile);
     }
     return property_list;

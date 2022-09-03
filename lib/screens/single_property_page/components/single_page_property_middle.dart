@@ -10,7 +10,7 @@ class SinglePagePropertyMiddleDesktop extends StatefulWidget {
 
 class _SinglePagePropertyMiddleDesktopState
     extends State<SinglePagePropertyMiddleDesktop> {
-  late bool _isHover = false;
+  //late bool _isHover = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,13 @@ class _SinglePagePropertyMiddleDesktopState
           Expanded(
             flex: 3,
             child: Container(
+              color: Colors.white,
               child: Column(
-                children: [Row(children: buildMenuBar())],
+                children: [
+                  Row(
+                      children: buildMenuBar()
+                  )
+                ],
               ),
             ),
           ),
@@ -55,20 +60,22 @@ class _SinglePagePropertyMiddleDesktopState
             child: Text(
               element,
               style: TextStyle(
-                  color: _isHover ? Colors.deepOrangeAccent : Colors.black12),
+                color: Colors.black
+                  //color: _isHover ? Colors.deepOrangeAccent : Colors.black12
+              ),
             ),
-            onHover: (value) {
-              setState(
-                () {
-                  if (_isHover = value) {
-                    _isHover = true;
-                  }
-                },
-              );
-            },
-            onTap: () {
-              print("Tapped");
-            },
+            // onHover: (value) {
+            //   setState(
+            //     () {
+            //       if (_isHover = value) {
+            //         _isHover = true;
+            //       }
+            //     },
+            //   );
+            // },
+            // onTap: () {
+            //   print("Tapped");
+            // },
           ),
         );
       },
