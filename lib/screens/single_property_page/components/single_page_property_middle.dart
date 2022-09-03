@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_property_middle_about_container.dart';
 
 class SinglePagePropertyMiddleDesktop extends StatefulWidget {
   const SinglePagePropertyMiddleDesktop({Key? key}) : super(key: key);
@@ -25,25 +27,26 @@ class _SinglePagePropertyMiddleDesktopState
             child: Container(
               color: Colors.white,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                      children: buildMenuBar()
-                  )
+                  Row(children: buildMenuBar()),
+                  const SinglePagePropertyMiddleAboutContainer()
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
             flex: 1,
             child: Container(
               color: Colors.red,
-              child: Text("right"),
+              child: const Text("right"),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           )
         ],
@@ -53,15 +56,24 @@ class _SinglePagePropertyMiddleDesktopState
 
   List<Widget> buildMenuBar() {
     List<Widget> menu = [];
-    ["About", "FEATURE", "GALLERY", "VIDEO", "FLOOR PLAN", "LOCATION"].forEach(
-      (element) {
-        menu.add(
-          InkWell(
-            child: Text(
-              element,
-              style: TextStyle(
-                color: Colors.black
-                  //color: _isHover ? Colors.deepOrangeAccent : Colors.black12
+    for (var element in [
+      "About",
+      "FEATURE",
+      "GALLERY",
+      "VIDEO",
+      "FLOOR PLAN",
+      "LOCATION"
+    ]) {
+      menu.add(
+        Material(
+          child: InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                element,
+                style: const TextStyle(color: Colors.black
+                    //color: _isHover ? Colors.deepOrangeAccent : Colors.black12
+                    ),
               ),
             ),
             // onHover: (value) {
@@ -73,13 +85,16 @@ class _SinglePagePropertyMiddleDesktopState
             //     },
             //   );
             // },
-            // onTap: () {
-            //   print("Tapped");
-            // },
+            onTap: () {
+              print("Tapped");
+            },
           ),
-        );
-      },
-    );
+        ),
+      );
+      menu.add(const SizedBox(
+        width: 20,
+      ));
+    }
     return menu;
   }
 }
