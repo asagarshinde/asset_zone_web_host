@@ -9,6 +9,7 @@ import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
 import 'package:the_asset_zone_web/screens/property/property_screen.dart';
 import 'package:the_asset_zone_web/screens/services/services_screen.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       title: 'The Assets Zone',
       theme: themeData,
       // home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      home: HomeScreen(title: 'The Assets Zone',),
+      home: SinglePagePropertyMiddleLocationContainer()//HomeScreen(title: 'The Assets Zone',),
     );
   }
 }
