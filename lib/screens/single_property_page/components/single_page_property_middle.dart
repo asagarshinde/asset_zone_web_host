@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_property_middle_about_container.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
 
 class SinglePagePropertyMiddleDesktop extends StatefulWidget {
   SinglePagePropertyMiddleDesktop({Key? key,required this.propertyDetails}) : super(key: key);
@@ -17,6 +18,7 @@ class _SinglePagePropertyMiddleDesktopState
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    print(widget.propertyDetails["location"]);
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: width > 950 ? width * 0.08 : width * 0.08),
@@ -31,7 +33,7 @@ class _SinglePagePropertyMiddleDesktopState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(children: buildMenuBar()),
-                  SinglePagePropertyMiddleAboutContainer(propertyDetails: widget.propertyDetails,)
+                  SizedBox(height: width/2, width: width,child: SinglePagePropertyMiddleLocationContainer(location: widget.propertyDetails["location"],))
                 ],
               ),
             ),

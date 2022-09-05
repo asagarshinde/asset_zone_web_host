@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SinglePagePropertyMiddleLocationContainer extends StatefulWidget {
-  const SinglePagePropertyMiddleLocationContainer({Key? key}) : super(key: key);
+  final location;
+
+  SinglePagePropertyMiddleLocationContainer({Key? key,  this.location}) : super(key: key);
 
   @override
   State<SinglePagePropertyMiddleLocationContainer> createState() => _SinglePagePropertyMiddleLocationContainerState();
@@ -14,8 +16,8 @@ class _SinglePagePropertyMiddleLocationContainerState extends State<SinglePagePr
     return Scaffold(
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: LatLng(19.018255973653343, 72.84793849278007),
-          zoom: 15,
+          target: LatLng(widget.location["lat"],widget.location["lon"]),
+          zoom: 8,
         ),
       ),
     );
