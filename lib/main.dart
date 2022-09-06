@@ -13,6 +13,7 @@ import 'package:the_asset_zone_web/screens/single_property_page/components/right
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
 
 import 'controllers/home_page_card_controller.dart';
 import 'screens/test_screen/test_screen.dart';
@@ -47,8 +48,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      // home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      home: HomeScreen(title: 'The Assets Zone',),
+      home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      //home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
+      //home: FormAddFirebase(),
     );
   }
 }
