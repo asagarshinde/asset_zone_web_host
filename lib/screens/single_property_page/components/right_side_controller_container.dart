@@ -11,6 +11,7 @@ class RightSideControllerContainer extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          width: 200,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -95,7 +96,6 @@ class RightSideControllerContainer extends StatelessWidget {
                   child:Column(
                     children: [
                   Container(
-
                     padding: EdgeInsets.fromLTRB(700, 30, 100, 0),
                     child: TextFormField(
                       decoration: const InputDecoration(

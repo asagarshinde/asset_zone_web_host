@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       title: 'The Assets Zone',
       theme: themeData,
       home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      //home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
+      // home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
       //home: FormAddFirebase(),
     );
   }

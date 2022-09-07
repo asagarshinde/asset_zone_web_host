@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/right_side_controller_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_property_middle_about_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
 
@@ -18,7 +19,7 @@ class _SinglePagePropertyMiddleDesktopState
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    print(widget.propertyDetails["location"]);
+    //print(widget.propertyDetails["location"]);
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: width > 950 ? width * 0.08 : width * 0.08),
@@ -45,7 +46,7 @@ class _SinglePagePropertyMiddleDesktopState
             flex: 1,
             child: Container(
               color: Colors.red,
-              child: const Text("right"),
+              child: const RightSideControllerContainer(),
             ),
           ),
           const SizedBox(
