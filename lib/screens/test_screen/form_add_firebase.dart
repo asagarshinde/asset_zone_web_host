@@ -1,15 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class FormAddFirebase extends StatelessWidget {
+class FormAddFirebase extends StatefulWidget {
   FormAddFirebase({Key? key}) : super(key: key);
+
+  @override
+  State<FormAddFirebase> createState() => _FormAddFirebaseState();
+}
+
+class _FormAddFirebaseState extends State<FormAddFirebase> {
 
   TextEditingController Name = new TextEditingController();
   TextEditingController Email = new TextEditingController();
   TextEditingController Phone = new TextEditingController();
   TextEditingController Message = new TextEditingController();
+  TextEditingController dateInput = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  bool isSwitched = false;
+
+  @override
+  void initState() {
+    dateInput.text = ""; //set the initial value of text field
+    super.initState();
+  }
 
 
   @override
@@ -75,7 +91,8 @@ class FormAddFirebase extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(700, 30, 100, 0),
-                child: TextFormField(controller: Message,
+                child: TextFormField(
+                  controller: Message,
                   decoration: const InputDecoration(
                     icon: const Icon(Icons.message),
                     hintText: 'Message',
@@ -88,6 +105,55 @@ class FormAddFirebase extends StatelessWidget {
                     return null;
                   },
                 ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(700, 30, 100, 0),
+                child: Switch(
+                  value: isSwitched,
+                  activeColor: Colors.blue,
+                  onChanged: (value) {
+                    setState(() {
+                      isSwitched = value;
+                    });
+                  },
+                ),
+              ),
+              Container(
+                  padding: EdgeInsets.fromLTRB(700, 30, 100, 0),
+                  //height: MediaQuery.of(context).size.width / 3,
+                  child: Center(
+                      child: TextField(
+                        controller: dateInput,
+                        //editing controller of this TextField
+                        decoration: InputDecoration(
+                            icon: Icon(Icons.calendar_today), //icon of text field
+                            labelText: "Enter Date" //label text of field
+                        ),
+                        readOnly: true,
+                        //set it true, so that user will not able to edit text
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1950),
+                              //DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2100));
+
+                          if (pickedDate != null) {
+                            print(
+                                pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                            String formattedDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                            print(
+                                formattedDate); //formatted date output using intl package =>  2021-03-16
+                            setState(() {
+                              dateInput.text =
+                                  formattedDate; //set output date to TextField value.
+                            });
+                          } else {}
+                        },
+                      )
+                  )
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(700, 30, 100, 0),
@@ -106,9 +172,11 @@ class FormAddFirebase extends StatelessWidget {
                       "name":Name.text,
                       "email":Email.text,
                       "phone":Phone.text,
-                      "message":Message.text};
+                      "message":Message.text,
+                      "date":dateInput.text,
+                      };
                     print(data);
-                    FirebaseFirestore.instance.collection("test").add(data);
+                    //FirebaseFirestore.instance.collection("test").add(data);
                   },
                   child: Text("Submit Request"),
                   style: ElevatedButton.styleFrom(
@@ -121,5 +189,4 @@ class FormAddFirebase extends StatelessWidget {
       ),
     );
   }
-
 }

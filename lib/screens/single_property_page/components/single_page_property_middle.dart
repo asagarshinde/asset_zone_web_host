@@ -24,6 +24,7 @@ class _SinglePagePropertyMiddleDesktopState
       padding: EdgeInsets.symmetric(
           horizontal: width > 950 ? width * 0.08 : width * 0.08),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: 3,
@@ -42,12 +43,11 @@ class _SinglePagePropertyMiddleDesktopState
           const SizedBox(
             width: 10,
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              color: Colors.red,
-              child: const RightSideControllerContainer(),
-            ),
+          Container(
+            width: 250,
+            height: 1200,
+            color: Colors.red,
+            child: const RightSideControllerContainer(),
           ),
           const SizedBox(
             height: 100,
