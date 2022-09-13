@@ -45,7 +45,7 @@ class PropertiesList {
     var properties = await dbservice.retrievePropertyDetails();
     // print(properties);
     for (var property in properties) {
-      print(property);
+      //print(property);
       Widget dummy = Text(property.toString());
       List<String> values = [
         property["property_about"]["bedrooms"].toString(),

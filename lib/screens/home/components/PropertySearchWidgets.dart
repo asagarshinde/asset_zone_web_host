@@ -38,7 +38,7 @@ class _PropertySearchCardSearchFieldState
             });
           },
           decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 15.0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 40.0),
               border: InputBorder.none),
           initialValue: "Search Location",
         ),

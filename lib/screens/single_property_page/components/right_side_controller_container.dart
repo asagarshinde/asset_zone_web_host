@@ -13,7 +13,7 @@ class RightSideControllerContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            // padding: EdgeInsets.fromLTRB(700, 30, 150, 0),
+            padding: EdgeInsets.only(right: 50),
             child: Text(
               "Contact Info",
               style: GoogleFonts.montserrat(
@@ -32,7 +32,7 @@ class RightSideControllerContainer extends StatelessWidget {
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStp3rqrXNW3bha_MHg5OcCnst_boF_rN-k1nu-nZg&s"),
                     backgroundColor: Colors.transparent,
                   )),
-              //SizedBox(width: 20,),
+              SizedBox(width: 20,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -127,11 +127,14 @@ class RightSideControllerContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  MyButton(title: "Submit Request", width: 200,)
+                  SizedBox(height: 20,),
+                  MyButton(title: "Submit Request", width: 200,height: 40,)
                   ],
               )
           ),
+          SizedBox(height: 20,),
           Container(
+            padding: EdgeInsets.only(right: 100),
             child: Text(
               "Filter",
               style: GoogleFonts.montserrat(
@@ -143,6 +146,7 @@ class RightSideControllerContainer extends StatelessWidget {
           ),
           Container(
             child: PropertySearchMobileView(),
+
           ),
         ],
       ),
