@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class FormAddFirebase extends StatefulWidget {
@@ -47,6 +51,9 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
 
 
 
+
+
+
   @override
   void initState() {
     Date.text = ""; //set the initial value of text field
@@ -54,8 +61,37 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    File _image = File('');
+
+    Future<dynamic> getImage() async {
+      PickedFile? pickedFile = await ImagePicker().getImage(
+        source: ImageSource.gallery,
+      );
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    }
+
+    Future uploadPic(BuildContext context) async{
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
+      UploadTask uploadTask = ref.putFile(_image);
+      uploadTask.then((res) {
+        res.ref.getDownloadURL();
+        print("Upload Image on firebase");
+      });
+    }
+
+
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -165,18 +201,19 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     ),
                     // contact info }
 
-                    // { property about
-                    Container(
-                      padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Bathrooms,
-                        decoration: const InputDecoration(
-                          icon: const Icon(Icons.bathtub_outlined),
-                          hintText: 'Enter the no of bathrooms',
-                          labelText: 'Bathrooms',
+                    // { property about             children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
+                          child: TextFormField(
+                            controller: Bathrooms,
+                            decoration: const InputDecoration(
+                              icon: const Icon(Icons.bathtub_outlined),
+                              hintText: 'Enter the no of bathrooms',
+                              labelText: 'Bathrooms',
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
@@ -304,14 +341,15 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
-                        controller: Gallery,
-                        decoration: const InputDecoration(
-                          icon: const Icon(Icons.browse_gallery_outlined),
-                          hintText: 'Gallery',
-                          labelText: 'Gallery',
-                        ),
+                        controller: getImage(),
+                        // decoration: const InputDecoration(
+                        //   icon: const Icon(Icons.browse_gallery_outlined),
+                        //   hintText: 'Gallery',
+                        //   labelText: 'Gallery',
+                        // ),
                       ),
                     ),
+
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
