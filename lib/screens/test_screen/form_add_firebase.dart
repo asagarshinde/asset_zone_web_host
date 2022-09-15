@@ -49,6 +49,10 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _selectNumbers = ['1','2','3','4','5'];
+  String _selectedValue = '1';
+
+
 
 
 
@@ -66,28 +70,28 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   @override
   Widget build(BuildContext context) {
 
-    File _image = File('');
-
-    Future<dynamic> getImage() async {
-      PickedFile? pickedFile = await ImagePicker().getImage(
-        source: ImageSource.gallery,
-      );
-      if (pickedFile != null) {
-        setState(() {
-          _image = File(pickedFile.path);
-        });
-      }
-    }
-
-    Future uploadPic(BuildContext context) async{
-      FirebaseStorage storage = FirebaseStorage.instance;
-      Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
-      UploadTask uploadTask = ref.putFile(_image);
-      uploadTask.then((res) {
-        res.ref.getDownloadURL();
-        print("Upload Image on firebase");
-      });
-    }
+    // File _image = File('');
+    //
+    // Future<dynamic> getImage() async {
+    //   PickedFile? pickedFile = await ImagePicker().getImage(
+    //     source: ImageSource.gallery,
+    //   );
+    //   if (pickedFile != null) {
+    //     setState(() {
+    //       _image = File(pickedFile.path);
+    //     });
+    //   }
+    // }
+    //
+    // Future uploadPic(BuildContext context) async{
+    //   FirebaseStorage storage = FirebaseStorage.instance;
+    //   Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
+    //   UploadTask uploadTask = ref.putFile(_image);
+    //   uploadTask.then((res) {
+    //     res.ref.getDownloadURL();
+    //     print("Upload Image on firebase");
+    //   });
+    // }
 
 
 
@@ -202,17 +206,22 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     // contact info }
 
                     // { property about             children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                          child: TextFormField(
-                            controller: Bathrooms,
-                            decoration: const InputDecoration(
-                              icon: const Icon(Icons.bathtub_outlined),
-                              hintText: 'Enter the no of bathrooms',
-                              labelText: 'Bathrooms',
-                            ),
-                          ),
-                        ),
+                    DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        label: Text("Bathrooms",),
+                      ),
+                      value: _selectedValue,
+                      items: _selectNumbers.map(
+                              (e) {
+                            return DropdownMenuItem(child: Text(e),value: e,);
+                          }
+                      ).toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          _selectedValue = val as String;
+                        });
+                      },
+                    ),
 
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
@@ -341,12 +350,12 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
-                        controller: getImage(),
-                        // decoration: const InputDecoration(
-                        //   icon: const Icon(Icons.browse_gallery_outlined),
-                        //   hintText: 'Gallery',
-                        //   labelText: 'Gallery',
-                        // ),
+                        controller: Gallery,
+                        decoration: const InputDecoration(
+                          icon: const Icon(Icons.browse_gallery_outlined),
+                          hintText: 'Gallery',
+                          labelText: 'Gallery',
+                        ),
                       ),
                     ),
 
