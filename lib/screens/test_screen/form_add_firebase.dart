@@ -70,28 +70,31 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   @override
   Widget build(BuildContext context) {
 
-    // File _image = File('');
+    File _image = File('');
+
+    Future<dynamic> getImage() async {
+      PickedFile? pickedFile = await ImagePicker().getImage(
+        source: ImageSource.gallery,
+      );
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
+      }
+    }
     //
-    // Future<dynamic> getImage() async {
-    //   PickedFile? pickedFile = await ImagePicker().getImage(
-    //     source: ImageSource.gallery,
-    //   );
-    //   if (pickedFile != null) {
-    //     setState(() {
-    //       _image = File(pickedFile.path);
-    //     });
-    //   }
-    // }
-    //
-    // Future uploadPic(BuildContext context) async{
-    //   FirebaseStorage storage = FirebaseStorage.instance;
-    //   Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
-    //   UploadTask uploadTask = ref.putFile(_image);
-    //   uploadTask.then((res) {
-    //     res.ref.getDownloadURL();
-    //     print("Upload Image on firebase");
-    //   });
-    // }
+    Future uploadPic(BuildContext context) async{
+      final metadata = SettableMetadata(
+        customMetadata: {'picked-file-path': "123"},
+      );
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
+      UploadTask uploadTask = ref.putFile(_image, metadata);
+      uploadTask.then((res) {
+        res.ref.getDownloadURL();
+        print("Upload Image on firebase");
+      });
+    }
 
 
 
@@ -206,22 +209,28 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     // contact info }
 
                     // { property about             children: [
-                    DropdownButtonFormField(
-                      decoration: InputDecoration(
-                        label: Text("Bathrooms",),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
+                      child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          label: Text("Bathrooms",),
+                          icon: const Icon(Icons.bathtub_outlined),
+                        ),
+                        value: _selectedValue,
+                        items: _selectNumbers.map(
+                                (e) {
+                              return DropdownMenuItem(child: Text(e),value: e,);
+                            }
+                        ).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValue = val as String;
+                          });
+                        },
                       ),
-                      value: _selectedValue,
-                      items: _selectNumbers.map(
-                              (e) {
-                            return DropdownMenuItem(child: Text(e),value: e,);
-                          }
-                      ).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _selectedValue = val as String;
-                        });
-                      },
                     ),
+
+
 
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
@@ -349,13 +358,33 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
 
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Gallery,
-                        decoration: const InputDecoration(
-                          icon: const Icon(Icons.browse_gallery_outlined),
-                          hintText: 'Gallery',
-                          labelText: 'Gallery',
-                        ),
+                      child: Row(
+                        children: [
+                          // TextFormField(
+                          //   controller: Gallery,
+                          //   decoration: const InputDecoration(
+                          //     icon: const Icon(Icons.browse_gallery_outlined),
+                          //     hintText: 'Gallery',
+                          //     labelText: 'Gallery',
+                          //
+                          //   ),
+                          // ),
+
+                          TextButton.icon(
+                            icon: Icon(Icons.camera),
+                            label: Text('Gallery'),
+                            onPressed: () {
+                              getImage();
+                            },
+                          )
+
+                          // IconButton(
+                          //   icon: Icon(Icons.camera,size: 30.0,),
+                          //   onPressed: () {
+                          //     getImage();
+                          //   },
+                          // ),
+                        ],
                       ),
                     ),
 
@@ -446,6 +475,10 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                                 const SnackBar(content: Text('Processing Data')),
                               );
                             }
+
+                            uploadPic(context);
+
+
                           Map <String,dynamic> data = {
                               "property_about" : {
                                 "bathrooms": Bathrooms.text,
