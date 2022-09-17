@@ -24,12 +24,17 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   TextEditingController Message = new TextEditingController();
 
   //property about
-  TextEditingController Bathrooms = TextEditingController();
-  TextEditingController Balcony = TextEditingController();
-  TextEditingController Bedrooms = TextEditingController();
+  String Bathrooms = "";
+  String Balcony = "";
+  String Bedrooms = "";
+  String Garege = "";
+  String Halls = "";
+  //TextEditingController Bathrooms = TextEditingController();
+  // TextEditingController Balcony = TextEditingController();
+  // TextEditingController Bedrooms = TextEditingController();
   TextEditingController City = TextEditingController();
-  TextEditingController Garage = TextEditingController();
-  TextEditingController Halls = TextEditingController();
+  //TextEditingController Garage = TextEditingController();
+  //TextEditingController Halls = TextEditingController();
   TextEditingController Price = TextEditingController();
   TextEditingController PropertyId = TextEditingController();
   TextEditingController PropertySize = TextEditingController();
@@ -50,7 +55,12 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   final _formKey = GlobalKey<FormState>();
 
   final _selectNumbers = ['1','2','3','4','5'];
-  String _selectedValue = '1';
+  String _selectedValueBathrooms = '1';
+  String _selectedValueBalcony = '1';
+  String _selectedValueBedrooms = '1';
+  String _selectedValueGarege = '1';
+  String _selectedValueHalls = '1';
+
 
 
 
@@ -108,6 +118,11 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                 key: _formKey,
                 child:Column(
                   children: [
+
+                    Container(
+                      child: Center(child: Text("Admin Form",style: TextStyle(fontSize: 20),)),
+                    ),
+
                     //{ property details
 
                     //{ contact info
@@ -216,7 +231,7 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                           label: Text("Bathrooms",),
                           icon: const Icon(Icons.bathtub_outlined),
                         ),
-                        value: _selectedValue,
+                        value: _selectedValueBathrooms,
                         items: _selectNumbers.map(
                                 (e) {
                               return DropdownMenuItem(child: Text(e),value: e,);
@@ -224,36 +239,57 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                         ).toList(),
                         onChanged: (val) {
                           setState(() {
-                            _selectedValue = val as String;
+                            _selectedValueBathrooms = val as String;
+                            Bathrooms = val;
                           });
                         },
                       ),
                     ),
 
-
-
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Balcony,
-                        decoration: const InputDecoration(
+                      child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          label: Text("Balcony",),
                           icon: const Icon(Icons.balcony),
-                          hintText: 'Enter the no of balcony',
-                          labelText: 'Balcony',
                         ),
+                        value: _selectedValueBalcony,
+                        items: _selectNumbers.map(
+                                (e) {
+                              return DropdownMenuItem(child: Text(e),value: e,);
+                            }
+                        ).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValueBalcony = val as String;
+                            Balcony = _selectedValueBalcony;
+                          });
+                        },
                       ),
                     ),
+
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Bedrooms,
-                        decoration: const InputDecoration(
+                      child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          label: Text("Bedrooms",),
                           icon: const Icon(Icons.bedroom_parent),
-                          hintText: 'Enter the no of bedrooms',
-                          labelText: 'Bedrooms',
                         ),
+                        value: _selectedValueBedrooms,
+                        items: _selectNumbers.map(
+                                (e) {
+                              return DropdownMenuItem(child: Text(e),value: e,);
+                            }
+                        ).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValueBedrooms = val as String;
+                            Bathrooms = _selectedValueBedrooms;
+                          });
+                        },
                       ),
                     ),
+
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
@@ -267,26 +303,47 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Garage,
-                        decoration: const InputDecoration(
+                      child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          label: Text("Garege",),
                           icon: const Icon(Icons.garage),
-                          hintText: 'Enter No. of garage',
-                          labelText: 'Garage',
                         ),
+                        value: _selectedValueGarege,
+                        items: _selectNumbers.map(
+                                (e) {
+                              return DropdownMenuItem(child: Text(e),value: e,);
+                            }
+                        ).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValueGarege = val as String;
+                            Bathrooms = _selectedValueGarege;
+                          });
+                        },
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: TextFormField(
-                        controller: Halls,
-                        decoration: const InputDecoration(
-                          icon: const Icon(Icons.meeting_room_outlined),
-                          hintText: 'Enter No. of halls',
-                          labelText: 'Halls',
+                      child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          label: Text("Halls",),
+                          icon: const Icon(Icons.room_preferences_outlined),
                         ),
+                        value: _selectedValueHalls,
+                        items: _selectNumbers.map(
+                                (e) {
+                              return DropdownMenuItem(child: Text(e),value: e,);
+                            }
+                        ).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValueHalls = val as String;
+                            Bathrooms = _selectedValueHalls;
+                          });
+                        },
                       ),
                     ),
+
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
                       child: TextFormField(
@@ -370,12 +427,23 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                           //   ),
                           // ),
 
-                          TextButton.icon(
-                            icon: Icon(Icons.camera),
-                            label: Text('Gallery'),
-                            onPressed: () {
-                              getImage();
-                            },
+                          Row(
+                            children: [
+                              Container(
+                                child: TextButton.icon(
+                                  icon: Icon(Icons.camera),
+                                  label: Text('Gallery'),
+                                  onPressed: () {
+                                    getImage();
+                                  },
+                                ),
+                              ),
+
+                              Container(
+                                child: Text(""),
+                              ),
+
+                            ],
                           )
 
                           // IconButton(
@@ -481,12 +549,12 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
 
                           Map <String,dynamic> data = {
                               "property_about" : {
-                                "bathrooms": Bathrooms.text,
-                                "balcony": Balcony.text,
-                                "bedrooms": Bedrooms.text,
+                                "bathrooms": Bathrooms,
+                                "balcony": Balcony,
+                                "bedrooms": Bedrooms,
                                 "city": City.text,
-                                "garage": Garage.text,
-                                "halls": Halls.text,
+                                "garage": Garege,
+                                "halls": Halls,
                                 "price": Price.text,
                                 "property_id": PropertyId.text,
                                 "property_size": PropertySize.text,

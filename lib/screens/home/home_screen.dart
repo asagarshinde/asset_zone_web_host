@@ -29,7 +29,9 @@ class HomeScreen extends StatelessWidget {
               preferredSize: Size(MediaQuery.of(context).size.width, 70),
               child: const MyNavigationBar(),
             )
-          : AppBar(backgroundColor: kPrimaryColor),
+          : AppBar(
+           backgroundColor: kPrimaryColor,
+      ),
       drawer: const MyDrawer(),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
