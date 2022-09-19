@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 
 class FormAddFirebase extends StatefulWidget {
   FormAddFirebase({Key? key}) : super(key: key);
@@ -80,31 +81,61 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
   @override
   Widget build(BuildContext context) {
 
-    File _image = File('');
+    List<Asset> images = <Asset>[];
 
-    Future<dynamic> getImage() async {
-      PickedFile? pickedFile = await ImagePicker().getImage(
-        source: ImageSource.gallery,
-      );
-      if (pickedFile != null) {
-        setState(() {
-          _image = File(pickedFile.path);
-        });
-      }
+    @override
+    void initState() {
+      super.initState();
     }
-    //
-    Future uploadPic(BuildContext context) async{
-      final metadata = SettableMetadata(
-        customMetadata: {'picked-file-path': "123"},
-      );
-      FirebaseStorage storage = FirebaseStorage.instance;
-      Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
-      UploadTask uploadTask = ref.putFile(_image, metadata);
-      uploadTask.then((res) {
-        res.ref.getDownloadURL();
-        print("Upload Image on firebase");
+
+    Future<void> pickImages() async {
+      List<Asset> resultList = <Asset>[];
+
+      try {
+        resultList = await MultiImagePicker.pickImages(
+          maxImages: 300,
+          enableCamera: true,
+          selectedAssets: images,
+          materialOptions: MaterialOptions(
+            actionBarTitle: "FlutterCorner.com",
+          ),
+        );
+      } on Exception catch (e) {
+        print(e);
+      }
+
+      setState(() {
+        images = resultList;
       });
     }
+
+
+
+    // File _image = File('');
+    //
+    // Future<dynamic> getImage() async {
+    //   PickedFile? pickedFile = await ImagePicker().getImage(
+    //     source: ImageSource.gallery,
+    //   );
+    //   if (pickedFile != null) {
+    //     setState(() {
+    //       _image = File(pickedFile.path);
+    //     });
+    //   }
+    // }
+    //
+    // Future uploadPic(BuildContext context) async{
+    //   final metadata = SettableMetadata(
+    //     customMetadata: {'picked-file-path': "123"},
+    //   );
+    //   FirebaseStorage storage = FirebaseStorage.instance;
+    //   Reference ref = storage.ref().child('profile/images/'+"image" + DateTime.now().toString());
+    //   UploadTask uploadTask = ref.putFile(images, metadata);
+    //   uploadTask.then((res) {
+    //     res.ref.getDownloadURL();
+    //     print("Upload Image on firebase");
+    //   });
+    // }
 
 
 
@@ -413,48 +444,58 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                       ),
                     ),
 
-                    Container(
-                      padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
-                      child: Row(
-                        children: [
-                          // TextFormField(
-                          //   controller: Gallery,
-                          //   decoration: const InputDecoration(
-                          //     icon: const Icon(Icons.browse_gallery_outlined),
-                          //     hintText: 'Gallery',
-                          //     labelText: 'Gallery',
-                          //
-                          //   ),
-                          // ),
 
-                          Row(
-                            children: [
-                              Container(
-                                child: TextButton.icon(
-                                  icon: Icon(Icons.camera),
-                                  label: Text('Gallery'),
-                                  onPressed: () {
-                                    getImage();
-                                  },
-                                ),
-                              ),
+                 TextButton(
+                   child: Text("Pick images"),
+                   onPressed: pickImages,
+                       ),
+                    Expanded(
+                     child: GridView.count(
+                      crossAxisCount: 3,
+                       children: List.generate(images.length, (index) {
+                         Asset asset = images[index];
+                          return AssetThumb(
+                          asset: asset,
+                          width: 300,
+                          height: 300,
+                        );
+                       }),
+                   ),
+                 ),
 
-                              Container(
-                                child: Text(""),
-                              ),
 
-                            ],
-                          )
-
-                          // IconButton(
-                          //   icon: Icon(Icons.camera,size: 30.0,),
-                          //   onPressed: () {
-                          //     getImage();
-                          //   },
-                          // ),
-                        ],
-                      ),
-                    ),
+            // Container(
+                    //   padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
+                    //   child: Row(
+                    //     children: [
+                    //       Row(
+                    //         children: [
+                    //           Container(
+                    //             child: TextButton.icon(
+                    //               icon: Icon(Icons.camera),
+                    //               label: Text('Gallery'),
+                    //               onPressed: () {
+                    //                 pickImages();
+                    //               },
+                    //             ),
+                    //           ),
+                    //
+                    //           Container(
+                    //             child: Text(""),
+                    //           ),
+                    //
+                    //         ],
+                    //       )
+                    //
+                    //       // IconButton(
+                    //       //   icon: Icon(Icons.camera,size: 30.0,),
+                    //       //   onPressed: () {
+                    //       //     getImage();
+                    //       //   },
+                    //       // ),
+                    //     ],
+                    //   ),
+                    // ),
 
                     Container(
                       padding: EdgeInsets.fromLTRB(300, 30, 300, 0),
@@ -544,7 +585,7 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                               );
                             }
 
-                            uploadPic(context);
+                            //uploadPic(context);
 
 
                           Map <String,dynamic> data = {
