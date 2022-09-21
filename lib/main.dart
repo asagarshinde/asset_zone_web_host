@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
+import 'package:the_asset_zone_web/footer_section/footer_page.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
@@ -48,9 +49,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      //home: const HomeScreen(title: 'Flutter Demo Home Page'),
       // home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
       //home: FormAddFirebase(),
+      home: FooterPage(),
     );
   }
 }
