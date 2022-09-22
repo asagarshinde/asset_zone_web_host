@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/controllers/single_page_property_controller.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/right_side_controller_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_property_middle_about_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
@@ -15,9 +17,15 @@ class SinglePagePropertyMiddleDesktop extends StatefulWidget {
 class _SinglePagePropertyMiddleDesktopState
     extends State<SinglePagePropertyMiddleDesktop> {
   //late bool _isHover = false;
-
+  final controller = Get.put(SinglePagePropertyController());
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
   @override
   Widget build(BuildContext context) {
+
     final width = MediaQuery.of(context).size.width;
     //print(widget.propertyDetails["location"]);
     return Padding(
@@ -35,6 +43,10 @@ class _SinglePagePropertyMiddleDesktopState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(children: buildMenuBar()),
+                  // middle_map = {'ABOUT': about_widget, 'LOCATION': location_widget}
+                  // getMiddleWidget(widget_name)
+                  //      retrun
+                  // getMiddleWidget(controller.middle_widget.value)
                   SizedBox(height: width/2, width: width,child: SinglePagePropertyMiddleLocationContainer(location: widget.propertyDetails["location"],))
                 ],
               ),
@@ -89,7 +101,11 @@ class _SinglePagePropertyMiddleDesktopState
             //   );
             // },
             onTap: () {
-              print("Tapped");
+              setState(() {
+                controller.middle_widget.value = element;
+              });
+              print("Tapped $element");
+              print("fron state ${controller.middle_widget.value}");
             },
           ),
         ),
