@@ -12,7 +12,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var property_about = propertyDetails["property_about"];
+    var property_about = propertyDetails;
     String propertyType = property_about["property_type"].toString();
     String price = property_about["price"].toString();
     String propertyId = property_about["property_id"].toString();
@@ -207,3 +207,89 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
     );
   }
 }
+
+class SinglePagePropertyMiddleFeaturesContainer extends StatelessWidget {
+  const SinglePagePropertyMiddleFeaturesContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: AutoSizeText(
+          "Features",
+          style: GoogleFonts.rubik(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+}
+
+class SinglePagePropertyMiddleGalleryContainer extends StatelessWidget {
+  const SinglePagePropertyMiddleGalleryContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: AutoSizeText(
+          "Gallery",
+          style: GoogleFonts.rubik(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+}
+
+class SinglePagePropertyMiddleVideoContainer extends StatelessWidget {
+  const SinglePagePropertyMiddleVideoContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: AutoSizeText(
+          "Video",
+          style: GoogleFonts.rubik(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+}
+
+class SinglePagePropertyMiddleFloorPlanContainer extends StatelessWidget {
+  const SinglePagePropertyMiddleFloorPlanContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: AutoSizeText(
+          "FloorPlan",
+          style: GoogleFonts.rubik(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+

@@ -3,22 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class FooterPage extends StatefulWidget {
+class FooterPage extends StatelessWidget {
   const FooterPage({Key? key}) : super(key: key);
 
   @override
-  State<FooterPage> createState() => _FooterPageState();
-}
-
-class _FooterPageState extends State<FooterPage> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.93,
+            // width: MediaQuery.of(context).size.width,
+            // height: MediaQuery.of(context).size.height * 0.93,
             padding: EdgeInsets.fromLTRB(50, 80, 0, 0),
             color: Color.fromRGBO(28, 45, 58, 1),
             child: Row(
@@ -111,7 +105,6 @@ class _FooterPageState extends State<FooterPage> {
             ),
           ),
         ],
-      ),
     );
   }
 }

@@ -50,11 +50,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      //home: const HomeScreen(title: 'Flutter Demo Home Page'),
+      home: const HomeScreen(title: 'Flutter Demo Home Page'),
       // home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
       //home: FormAddFirebase(),
       //home: FooterPage(),
-      home: ReviewPage(),
+      //home: ReviewPage(),
     );
   }
 }
