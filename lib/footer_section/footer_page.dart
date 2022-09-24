@@ -73,35 +73,31 @@ class FooterPage extends StatelessWidget {
             ),
           ),
           //SizedBox(height: 200,),
-          Flexible(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              width: MediaQuery.of(context).size.width,
-              height: 45,
-              color: Colors.black,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.facebook,color: Color.fromRGBO(210, 210, 210,1),),
-                  ),
-                  SizedBox(width: 10,),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.instagram,color: Color.fromRGBO(210, 210, 210,1),),
-                  ),
-                  SizedBox(width: 10,),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.twitter,color: Color.fromRGBO(210, 210, 210,1),),
-                  ),
-                  SizedBox(width: 10,),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.google,color: Color.fromRGBO(210, 210, 210,1),),
-                  ),
-                ],
-              ),
+          Container(
+            padding: EdgeInsets.fromLTRB(50,0, 0, 0),
+            color: Colors.black,
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(FontAwesomeIcons.facebook,color: Color.fromRGBO(210, 210, 210,1),),
+                ),
+                SizedBox(width: 10,),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(FontAwesomeIcons.instagram,color: Color.fromRGBO(210, 210, 210,1),),
+                ),
+                SizedBox(width: 10,),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(FontAwesomeIcons.twitter,color: Color.fromRGBO(210, 210, 210,1),),
+                ),
+                SizedBox(width: 10,),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(FontAwesomeIcons.google,color: Color.fromRGBO(210, 210, 210,1),),
+                ),
+              ],
             ),
           ),
         ],

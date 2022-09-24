@@ -63,8 +63,8 @@ class RightSideControllerContainer extends StatelessWidget {
               ),
             ],
           ),
-          Container(
 
+          Container(
             child: ListTile(
               title: Text('A-32, Albany, Newyork.'),
               leading: Icon(Icons.location_on_outlined),
@@ -76,6 +76,9 @@ class RightSideControllerContainer extends StatelessWidget {
               title: Text('(+066) 518 - 457 - 5181'),
               leading: Icon(Icons.wifi_calling),
             ),
+          ),
+          Divider(
+            color: Colors.grey,
           ),
           Container(
             child: Text(
@@ -133,6 +136,9 @@ class RightSideControllerContainer extends StatelessWidget {
               )
           ),
           SizedBox(height: 20,),
+          Divider(
+            color: Colors.grey,
+          ),
           Container(
             padding: EdgeInsets.only(right: 100),
             child: Text(

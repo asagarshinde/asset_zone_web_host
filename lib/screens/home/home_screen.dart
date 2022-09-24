@@ -122,7 +122,8 @@ class HomeScreen extends StatelessWidget {
                                 height: 100,
                               ),
                               Container(
-                                color: Colors.red,
+                                color: Colors.white70,
+                                //color: Colors.red,
                                 height: MediaQuery.of(context).size.height,
                                 width: MediaQuery.of(context).size.width,
                                 child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
@@ -153,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 300,width: width, child: FooterPage()),
+                SizedBox(width: width, child: FooterPage()),
               ],
             ),
           );
