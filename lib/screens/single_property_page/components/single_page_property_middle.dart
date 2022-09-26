@@ -385,7 +385,6 @@ class _SinglePagePropertyMiddleDesktopState
               Container(
                 width: 250,
                 height: 1200,
-                color: Colors.red,
                 child: const RightSideControllerContainer(),
               ),
               const SizedBox(

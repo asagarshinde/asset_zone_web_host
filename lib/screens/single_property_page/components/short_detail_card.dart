@@ -13,7 +13,7 @@ class ShortDetailCardDesktop extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: width > 950 ? width * 0.08 : width * 0.08),
       child: Card(
-        elevation: 15,
+        elevation: 4,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(

@@ -8,12 +8,11 @@ class RightSideControllerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            padding: EdgeInsets.only(right: 50),
+            padding: EdgeInsets.only(right: 50,top: 10),
             child: Text(
               "Contact Info",
               style: GoogleFonts.montserrat(
@@ -96,7 +95,7 @@ class RightSideControllerContainer extends StatelessWidget {
               Container(
                 child: TextFormField(
                   decoration: const InputDecoration(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.person,color: Colors.deepOrangeAccent,),
                     hintText: 'Enter your full name',
                     labelText: 'Name',
                 ),
@@ -155,7 +154,6 @@ class RightSideControllerContainer extends StatelessWidget {
 
           ),
         ],
-      ),
     );
   }
 }
