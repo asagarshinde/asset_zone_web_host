@@ -50,7 +50,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                       flex: 1,
                       child: AutoSizeText(
                         "Property Type :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                      Expanded(flex:1, child: AutoSizeText(propertyType)),
@@ -65,7 +65,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Price :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(price)),
@@ -84,7 +84,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Property ID :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(propertyId)),
@@ -99,7 +99,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Poperty Size :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(propertySize)),
@@ -118,7 +118,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Property status :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(propertyStatus)),
@@ -133,7 +133,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Balcony :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(balcony)),
@@ -152,7 +152,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "City :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),                      ),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),                      ),
                     ),
                     Expanded(child: AutoSizeText(city)),
                     const Expanded(child: Spacer())
@@ -171,7 +171,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Bedrooms :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(bedrooms)),
@@ -191,7 +191,7 @@ class SinglePagePropertyMiddleAboutContainer extends StatelessWidget {
                     Expanded(
                       child: AutoSizeText(
                         "Bathrooms :",
-                        style: GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
+                        style: GoogleFonts.montserrat(fontSize: 12, fontWeight: FontWeight.w600,color: Color.fromRGBO(88, 97, 103, 0.83)),
                       ),
                     ),
                     Expanded(child: AutoSizeText(bathrooms)),

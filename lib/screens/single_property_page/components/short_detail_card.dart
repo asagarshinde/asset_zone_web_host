@@ -47,7 +47,7 @@ class ShortDetailCardMobile extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              rightColumn()
+              // rightColumn()
             ],
           ),
         ),
