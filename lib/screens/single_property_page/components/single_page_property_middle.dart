@@ -22,6 +22,11 @@ class SinglePagePropertyMiddleDesktop extends StatefulWidget {
 class _SinglePagePropertyMiddleDesktopState
     extends State<SinglePagePropertyMiddleDesktop> {
   //late bool _isHover = false;
+
+  TextEditingController Name = new TextEditingController();
+  TextEditingController Email = new TextEditingController();
+  TextEditingController Message = new TextEditingController();
+
   final controller = Get.put(SinglePagePropertyController());
   @override
   void setState(VoidCallback fn) {
@@ -301,6 +306,7 @@ class _SinglePagePropertyMiddleDesktopState
                               children: [
                                 Container(
                                   child: TextFormField(
+                                    controller: Name,
                                     decoration: const InputDecoration(
                                       icon: const Icon(Icons.person,color: Colors.deepOrangeAccent),
                                       //hintText: 'Enter your full name',
@@ -324,6 +330,7 @@ class _SinglePagePropertyMiddleDesktopState
                                 Container(
 
                                   child: TextFormField(
+                                    controller: Email,
                                     decoration: const InputDecoration(
                                       icon: const Icon(Icons.email,color: Colors.deepOrangeAccent,),
                                      // hintText: 'Enter your Email',
@@ -346,6 +353,7 @@ class _SinglePagePropertyMiddleDesktopState
                                 SizedBox(height: 10,),
                                 Container(
                                   child: TextFormField(
+                                    controller: Message,
                                     minLines: 1,
                                     maxLines: 5,  // allow user to enter 5 line in textfield
                                     keyboardType: TextInputType.multiline,
@@ -369,7 +377,25 @@ class _SinglePagePropertyMiddleDesktopState
                                   ),
                                 ),
                                 SizedBox(height: 20,),
-                                MyButton(title: "Submit", width: 100,height: 40,)
+                                ElevatedButton(onPressed: () {
+
+                                  Map <String,dynamic> data = {
+                                    "reviews": {
+                                      "name":Name.text,
+                                      "email":Email.text,
+                                      "message":Message.text,
+                                    },
+                                  };
+
+                                  print(data);
+                                  //FirebaseFirestore.instance.collection("PropertyDetails").add(data);
+
+                                },
+                                    child: Text("Submit",),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.deepOrangeAccent,),
+
+                                ),
                               ],
                             )
                         ),

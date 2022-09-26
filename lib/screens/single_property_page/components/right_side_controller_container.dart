@@ -92,40 +92,75 @@ class RightSideControllerContainer extends StatelessWidget {
           Form(
               child:Column(
                 children: [
-              Container(
+               Container(
                 child: TextFormField(
                   decoration: const InputDecoration(
                   icon: const Icon(Icons.person,color: Colors.deepOrangeAccent,),
                     hintText: 'Enter your full name',
                     labelText: 'Name',
+                    labelStyle: TextStyle(
+                      color: Colors.deepOrangeAccent,
+
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors.deepOrangeAccent
+                        )
+                    ),
                 ),
                 ),
               ),
+                  SizedBox(height: 7,),
                   Container(
-
                     child: TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.email),
+                        icon: const Icon(Icons.email,color: Colors.deepOrangeAccent,),
                         hintText: 'Enter your Email',
                         labelText: 'Email ID',
+                        labelStyle: TextStyle(
+                          color: Colors.deepOrangeAccent,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrangeAccent
+                            )
+                        ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 7,),
                   Container(
                     child: TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.phone),
+                        icon: const Icon(Icons.phone,color: Colors.deepOrangeAccent,),
                         hintText: 'Enter your Phone No.',
                         labelText: 'Phone No.',
+                        labelStyle: TextStyle(
+                          color: Colors.deepOrangeAccent,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrangeAccent
+                            )
+                        ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 7,),
                   Container(
                     child: TextFormField(
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.message),
+                        icon: const Icon(Icons.message,color: Colors.deepOrangeAccent,),
                         hintText: 'Message',
                         labelText: 'Message',
+                        labelStyle: TextStyle(
+                          color: Colors.deepOrangeAccent,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.deepOrangeAccent
+                            )
+                        ),
                       ),
                     ),
                   ),

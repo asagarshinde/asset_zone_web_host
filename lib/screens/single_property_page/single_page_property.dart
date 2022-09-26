@@ -35,7 +35,7 @@ class SinglePagePropertyView extends StatelessWidget {
                 ),
                 Responsive(
                   key: singlePropertyKey,
-                  mobile: ShortDetailCardMobile(),
+                  mobile: ShortDetailCardMobile(propertyDetails: propertyDetails),
                   tablet: ShortDetailCardDesktop(propertyDetails: propertyDetails,),
                   desktop: ShortDetailCardDesktop(propertyDetails: propertyDetails),
                 ),

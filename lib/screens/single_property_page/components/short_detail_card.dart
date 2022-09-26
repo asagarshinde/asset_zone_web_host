@@ -7,7 +7,7 @@ class ShortDetailCardDesktop extends StatelessWidget {
   final propertyDetails;
   @override
   Widget build(BuildContext context) {
-    print(propertyDetails);
+    //print(propertyDetails);
     final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -30,7 +30,8 @@ class ShortDetailCardDesktop extends StatelessWidget {
 }
 
 class ShortDetailCardMobile extends StatelessWidget {
-  ShortDetailCardMobile({Key? key}) : super(key: key);
+  ShortDetailCardMobile({Key? key, required this.propertyDetails}) : super(key: key);
+  final propertyDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,8 @@ class ShortDetailCardMobile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            children: const [
-              leftColumn(propertyDetails: "adfd"),
+            children: [
+              leftColumn(propertyDetails: propertyDetails,),
               SizedBox(
                 height: 10,
               ),
