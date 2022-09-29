@@ -25,8 +25,8 @@ class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
     return FutureBuilder<List?>(
       future: getData(),
       builder: (context, snapshot){
-        print(snapshot.error);
-        print(snapshot.data);
+       // print(snapshot.error);
+       // print(snapshot.data);
         if (snapshot.hasData){
 
           List<Widget> data = snapshot.data! as List<Widget>;

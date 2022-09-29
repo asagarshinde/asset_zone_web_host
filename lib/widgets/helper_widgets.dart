@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
+import 'package:the_asset_zone_web/search_page.dart';
 
 import '../constants/constants.dart';
 
@@ -42,10 +43,10 @@ class _MyButtonState extends State<MyButton> {
           // var l = pl.propertyList();
           // print(l);
           // print("Clicked on me who");
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => SinglePagePropertyView()),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SearchButtonNavigatorPage()),
+          );
 
         },
         child:  Center(

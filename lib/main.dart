@@ -16,6 +16,8 @@ import 'package:the_asset_zone_web/screens/single_property_page/components/singl
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
+import 'package:the_asset_zone_web/search_page.dart';
+import 'package:the_asset_zone_web/text.dart';
 
 import 'controllers/home_page_card_controller.dart';
 import 'screens/test_screen/test_screen.dart';
@@ -55,6 +57,7 @@ class MyApp extends StatelessWidget {
       //home: FormAddFirebase(),
       //home: FooterPage(),
       //home: ReviewPage(),
+      //home: SearchButtonNavigatorPage(),
     );
   }
 }
