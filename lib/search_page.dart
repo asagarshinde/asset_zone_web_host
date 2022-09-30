@@ -11,25 +11,96 @@ import 'package:the_asset_zone_web/screens/home/components/properties_for_rent_c
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
 
 
-class SearchButtonNavigatorPage extends StatefulWidget {
-  const SearchButtonNavigatorPage({Key? key}) : super(key: key);
+class SearchButtonNavigatorPage extends StatelessWidget {
+  SearchButtonNavigatorPage({Key? key,required this.propertyDetails}) : super(key: key);
+  final propertyDetails;
 
-  @override
-  State<SearchButtonNavigatorPage> createState() =>
-      _SearchButtonNavigatorPageState();
-}
-
-class _SearchButtonNavigatorPageState extends State<SearchButtonNavigatorPage> {
 
   final ScrollController scrollController = ScrollController();
 
-  // final _imageUrls = [
-  //   "https://png.pngtree.com/thumb_back/fw800/back_pic/00/03/35/09561e11143119b.jpg",
-  //   "https://png.pngtree.com/thumb_back/fw800/back_pic/04/61/87/28586f2eec77c26.jpg",
-  //   "https://png.pngtree.com/thumb_back/fh260/back_pic/04/29/70/37583fdf6f4050d.jpg",
-  //   "https://ak6.picdn.net/shutterstock/videos/6982306/thumb/1.jpg"
-  // ];
 
+
+  List<Widget> getFlatDetailsRow(context, bedrooms, halls, area, bathrooms,
+      garage) {
+    List<String> flatDetails = [
+      "Bedrooms",
+      "Bathrooms",
+      "Halls",
+      "Sq ft",
+      "Garage"
+    ];
+    List<String> values = [
+      propertyDetails["property_about"]["bedrooms"].toString(),
+      propertyDetails["property_about"]["bathroom"].toString(),
+      propertyDetails["property_about"]["halls"].toString(),
+      propertyDetails["property_about"]["property_size"].toString(),
+      propertyDetails["property_about"]["garage"].toString()
+    ];
+    // List<String> values = [bedrooms, bathrooms, halls, area, garage];
+    List<IconData> flatDetailsIcons = [
+      Icons.bathtub_rounded,
+      Icons.bed_rounded,
+      Icons.chair_rounded,
+      Icons.square_foot_rounded,
+      Icons.garage_rounded
+    ];
+    List<Widget> children = [];
+    for (int i = 0; i < flatDetails.length; i++) {
+      Responsive.isMobile(context)
+          ? children.add(
+        Row(
+          children: [
+            Icon(
+              flatDetailsIcons[i],
+              color: const Color(0xFF1c2d3a),
+
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: AutoSizeText(values[i]),
+            ),
+            AutoSizeText(
+              flatDetails[i],
+              maxFontSize: 14,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF1c2d3a)),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+          ],
+        ),
+      )
+          : children.add(
+        Row(
+          children: [
+            Icon(
+              flatDetailsIcons[i],
+              color: const Color(0xFF1c2d3a),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: AutoSizeText(values[i]),
+            ),
+            AutoSizeText(
+              flatDetails[i],
+              maxFontSize: 14,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF1c2d3a)),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+          ],
+        ),
+      );
+    }
+    return children;
+  }
+
+  // final _imageUrls = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,7 +226,7 @@ class _SearchButtonNavigatorPageState extends State<SearchButtonNavigatorPage> {
                                             height: 200.0,
                                             width: 300.0,
                                             child: Carousel(
-                                              autoplay: false,
+                                              autoplay: true,
                                               dotSize: 6.0,
                                               dotSpacing: 15.0,
                                               dotPosition: DotPosition.bottomCenter,
@@ -178,7 +249,7 @@ class _SearchButtonNavigatorPageState extends State<SearchButtonNavigatorPage> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 AutoSizeText(
-                                                    ("FRANCE"),
+                                                    ("F R A N C E"),
                                                     style: GoogleFonts.roboto(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
@@ -193,8 +264,25 @@ class _SearchButtonNavigatorPageState extends State<SearchButtonNavigatorPage> {
                                                     fontSize: 19,
                                                     fontWeight: FontWeight.w700,
                                                     color: Color.fromRGBO(28, 45, 58, 1),
-
                                                   ),
+                                                ),
+                                                SizedBox(height: 10,),
+                                                AutoSizeText(
+                                                  ("6558.00*"),
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 19,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Color.fromRGBO(255, 92, 65, 1),
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20,),
+                                                Row(
+                                                  children:
+                                                    getFlatDetailsRow(context,
+                                                        propertyDetails["property_about"]["bedrooms"].toString(),
+                                                        propertyDetails["property_about"]["bathroom"].toString(),
+                                                        propertyDetails["property_about"]["balcony"].toString(), "2",
+                                                        "0"),
                                                 ),
                                               ],
                                             ),

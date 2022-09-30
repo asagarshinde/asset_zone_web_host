@@ -45,7 +45,7 @@ class _MyButtonState extends State<MyButton> {
           // print("Clicked on me who");
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SearchButtonNavigatorPage()),
+            MaterialPageRoute(builder: (context) => SearchButtonNavigatorPage(propertyDetails: propertyDetails,)),
           );
 
         },

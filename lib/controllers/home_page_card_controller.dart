@@ -24,9 +24,9 @@ class PropertyDetailsFirestore extends GetxController {
     await firestoreDB.collection("PropertyDetails").doc(documentId).delete();
   }
 
-  Future<List<Map>> retrievePropertyDetails() async {
+  Future<List<Map>> retrievePropertyDetails({int limit: 3}) async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
-        await firestoreDB.collection("PropertyDetails").get();
+        await firestoreDB.collection("PropertyDetails").limit(limit).get();
     return snapshot.docs.map((docSnapshot) {
       Map out = {};
       out..addAll(docSnapshot.data());
