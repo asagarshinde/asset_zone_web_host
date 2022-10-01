@@ -9,6 +9,7 @@ import 'package:the_asset_zone_web/responsive.dart';
 import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
 import 'package:the_asset_zone_web/screens/home/components/properties_for_rent_cards.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
+import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 
 
 class SearchButtonNavigatorPage extends StatelessWidget {
@@ -20,89 +21,99 @@ class SearchButtonNavigatorPage extends StatelessWidget {
 
 
 
-  List<Widget> getFlatDetailsRow(context, bedrooms, halls, area, bathrooms,
-      garage) {
-    List<String> flatDetails = [
-      "Bedrooms",
-      "Bathrooms",
-      "Halls",
-      "Sq ft",
-      "Garage"
-    ];
-    List<String> values = [
-      propertyDetails["property_about"]["bedrooms"].toString(),
-      propertyDetails["property_about"]["bathroom"].toString(),
-      propertyDetails["property_about"]["halls"].toString(),
-      propertyDetails["property_about"]["property_size"].toString(),
-      propertyDetails["property_about"]["garage"].toString()
-    ];
-    // List<String> values = [bedrooms, bathrooms, halls, area, garage];
-    List<IconData> flatDetailsIcons = [
-      Icons.bathtub_rounded,
-      Icons.bed_rounded,
-      Icons.chair_rounded,
-      Icons.square_foot_rounded,
-      Icons.garage_rounded
-    ];
-    List<Widget> children = [];
-    for (int i = 0; i < flatDetails.length; i++) {
-      Responsive.isMobile(context)
-          ? children.add(
-        Row(
-          children: [
-            Icon(
-              flatDetailsIcons[i],
-              color: const Color(0xFF1c2d3a),
-
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: AutoSizeText(values[i]),
-            ),
-            AutoSizeText(
-              flatDetails[i],
-              maxFontSize: 14,
-              style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xFF1c2d3a)),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-          ],
-        ),
-      )
-          : children.add(
-        Row(
-          children: [
-            Icon(
-              flatDetailsIcons[i],
-              color: const Color(0xFF1c2d3a),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: AutoSizeText(values[i]),
-            ),
-            AutoSizeText(
-              flatDetails[i],
-              maxFontSize: 14,
-              style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xFF1c2d3a)),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-          ],
-        ),
-      );
-    }
-    return children;
-  }
+  // List<Widget> getFlatDetailsRow(context, bedrooms, halls, area, bathrooms,
+  //     garage) {
+  //   List<String> flatDetails = [
+  //     "Bedrooms",
+  //     "Bathrooms",
+  //     "Halls",
+  //     "Sq ft",
+  //     "Garage"
+  //   ];
+  //   List<String> values = [
+  //     propertyDetails["property_about"]["bedrooms"].toString(),
+  //     propertyDetails["property_about"]["bathroom"].toString(),
+  //     propertyDetails["property_about"]["halls"].toString(),
+  //     propertyDetails["property_about"]["property_size"].toString(),
+  //     propertyDetails["property_about"]["garage"].toString()
+  //   ];
+  //
+  //   // List<String> values = [bedrooms, bathrooms, halls, area, garage];
+  //   List<IconData> flatDetailsIcons = [
+  //     Icons.bathtub_rounded,
+  //     Icons.bed_rounded,
+  //     Icons.chair_rounded,
+  //     Icons.square_foot_rounded,
+  //     Icons.garage_rounded
+  //   ];
+  //   List<Widget> children = [];
+  //   for (int i = 0; i < flatDetails.length; i++) {
+  //     Responsive.isMobile(context)
+  //         ? children.add(
+  //       Row(
+  //         children: [
+  //           Icon(
+  //             flatDetailsIcons[i],
+  //             color: const Color(0xFF1c2d3a),
+  //
+  //           ),
+  //           Padding(
+  //             padding: const EdgeInsets.all(3.0),
+  //             child: AutoSizeText(values[i]),
+  //           ),
+  //           AutoSizeText(
+  //             flatDetails[i],
+  //             maxFontSize: 14,
+  //             style: GoogleFonts.montserrat(
+  //                 fontWeight: FontWeight.w500,
+  //                 color: const Color(0xFF1c2d3a)),
+  //           ),
+  //           const SizedBox(
+  //             width: 10,
+  //           ),
+  //         ],
+  //       ),
+  //     )
+  //         : children.add(
+  //       Row(
+  //         children: [
+  //           Icon(
+  //             flatDetailsIcons[i],
+  //             color: const Color(0xFF1c2d3a),
+  //           ),
+  //           Padding(
+  //             padding: const EdgeInsets.all(3.0),
+  //             child: AutoSizeText(values[i]),
+  //           ),
+  //           AutoSizeText(
+  //             flatDetails[i],
+  //             maxFontSize: 14,
+  //             style: GoogleFonts.montserrat(
+  //                 fontWeight: FontWeight.w500,
+  //                 color: const Color(0xFF1c2d3a)),
+  //           ),
+  //           const SizedBox(
+  //             width: 10,
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+  //   return children;
+  // }
 
   // final _imageUrls = [
   @override
   Widget build(BuildContext context) {
+
+    var property_about = propertyDetails;
+    String bathrooms = property_about["bathroom"].toString();
+    String bedrooms = property_about["bedrooms"].toString();
+    String propertySize = property_about["property_size"].toString();
+
+
+
+
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
@@ -277,12 +288,62 @@ class SearchButtonNavigatorPage extends StatelessWidget {
                                                 ),
                                                 SizedBox(height: 20,),
                                                 Row(
-                                                  children:
-                                                    getFlatDetailsRow(context,
-                                                        propertyDetails["property_about"]["bedrooms"].toString(),
-                                                        propertyDetails["property_about"]["bathroom"].toString(),
-                                                        propertyDetails["property_about"]["balcony"].toString(), "2",
-                                                        "0"),
+                                                  children: [
+                                                    Container(
+                                                        child: Row(
+                                                          children: [
+                                                           Icon(Icons.bedroom_parent),
+                                                            SizedBox(width: 5,),
+                                                            Text("Bed:"),
+                                                            SizedBox(width: 5,),
+                                                            Text(bedrooms),
+                                                          ],
+                                                        )
+                                                    ),
+                                                    Divider(
+                                                       thickness: 1,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    SizedBox(width: 5,),
+                                                    Container(
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(Icons.bathroom),
+                                                            SizedBox(width: 5,),
+                                                            Text("Bath:"),
+                                                            SizedBox(width: 5,),
+                                                            Text(bathrooms),
+                                                          ],
+                                                        )
+                                                    ),
+                                                    SizedBox(width: 5,),
+                                                    Container(
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(Icons.area_chart),
+                                                            SizedBox(width: 5,),
+                                                            Text("Sq Ft:"),
+                                                            SizedBox(width: 5,),
+                                                            Text(propertySize),
+                                                          ],
+                                                        )
+                                                    ),
+                                                    // getFlatDetailsRow(context,
+                                                    //     propertyDetails["property_about"]["bedrooms"].toString(),
+                                                    //     propertyDetails["property_about"]["bathroom"].toString(),
+                                                    //     propertyDetails["property_about"]["balcony"].toString(), "2",
+                                                    //"0"),
+                                                  ]
+                                                ),
+
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                     child: Text("August 4, 2022"),
+                                                    ),
+                                                    SizedBox(width: 40,),
+                                                    MyButton(title: "Details",height: 40,),
+                                                  ],
                                                 ),
                                               ],
                                             ),
