@@ -33,11 +33,20 @@ class _MyButtonState extends State<MyButton> {
         splashColor: Colors.white,
         onTap: () {
           PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
-          PropertyAbout propertyAbout = PropertyAbout(property_type: "House", bathroom: 2, property_id: "AC3EE99", property_status: "For sale", city: "Pune", bedrooms: 1, price: 1500, property_size: 1500 , balcony: 3);
-          PropertyDetails propertyDetails = PropertyDetails("AC3EE99", ['assets/3.jpg','assets/4.jpg'], propertyAbout, "ahahdh", "assets/2.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855});
+
+          List<PropertyDetails> lstPropertyDetails = <PropertyDetails> [];
+
+
+          lstPropertyDetails.add(PropertyDetails("AC3EE99", ['assets/3.jpg','assets/4.jpg'], PropertyAbout(property_type: "House1", bathroom: 1, property_id: "AC3EE90", property_status: "For sale", city: "Pune", bedrooms: 1, price: 1500, property_size: 1500 , balcony: 3), "ahahdh1", "assets/2.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+          lstPropertyDetails.add(PropertyDetails("AC33399", ['assets/1.jpg','assets/2.jpg'], PropertyAbout(property_type: "House2", bathroom: 3, property_id: "AC3EE91", property_status: "For rent", city: "Mumbai", bedrooms: 3, price: 2200, property_size: 2500 , balcony: 2), "ahahdh2", "assets/3.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+          lstPropertyDetails.add(PropertyDetails("AC3aa99", ['assets/8.jpg','assets/5.jpg'], PropertyAbout(property_type: "House3", bathroom: 5, property_id: "AC3EE92", property_status: "For lease", city: "Nasik", bedrooms: 5, price: 4400, property_size: 3500 , balcony: 4), "ahahdh4", "assets/4.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+          lstPropertyDetails.add(PropertyDetails("AC30099", ['assets/11.jpg','assets/21.jpg'], PropertyAbout(property_type: "House4", bathroom: 8, property_id: "AC3EE93", property_status: "For sale", city: "Surat", bedrooms: 2, price: 6600, property_size: 4500 , balcony: 7), "ahahdh5", "assets/5.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+
+          // PropertyAbout propertyAbout = PropertyAbout(property_type: "House", bathroom: 2, property_id: "AC3EE99", property_status: "For sale", city: "Pune", bedrooms: 1, price: 1500, property_size: 1500 , balcony: 3);
+          // PropertyDetails propertyDetails = PropertyDetails("AC3EE99", ['assets/3.jpg','assets/4.jpg'], propertyAbout, "ahahdh", "assets/2.jpg", {"lon": 22.687591323210615, "lat": 76.43698832653855});
 
           //dbservice.addPropertyDetails(propertyDetails);
-          // Future<List<PropertyDetails>> out = dbservice.retrievePropertyDetails();
+           Future<List<Map>> out = dbservice.retrievePropertyDetails();
           // print(out.toString());
           //PropertiesList pl = PropertiesList();
           // var l = pl.propertyList();
@@ -45,7 +54,7 @@ class _MyButtonState extends State<MyButton> {
           // print("Clicked on me who");
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SearchButtonNavigatorPage(propertyDetails: propertyDetails,)),
+            MaterialPageRoute(builder: (context) => SearchButtonNavigatorPage(propertyDetails: lstPropertyDetails,),),
           );
 
         },

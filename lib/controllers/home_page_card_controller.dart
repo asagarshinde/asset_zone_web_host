@@ -36,7 +36,12 @@ class PropertyDetailsFirestore extends GetxController {
         // .map((docSnapshot) => PropertyDetails.fromDocumentSnapshot(docSnapshot).toMap())
         .toList();
   }
+
+
 }
+
+
+
 
 class PropertiesList {
   Future<List<Widget>?> propertyList() async {
