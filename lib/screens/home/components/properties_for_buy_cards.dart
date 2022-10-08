@@ -4,18 +4,18 @@ import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 
 import 'home_screen_widgets.dart';
 
-class PropertiesForCardsView extends StatefulWidget {
-  const PropertiesForCardsView({Key? key}) : super(key: key);
+class PropertiesForBuyCardsView extends StatefulWidget {
+  const PropertiesForBuyCardsView({Key? key}) : super(key: key);
 
   @override
-  State<PropertiesForCardsView> createState() => _PropertiesForCardsViewState();
+  State<PropertiesForBuyCardsView> createState() => _PropertiesForBuyCardsViewState();
 }
 
-class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
+class _PropertiesForBuyCardsViewState extends State<PropertiesForBuyCardsView> {
 
   Future<List<Widget>?> getData() async{
     PropertiesList propertiesList = PropertiesList();
-    List<Widget>? pl = await propertiesList.propertyList();
+    List<Widget>? pl = await propertiesList.propertyListBuy();
     // await Future.delayed(Duration(seconds: 5));
     //print(pl);
     return pl;

@@ -7,7 +7,9 @@ import 'package:the_asset_zone_web/screens/home/components/feature_property.dart
 import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
+import 'package:the_asset_zone_web/screens/home/components/properties_for_buy_cards.dart';
 import 'package:the_asset_zone_web/screens/home/components/properties_for_rent_cards.dart';
+import 'package:the_asset_zone_web/screens/home/components/properties_for_sale_cards.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_desktop_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
@@ -109,6 +111,7 @@ class HomeScreen extends StatelessWidget {
                                     const SizedBox(
                                       height: 50,
                                     ),
+
                                   ],
                                 ),
                               ),
@@ -121,6 +124,72 @@ class HomeScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 100,
                               ),
+                              Padding( padding: EdgeInsets.fromLTRB(
+                                  width > 1200 ? width * 0.08 : 10, 0, 0, 50),),
+
+                              AutoSizeText(
+                                "Properties for Sale.",
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xFF586167)),
+                              ),
+
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              AutoSizeText(
+                                "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
+                                style: GoogleFonts.roboto(
+                                    fontSize: 19,
+                                    color: const Color(0xFF586167)),
+                              ),
+                              const SizedBox(
+                                height: 100,
+                              ),
+
+                              width < 850
+                                  ? PropertiesForSaleCardsView()
+                                  : width < 1600
+                                  ? const PropertiesForSaleCardsView()
+                                  : const PropertiesForSaleCardsView(),
+                              const SizedBox(
+                                height: 100,
+                              ),
+
+                              Padding( padding: EdgeInsets.fromLTRB(
+                                  width > 1200 ? width * 0.08 : 10, 0, 0, 50),),
+
+                              AutoSizeText(
+                                "Properties for Buy.",
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xFF586167)),
+                              ),
+
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              AutoSizeText(
+                                "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
+                                style: GoogleFonts.roboto(
+                                    fontSize: 19,
+                                    color: const Color(0xFF586167)),
+                              ),
+                              const SizedBox(
+                                height: 100,
+                              ),
+
+                              width < 850
+                                  ? PropertiesForBuyCardsView()
+                                  : width < 1600
+                                  ? const PropertiesForBuyCardsView()
+                                  : const PropertiesForBuyCardsView(),
+                              const SizedBox(
+                                height: 100,
+                              ),
+
                               Container(
                                 color: Colors.white70,
                                 //color: Colors.red,
@@ -128,6 +197,8 @@ class HomeScreen extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width,
                                 child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
                               ),
+
+
                               // SizedBox(height: 50,),
                               // WhatAreYouLookingFor(),
                               // Padding(
