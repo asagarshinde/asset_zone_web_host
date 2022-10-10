@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/footer_section/footer_page.dart';
+import 'package:the_asset_zone_web/review/developer_work_with_us.dart';
 import 'package:the_asset_zone_web/screens/home/components/feature_property.dart';
 import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
@@ -14,6 +15,7 @@ import 'package:the_asset_zone_web/screens/home/components/property_search_deskt
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/what_are_you_looking_for.dart';
+import 'package:the_asset_zone_web/testinominal/testinominal.dart';
 import '../../responsive.dart';
 import '../../widgets/helper_widgets.dart';
 
@@ -218,6 +220,11 @@ class HomeScreen extends StatelessWidget {
                               // const SizedBox(
                               //   height: 100,
                               // ),
+                              DeveloperWorkWithUs(),
+                              Container(
+                                height: 450,
+                                  child: testinominal()
+                              )
                             ],
                           ),
                         ],
