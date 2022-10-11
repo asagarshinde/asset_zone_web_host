@@ -14,15 +14,103 @@ import 'package:the_asset_zone_web/screens/home/components/properties_for_sale_c
 import 'package:the_asset_zone_web/screens/home/components/property_search_desktop_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
-import 'package:the_asset_zone_web/screens/home/components/what_are_you_looking_for.dart';
+//import 'package:the_asset_zone_web/screens/home/components/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/testinominal/testinominal.dart';
+import '../../models/property_detail_model.dart';
 import '../../responsive.dart';
+import '../../review/what_are_you_looking_for.dart';
 import '../../widgets/helper_widgets.dart';
 
-class HomeScreen extends StatelessWidget {
-  final String title = 'The Assets Zone';
+class HomeScreen extends StatefulWidget {
 
   const HomeScreen({Key? key, required String title}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final String title = 'The Assets Zone';
+  List<PropertyDetails> lstPropDetails = <PropertyDetails>[];
+
+
+  @override
+  void initState() {
+    super.initState();
+    fetchList();
+  }
+
+  fetchList() {
+    List<PropertyDetails> lstPropertyDetails = <PropertyDetails>[];
+    lstPropertyDetails.add(PropertyDetails(
+        "AC3EE99",
+        ['assets/3.jpg', 'assets/4.jpg'],
+        PropertyAbout(
+            property_type: "House1",
+            bathroom: 1,
+            property_id: "AC3EE90",
+            property_status: "For sale",
+            city: "Pune",
+            bedrooms: 1,
+            price: 1500,
+            property_size: 1500,
+            balcony: 3),
+        "ahahdh1",
+        "assets/2.jpg",
+        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+    lstPropertyDetails.add(PropertyDetails(
+        "AC33399",
+        ['assets/1.jpg', 'assets/2.jpg'],
+        PropertyAbout(
+            property_type: "House2",
+            bathroom: 3,
+            property_id: "AC3EE91",
+            property_status: "For rent",
+            city: "Mumbai",
+            bedrooms: 3,
+            price: 2200,
+            property_size: 2500,
+            balcony: 2),
+        "ahahdh2",
+        "assets/3.jpg",
+        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+    lstPropertyDetails.add(PropertyDetails(
+        "AC3aa99",
+        ['assets/8.jpg', 'assets/5.jpg'],
+        PropertyAbout(
+            property_type: "House3",
+            bathroom: 5,
+            property_id: "AC3EE92",
+            property_status: "For lease",
+            city: "Nasik",
+            bedrooms: 5,
+            price: 4400,
+            property_size: 3500,
+            balcony: 4),
+        "ahahdh4",
+        "assets/4.jpg",
+        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+    lstPropertyDetails.add(PropertyDetails(
+        "AC30099",
+        ['assets/11.jpg', 'assets/21.jpg'],
+        PropertyAbout(
+            property_type: "House4",
+            bathroom: 8,
+            property_id: "AC3EE93",
+            property_status: "For sale",
+            city: "Surat",
+            bedrooms: 2,
+            price: 6600,
+            property_size: 4500,
+            balcony: 7),
+        "ahahdh5",
+        "assets/5.jpg",
+        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
+
+    setState(() {
+      lstPropDetails = lstPropertyDetails;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +312,13 @@ class HomeScreen extends StatelessWidget {
                               Container(
                                 height: 450,
                                   child: testinominal()
-                              )
+                              ),
+
+                              //WhatAreYouLookingFor(propertyDetails: lstPropDetails,),
+                              Container(
+                                height: 500,
+                                  child: WhatAreYouLookingFor(propertyDetails: lstPropDetails)
+                              ),
                             ],
                           ),
                         ],
