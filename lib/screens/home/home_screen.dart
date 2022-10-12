@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/footer_section/footer_page.dart';
 import 'package:the_asset_zone_web/review/developer_work_with_us.dart';
+import 'package:the_asset_zone_web/review/find_property.dart';
 import 'package:the_asset_zone_web/screens/home/components/feature_property.dart';
 import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
@@ -308,16 +309,22 @@ class _HomeScreenState extends State<HomeScreen> {
                               // const SizedBox(
                               //   height: 100,
                               // ),
+                              SizedBox(height: 50,),
                               DeveloperWorkWithUs(),
+                              SizedBox(height: 50,),
                               Container(
-                                height: 450,
+                                height: 500,
                                   child: testinominal()
                               ),
-
-                              //WhatAreYouLookingFor(propertyDetails: lstPropDetails,),
+                              SizedBox(height: 50,),
                               Container(
                                 height: 500,
                                   child: WhatAreYouLookingFor(propertyDetails: lstPropDetails)
+                              ),
+                              SizedBox(height: 50,),
+                              Container(
+                                height: 500,
+                                  child: FindProperty()
                               ),
                             ],
                           ),
