@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
 import 'package:the_asset_zone_web/footer_section/footer_page.dart';
 import 'package:the_asset_zone_web/review/find_property.dart';
+import 'package:the_asset_zone_web/review/looking_to_buy_new_property.dart';
 import 'package:the_asset_zone_web/review/review_page.dart';
 import 'package:the_asset_zone_web/review/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
+      //home: LookingToBuyNewProperty(),
       home: const HomeScreen(title: 'Flutter Demo Home Page'),
       // home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
       //home: FormAddFirebase(),
