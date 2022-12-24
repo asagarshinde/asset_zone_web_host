@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/screens/login/auth_dialog.dart';
+import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
 import '../../../constants/constants.dart';
 
 class MyNavigationBar extends StatefulWidget {
@@ -50,6 +51,16 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
               ),
             ),
             ...getMenuItems(),
+            SizedBox(width: 20,),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FormAddFirebase()),
+                );
+              },
+              icon: Icon(Icons.add),
+            ),
             const SizedBox(width: 40),
             Expanded(
               flex: 3,

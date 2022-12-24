@@ -69,7 +69,10 @@ class PropertySearchPanel extends StatelessWidget {
                             SizedBox(
                               child: Padding(
                                 padding: const EdgeInsets.all(2.0),
-                                child: MyButton(title: "Search"),
+                                child: MyButton(
+                                    title: "Search"
+
+                                ),
                               ),
                             ),
                             // const SizedBox(

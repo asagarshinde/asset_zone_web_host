@@ -7,19 +7,20 @@ import 'package:the_asset_zone_web/screens/single_property_page/components/singl
 import 'package:the_asset_zone_web/screens/single_property_page/components/top_images_view.dart';
 
 class SinglePagePropertyView extends StatelessWidget {
-  SinglePagePropertyView({Key? key}) : super(key: key);
+  SinglePagePropertyView(this.propertyDetails);
 
   final ScrollController scrollController = ScrollController();
   final Key singlePropertyKey = const Key("singlePageProperty");
+  final propertyDetails;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, 70),
-        child: const MyNavigationBar(),
-      )
+              preferredSize: Size(MediaQuery.of(context).size.width, 70),
+              child: const MyNavigationBar(),
+            )
           : AppBar(backgroundColor: kPrimaryColor),
       drawer: const MyDrawer(),
       body: CustomScrollView(
@@ -35,14 +36,29 @@ class SinglePagePropertyView extends StatelessWidget {
                 ),
                 Responsive(
                   key: singlePropertyKey,
-                  mobile: ShortDetailCardMobile(),
-                  tablet: ShortDetailCardDesktop(),
-                  desktop: ShortDetailCardDesktop(),
+                  mobile:
+                      ShortDetailCardMobile(propertyDetails: propertyDetails),
+                  tablet: ShortDetailCardDesktop(
+                    propertyDetails: propertyDetails,
+                  ),
+                  desktop:
+                      ShortDetailCardDesktop(propertyDetails: propertyDetails),
                 ),
                 const SizedBox(
                   height: 60,
                 ),
-                const SinglePagePropertyMiddleDesktop()
+                Responsive(
+                  key: singlePropertyKey,
+                  mobile: SinglePagePropertyMiddleMobile(
+                    propertyDetails: propertyDetails,
+                  ),
+                  tablet: SinglePagePropertyMiddleDesktop(
+                    propertyDetails: propertyDetails,
+                  ),
+                  desktop: SinglePagePropertyMiddleDesktop(
+                    propertyDetails: propertyDetails,
+                  ),
+                )
               ],
             ),
           )
@@ -51,8 +67,3 @@ class SinglePagePropertyView extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
