@@ -10,6 +10,7 @@ import 'package:the_asset_zone_web/review/looking_to_buy_new_property.dart';
 import 'package:the_asset_zone_web/review/review_page.dart';
 import 'package:the_asset_zone_web/review/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
+
 //import 'package:the_asset_zone_web/screens/home/review/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
@@ -20,6 +21,7 @@ import 'package:the_asset_zone_web/screens/single_property_page/components/singl
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
 import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
+
 //import 'package:the_asset_zone_web/search_page.dart';
 import 'package:the_asset_zone_web/text.dart';
 
@@ -48,7 +50,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -59,12 +60,6 @@ class MyApp extends StatelessWidget {
       theme: themeData,
       //home: LookingToBuyNewProperty(),
       home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      // home: RightSideControllerContainer()//HomeScreen(title: 'The Assets Zone',),
-      //home: FormAddFirebase(),
-      //home: FooterPage(),
-      //home: ReviewPage(),
-      //home: SearchButtonNavigatorPage(),
-      //home: WhatAreYouLookingFor(propertyDetails: [],),
     );
   }
 }
@@ -80,7 +75,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) {
-        return HomeScreen(title: "The Asset Zone");
+        return const HomeScreen(title: "The Asset Zone");
       },
     ),
     GoRoute(
@@ -107,11 +102,5 @@ final GoRouter _router = GoRouter(
         return const CityScreen();
       },
     ),
-    // GoRoute(
-    //   path: '/singlepageproperty',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     return SinglePagePropertyView();
-    //   },
-    // ),
   ],
 );

@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+// import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:carousel_pro/carousel_pro.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -232,20 +232,20 @@ class SearchButtonNavigatorPage extends StatelessWidget {
                                                 margin: EdgeInsets.only(bottom: 10.0),
                                                 height: 200.0,
                                                 width: 300.0,
-                                                child: Carousel(
-                                                  autoplay: true,
-                                                  dotSize: 6.0,
-                                                  dotSpacing: 15.0,
-                                                  dotPosition: DotPosition.bottomCenter,
-                                                  images: [
-                                                    Image.asset('assets/1.jpg', fit: BoxFit.cover),
-                                                    Image.asset('assets/2.jpg', fit: BoxFit.cover),
-                                                    Image.asset('assets/3.jpg', fit: BoxFit.cover),
-                                                    Image.asset('assets/4.jpg', fit: BoxFit.cover),
-                                                    Image.asset('assets/5.jpg', fit: BoxFit.cover),
-                                                    //Image.asset('assets/images/6.jpg', fit: BoxFit.cover),
-                                                  ],
-                                                ),
+                                                // child: Carousel(
+                                                //   autoplay: true,
+                                                //   dotSize: 6.0,
+                                                //   dotSpacing: 15.0,
+                                                //   dotPosition: DotPosition.bottomCenter,
+                                                //   images: [
+                                                //     Image.asset('assets/1.jpg', fit: BoxFit.cover),
+                                                //     Image.asset('assets/2.jpg', fit: BoxFit.cover),
+                                                //     Image.asset('assets/3.jpg', fit: BoxFit.cover),
+                                                //     Image.asset('assets/4.jpg', fit: BoxFit.cover),
+                                                //     Image.asset('assets/5.jpg', fit: BoxFit.cover),
+                                                //     //Image.asset('assets/images/6.jpg', fit: BoxFit.cover),
+                                                //   ],
+                                                // ),
                                               ),
                                               Container(
                                                 width: 300.0,

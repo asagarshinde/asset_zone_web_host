@@ -6,7 +6,6 @@ import 'package:the_asset_zone_web/footer_section/footer_page.dart';
 import 'package:the_asset_zone_web/review/developer_work_with_us.dart';
 import 'package:the_asset_zone_web/review/find_property.dart';
 import 'package:the_asset_zone_web/review/looking_to_buy_new_property.dart';
-import 'package:the_asset_zone_web/screens/home/components/feature_property.dart';
 import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
@@ -16,15 +15,14 @@ import 'package:the_asset_zone_web/screens/home/components/properties_for_sale_c
 import 'package:the_asset_zone_web/screens/home/components/property_search_desktop_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
 import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
+
 //import 'package:the_asset_zone_web/screens/home/components/what_are_you_looking_for.dart';
-import 'package:the_asset_zone_web/testinominal/testinominal.dart';
 import '../../models/property_detail_model.dart';
 import '../../responsive.dart';
 import '../../review/what_are_you_looking_for.dart';
 import '../../widgets/helper_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
-
   const HomeScreen({Key? key, required String title}) : super(key: key);
 
   @override
@@ -35,89 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final String title = 'The Assets Zone';
   List<PropertyDetails> lstPropDetails = <PropertyDetails>[];
 
-
   @override
   void initState() {
     super.initState();
-    fetchList();
-  }
-
-  fetchList() {
-    List<PropertyDetails> lstPropertyDetails = <PropertyDetails>[];
-    lstPropertyDetails.add(PropertyDetails(
-        "AC3EE99",
-        ['assets/3.jpg', 'assets/4.jpg'],
-        PropertyAbout(
-            property_type: "House1",
-            bathroom: 1,
-            property_id: "AC3EE90",
-            property_status: "For sale",
-            city: "Pune",
-            bedrooms: 1,
-            price: 1500,
-            property_size: 1500,
-            balcony: 3),
-        "ahahdh1",
-        "assets/2.jpg",
-        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
-    lstPropertyDetails.add(PropertyDetails(
-        "AC33399",
-        ['assets/1.jpg', 'assets/2.jpg'],
-        PropertyAbout(
-            property_type: "House2",
-            bathroom: 3,
-            property_id: "AC3EE91",
-            property_status: "For rent",
-            city: "Mumbai",
-            bedrooms: 3,
-            price: 2200,
-            property_size: 2500,
-            balcony: 2),
-        "ahahdh2",
-        "assets/3.jpg",
-        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
-    lstPropertyDetails.add(PropertyDetails(
-        "AC3aa99",
-        ['assets/8.jpg', 'assets/5.jpg'],
-        PropertyAbout(
-            property_type: "House3",
-            bathroom: 5,
-            property_id: "AC3EE92",
-            property_status: "For lease",
-            city: "Nasik",
-            bedrooms: 5,
-            price: 4400,
-            property_size: 3500,
-            balcony: 4),
-        "ahahdh4",
-        "assets/4.jpg",
-        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
-    lstPropertyDetails.add(PropertyDetails(
-        "AC30099",
-        ['assets/11.jpg', 'assets/21.jpg'],
-        PropertyAbout(
-            property_type: "House4",
-            bathroom: 8,
-            property_id: "AC3EE93",
-            property_status: "For sale",
-            city: "Surat",
-            bedrooms: 2,
-            price: 6600,
-            property_size: 4500,
-            balcony: 7),
-        "ahahdh5",
-        "assets/5.jpg",
-        {"lon": 22.687591323210615, "lat": 76.43698832653855}));
-
-    setState(() {
-      lstPropDetails = lstPropertyDetails;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    print(width);
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
@@ -125,8 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const MyNavigationBar(),
             )
           : AppBar(
-           backgroundColor: kPrimaryColor,
-      ),
+              backgroundColor: kPrimaryColor,
+            ),
       drawer: const MyDrawer(),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -182,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ? const PropertySearchTabletView()
                                             : const PropertySearchPanel(),
                                     SizedBox(
-                                      height: constraints.maxWidth < 900 ? 50 : 250,
+                                      height:
+                                          constraints.maxWidth < 900 ? 50 : 250,
                                     ),
                                     AutoSizeText(
                                       "Properties for rent.",
@@ -203,21 +127,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(
                                       height: 50,
                                     ),
-
                                   ],
                                 ),
                               ),
                               // const PropertiesForRentGrid(),
                               width < 850
-                                  ? PropertiesForCardsView()
+                                  ? const PropertiesForCardsView()
                                   : width < 1600
                                       ? const PropertiesForCardsView()
                                       : const PropertiesForCardsView(),
                               const SizedBox(
                                 height: 100,
                               ),
-                              Padding( padding: EdgeInsets.fromLTRB(
-                                  width > 1200 ? width * 0.08 : 10, 0, 0, 50),),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+                              ),
 
                               AutoSizeText(
                                 "Properties for Sale.",
@@ -243,14 +168,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               width < 850
                                   ? PropertiesForSaleCardsView()
                                   : width < 1600
-                                  ? const PropertiesForSaleCardsView()
-                                  : const PropertiesForSaleCardsView(),
+                                      ? const PropertiesForSaleCardsView()
+                                      : const PropertiesForSaleCardsView(),
                               const SizedBox(
                                 height: 100,
                               ),
 
-                              Padding( padding: EdgeInsets.fromLTRB(
-                                  width > 1200 ? width * 0.08 : 10, 0, 0, 50),),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+                              ),
 
                               AutoSizeText(
                                 "Properties for Buy.",
@@ -276,8 +203,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               width < 850
                                   ? PropertiesForBuyCardsView()
                                   : width < 1600
-                                  ? const PropertiesForBuyCardsView()
-                                  : const PropertiesForBuyCardsView(),
+                                      ? const PropertiesForBuyCardsView()
+                                      : const PropertiesForBuyCardsView(),
                               const SizedBox(
                                 height: 100,
                               ),
@@ -287,10 +214,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //color: Colors.red,
                                 height: MediaQuery.of(context).size.height,
                                 width: MediaQuery.of(context).size.width,
-                                child: width< 500 ? FeaturedProjectMobile(): width < 900 ? FeaturedProjectTablet() : FeaturedProjectDesktop(),
+                                child: width < 500
+                                    ? const FeaturedProjectMobile()
+                                    : width < 900
+                                        ? const FeaturedProjectTablet()
+                                        : const FeaturedProjectDesktop(),
                               ),
-
-
                               // SizedBox(height: 50,),
                               // WhatAreYouLookingFor(),
                               // Padding(
@@ -310,26 +239,31 @@ class _HomeScreenState extends State<HomeScreen> {
                               // const SizedBox(
                               //   height: 100,
                               // ),
-                              SizedBox(height: 50,),
-                              DeveloperWorkWithUs(),
-                              SizedBox(height: 50,),
-                              Container(
-                                height: 500,
-                                  child: testinominal()
+                              const SizedBox(
+                                height: 50,
                               ),
-                              SizedBox(height: 50,),
-                              Container(
-                                height: 500,
-                                  child: WhatAreYouLookingFor(propertyDetails: lstPropDetails)
+                              const DeveloperWorkWithUs(),
+                              const SizedBox(
+                                height: 50,
                               ),
-                              SizedBox(height: 50,),
-                              Container(
-                                height: 500,
-                                  child: FindProperty()
+                              // SizedBox(
+                              //     height: width * 0.8, child: const testinominal()),
+                              const SizedBox(
+                                height: 50,
                               ),
+                              SizedBox(
+                                  height: width * 0.8,
+                                  child: WhatAreYouLookingFor(
+                                      propertyDetails: lstPropDetails)),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              SizedBox(
+                                  height: width * 0.8,
+                                  child: const FindProperty()),
                               Container(
-                                height: 600,
-                                  child: LookingToBuyNewProperty(),
+                                height: width * 0.8,
+                                child: const LookingToBuyNewProperty(),
                               )
                             ],
                           ),
