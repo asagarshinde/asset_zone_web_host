@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import '../../../widgets/helper_widgets.dart';
 
 class HomePageText extends StatelessWidget {
@@ -64,8 +65,9 @@ class propertyTile extends StatefulWidget {
   final String propertyStatus;
   final String price;
   final List<String> values;
+  final propertyDetails;
 
-  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus, required this.price, required this.values}) : super(key: key);
+  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus, required this.price, required this.values, required this.propertyDetails}) : super(key: key);
 
   @override
   State<propertyTile> createState() => _propertyTileState();
@@ -95,6 +97,10 @@ class _propertyTileState extends State<propertyTile> {
         }
       },
       onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SinglePagePropertyView(widget.propertyDetails)),
+        );
         print("Clicked on property card");
       },
       child: Card(
@@ -170,7 +176,9 @@ class _propertyTileState extends State<propertyTile> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-                      child: MyButton(title: "Details"),
+                      child: MyButton(
+                          title: "Details",
+                      ),
                     ),
                   ],
                 ),

@@ -25,8 +25,6 @@ class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
     return FutureBuilder<List?>(
       future: getData(),
       builder: (context, snapshot){
-        print(snapshot.error);
-        print(snapshot.data);
         if (snapshot.hasData){
 
           List<Widget> data = snapshot.data! as List<Widget>;
@@ -43,7 +41,7 @@ class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
           return Text("${snapshot.error}");
         }
         else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
         // return CircularProgressIndicator();
       },

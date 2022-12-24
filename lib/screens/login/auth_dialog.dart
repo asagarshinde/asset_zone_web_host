@@ -484,6 +484,9 @@ class _GoogleButtonState extends State<GoogleButton> {
           });
           await signInWithGoogle().then((result) {
             print(result);
+            // ToDo: use result.email to verify admin user
+            // if user is admin then pass some flag to HomeScreen widget
+            // where appbar will use the flag and enable or disable + button
             if (result != null) {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacement(

@@ -4,43 +4,48 @@ import 'package:get/get.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 
-
 class PropertyDetailsFirestore extends GetxController {
   var firestoreDB = FirebaseFirestore.instance;
 
   addPropertyDetails(PropertyDetails propertyDetails) async {
-    await firestoreDB.collection("PropertyDetails").add(propertyDetails.toMap());
+    await firestoreDB
+        .collection("PropertyDetails")
+        .add(propertyDetails.toMap());
   }
 
   updatePropertyDetails(PropertyDetails propertyDetails) async {
-    await firestoreDB.collection("PropertyDetails").doc(propertyDetails.id).update(propertyDetails.toMap());
+    await firestoreDB
+        .collection("PropertyDetails")
+        .doc(propertyDetails.id)
+        .update(propertyDetails.toMap());
   }
 
   Future<void> deletePropertyDetails(String documentId) async {
     await firestoreDB.collection("PropertyDetails").doc(documentId).delete();
-
   }
 
-  Future<List<Map<String, dynamic>>> retrievePropertyDetails() async {
+  Future<List<Map>> retrievePropertyDetails(String status, {int limit: 3}) async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
-    await firestoreDB.collection("PropertyDetails").get();
-    return snapshot.docs
-        .map((docSnapshot) => docSnapshot.data())//.fromDocumentSnapshot(docSnapshot).toMap())
-        // .map((docSnapshot) => PropertyDetails.fromDocumentSnapshot(docSnapshot).toMap())
-        .toList();
+        await firestoreDB.collection("PropertyDetails").where("property_about.property_status",  isEqualTo: status).limit(limit).get();
+    return snapshot.docs.map((docSnapshot) {
+      Map out = {};
+      out..addAll(docSnapshot.data());
+      out["id"] = docSnapshot.id;
+      return out;
+    }).toList();
   }
+
 }
 
-
-class PropertiesList{
+class PropertiesList {
   Future<List<Widget>?> propertyList() async {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];
-    var properties = await dbservice.retrievePropertyDetails();
+    var properties = await dbservice.retrievePropertyDetails("For Rent");
     // print(properties);
-    for (var property in properties)
-    {
-      // print(property["video"]);
+    for (var property in properties) {
+      print("received property is");
+      print(property);
       Widget dummy = Text(property.toString());
       List<String> values = [
         property["property_about"]["bedrooms"].toString(),
@@ -52,7 +57,56 @@ class PropertiesList{
           propertyType: property["property_about"]["property_type"],
           inputImagePath: property["gallery"][0],
           price: property["property_about"]["price"].toString(),
-          values: values);
+          values: values,
+          propertyDetails: property);
+      property_list.add(tile);
+    }
+    return property_list;
+  }
+  Future<List<Widget>?> propertyListSale() async {
+    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    List<Widget> property_list = [];
+    var properties = await dbservice.retrievePropertyDetails("For sale");
+    // print(properties);
+    for (var property in properties) {
+      //print(property);
+      Widget dummy = Text(property.toString());
+      List<String> values = [
+        property["property_about"]["bedrooms"].toString(),
+        property["property_about"]["bathroom"].toString(),
+        property["property_about"]["property_size"].toString(),
+      ];
+      Widget tile = propertyTile(
+          propertyStatus: property["property_about"]["property_status"],
+          propertyType: property["property_about"]["property_type"],
+          inputImagePath: property["gallery"][0],
+          price: property["property_about"]["price"].toString(),
+          values: values,
+          propertyDetails: property);
+      property_list.add(tile);
+    }
+    return property_list;
+  }
+  Future<List<Widget>?> propertyListBuy() async {
+    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    List<Widget> property_list = [];
+    var properties = await dbservice.retrievePropertyDetails("For Buy");
+    // print(properties);
+    for (var property in properties) {
+      //print(property);
+      Widget dummy = Text(property.toString());
+      List<String> values = [
+        property["property_about"]["bedrooms"].toString(),
+        property["property_about"]["bathroom"].toString(),
+        property["property_about"]["property_size"].toString(),
+      ];
+      Widget tile = propertyTile(
+          propertyStatus: property["property_about"]["property_status"],
+          propertyType: property["property_about"]["property_type"],
+          inputImagePath: property["gallery"][0],
+          price: property["property_about"]["price"].toString(),
+          values: values,
+          propertyDetails: property);
       property_list.add(tile);
     }
     return property_list;

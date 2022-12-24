@@ -2,14 +2,18 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import 'package:the_asset_zone_web/responsive.dart';
 import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 
-class leftColumn extends StatelessWidget {
-  const leftColumn({Key? key}) : super(key: key);
+import '../../home/components/home_screen_widgets.dart';
 
-  List<Widget> getFlatDetailsRow(
-      context, bedrooms, halls, area, bathrooms, garage) {
+class leftColumn extends StatelessWidget {
+  const leftColumn({Key? key, required this.propertyDetails}) : super(key: key);
+  final propertyDetails;
+
+  List<Widget> getFlatDetailsRow(context, bedrooms, halls, area, bathrooms,
+      garage) {
     List<String> flatDetails = [
       "Bedrooms",
       "Bathrooms",
@@ -17,7 +21,14 @@ class leftColumn extends StatelessWidget {
       "Sq ft",
       "Garage"
     ];
-    List<String> values = [bedrooms, bathrooms, halls, area, garage];
+    List<String> values = [
+      propertyDetails["property_about"]["bedrooms"].toString(),
+      propertyDetails["property_about"]["bathroom"].toString(),
+      propertyDetails["property_about"]["halls"].toString(),
+      propertyDetails["property_about"]["property_size"].toString(),
+      propertyDetails["property_about"]["garage"].toString()
+    ];
+    // List<String> values = [bedrooms, bathrooms, halls, area, garage];
     List<IconData> flatDetailsIcons = [
       Icons.bathtub_rounded,
       Icons.bed_rounded,
@@ -34,6 +45,7 @@ class leftColumn extends StatelessWidget {
             Icon(
               flatDetailsIcons[i],
               color: const Color(0xFF1c2d3a),
+
             ),
             Padding(
               padding: const EdgeInsets.all(3.0),
@@ -115,7 +127,11 @@ class leftColumn extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               children:
-              getFlatDetailsRow(context, "2", "2", "300", "2", "0"),
+              getFlatDetailsRow(context,
+                  propertyDetails["property_about"]["bedrooms"].toString(),
+                  propertyDetails["property_about"]["bathroom"].toString(),
+                  propertyDetails["property_about"]["balcony"].toString(), "2",
+                  "0"),
             ),
           )
               : Padding(
@@ -294,7 +310,10 @@ class leftColumnMobile extends StatelessWidget {
                   borderType: BorderType.RRect,
                   radius: const Radius.circular(8.0),
                   child: Row(
-                    children: const [Icon(Icons.save_alt), AutoSizeText("Save")],
+                    children: const [
+                      Icon(Icons.save_alt),
+                      AutoSizeText("Save")
+                    ],
                   ),
                 ),
                 const SizedBox(
@@ -316,3 +335,5 @@ class leftColumnMobile extends StatelessWidget {
     );
   }
 }
+
+

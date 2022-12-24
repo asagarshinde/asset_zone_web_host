@@ -4,13 +4,26 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
+import 'package:the_asset_zone_web/footer_section/footer_page.dart';
+import 'package:the_asset_zone_web/review/find_property.dart';
+import 'package:the_asset_zone_web/review/looking_to_buy_new_property.dart';
+import 'package:the_asset_zone_web/review/review_page.dart';
+import 'package:the_asset_zone_web/review/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
+
+//import 'package:the_asset_zone_web/screens/home/review/what_are_you_looking_for.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
 import 'package:the_asset_zone_web/screens/property/property_screen.dart';
 import 'package:the_asset_zone_web/screens/services/services_screen.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/right_side_controller_container.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/components/single_page_prperty_middle_location_container.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
+
+//import 'package:the_asset_zone_web/search_page.dart';
+import 'package:the_asset_zone_web/text.dart';
 
 import 'controllers/home_page_card_controller.dart';
 import 'screens/test_screen/test_screen.dart';
@@ -45,8 +58,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
+      //home: LookingToBuyNewProperty(),
       home: const HomeScreen(title: 'Flutter Demo Home Page'),
-      // home: TestPageScreen(),
     );
   }
 }
@@ -62,7 +75,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) {
-        return HomeScreen(title: "The Asset Zone");
+        return const HomeScreen(title: "The Asset Zone");
       },
     ),
     GoRoute(
