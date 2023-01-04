@@ -13,10 +13,9 @@ class _DeveloperWorkWithUsState extends State<DeveloperWorkWithUs> {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-
       items: [
         Container(
-         width: 80,
+          width: 80,
           margin: EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
@@ -38,7 +37,7 @@ class _DeveloperWorkWithUsState extends State<DeveloperWorkWithUs> {
           ),
         ),
         Container(
-         width: 80,
+          width: 80,
           margin: EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
@@ -91,10 +90,7 @@ class _DeveloperWorkWithUsState extends State<DeveloperWorkWithUs> {
         enableInfiniteScroll: true,
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         viewportFraction: 0.15,
-
-
       ),
     );
-
   }
 }

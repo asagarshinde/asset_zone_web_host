@@ -142,31 +142,34 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(
                                     width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                              ),
-
-                              AutoSizeText(
-                                "Properties for Sale.",
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700,
-                                    color: const Color(0xFF586167)),
+                                child: AutoSizeText(
+                                  "Properties for Sale.",
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color(0xFF586167)),
+                                ),
                               ),
 
                               const SizedBox(
                                 height: 12,
                               ),
-                              AutoSizeText(
-                                "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                style: GoogleFonts.roboto(
-                                    fontSize: 19,
-                                    color: const Color(0xFF586167)),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+                                child: AutoSizeText(
+                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 19,
+                                      color: const Color(0xFF586167)),
+                                ),
                               ),
                               const SizedBox(
                                 height: 100,
                               ),
 
                               width < 850
-                                  ? PropertiesForSaleCardsView()
+                                  ? const PropertiesForSaleCardsView()
                                   : width < 1600
                                       ? const PropertiesForSaleCardsView()
                                       : const PropertiesForSaleCardsView(),
@@ -177,24 +180,27 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                                 padding: EdgeInsets.fromLTRB(
                                     width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                              ),
-
-                              AutoSizeText(
-                                "Properties for Buy.",
-                                style: GoogleFonts.montserrat(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700,
-                                    color: const Color(0xFF586167)),
+                                child: AutoSizeText(
+                                  "Properties for Buy.",
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color(0xFF586167)),
+                                ),
                               ),
 
                               const SizedBox(
                                 height: 12,
                               ),
-                              AutoSizeText(
-                                "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                style: GoogleFonts.roboto(
-                                    fontSize: 19,
-                                    color: const Color(0xFF586167)),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+                                child: AutoSizeText(
+                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 19,
+                                      color: const Color(0xFF586167)),
+                                ),
                               ),
                               const SizedBox(
                                 height: 100,
