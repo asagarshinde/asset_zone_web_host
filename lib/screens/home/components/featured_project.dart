@@ -301,7 +301,7 @@ class FeaturedProjectTablet extends StatelessWidget {
             ),
             Positioned(
               left: (MediaQuery.of(context).size.width * 0.35)/3,
-              top: 500,
+              top: -200,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.75,
                 child: Card(

@@ -75,146 +75,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const HomePageText(),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 50,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 45, 8, 8),
-                                          child: MyButton(title: "For Rent"),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 45, 8, 8),
-                                          child: MyButton(title: "For Buy"),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 40),
-                                    width < 700
-                                        ? const PropertySearchMobileView()
-                                        : width < 950
-                                            ? const PropertySearchTabletView()
-                                            : const PropertySearchPanel(),
-                                    SizedBox(
-                                      height:
-                                          constraints.maxWidth < 900 ? 50 : 250,
-                                    ),
-                                    AutoSizeText(
-                                      "Properties for rent.",
-                                      style: GoogleFonts.montserrat(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w700,
-                                          color: const Color(0xFF586167)),
-                                    ),
-                                    const SizedBox(
-                                      height: 12,
-                                    ),
-                                    AutoSizeText(
-                                      "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                      style: GoogleFonts.roboto(
-                                          fontSize: 19,
-                                          color: const Color(0xFF586167)),
-                                    ),
-                                    const SizedBox(
-                                      height: 50,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              // const PropertiesForRentGrid(),
-                              width < 850
-                                  ? const PropertiesForCardsView()
-                                  : width < 1600
-                                      ? const PropertiesForCardsView()
-                                      : const PropertiesForCardsView(),
-                              const SizedBox(
-                                height: 100,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                                child: AutoSizeText(
-                                  "Properties for Sale.",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color(0xFF586167)),
-                                ),
-                              ),
-
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                                child: AutoSizeText(
-                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 19,
-                                      color: const Color(0xFF586167)),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 100,
-                              ),
-
-                              width < 850
-                                  ? const PropertiesForSaleCardsView()
-                                  : width < 1600
-                                      ? const PropertiesForSaleCardsView()
-                                      : const PropertiesForSaleCardsView(),
-                              const SizedBox(
-                                height: 100,
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                                child: AutoSizeText(
-                                  "Properties for Buy.",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color(0xFF586167)),
-                                ),
-                              ),
-
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    width > 1200 ? width * 0.08 : 10, 0, 0, 50),
-                                child: AutoSizeText(
-                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 19,
-                                      color: const Color(0xFF586167)),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 100,
-                              ),
-
-                              width < 850
-                                  ? PropertiesForBuyCardsView()
-                                  : width < 1600
-                                      ? const PropertiesForBuyCardsView()
-                                      : const PropertiesForBuyCardsView(),
-                              const SizedBox(
-                                height: 100,
-                              ),
-
+                              HomePageSecondSection(
+                                  width: width, constraints: constraints),
+                              ...propertiesForText(width:width, heading: "Properties for rent",subheading: "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening"),
+                              PropertiesForCardsView(width: width, propertiesFor: "For Rent"),
+                              const SizedBox(height: 50),
+                              ...propertiesForText(width:width, heading: "Properties for sale",subheading: "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening"),
+                              PropertiesForCardsView(width: width, propertiesFor: "For sale"),
+                              const SizedBox(height: 50),
+                              ...propertiesForText(width:width, heading: "Properties for buy",subheading: "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening"),
+                              PropertiesForCardsView(width: width, propertiesFor: "For Buy"),
+                              const SizedBox(height: 50),
                               Container(
                                 color: Colors.white70,
                                 //color: Colors.red,
@@ -286,4 +157,100 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+class PaddedTextHeading extends StatelessWidget {
+  const PaddedTextHeading(
+      {Key? key,
+      required this.width,
+      required this.text,
+      this.fontSize = 30,
+      required this.font,
+      this.fontWeight = FontWeight.w100})
+      : super(key: key);
+
+  final double width;
+  final String text;
+  final font;
+  final fontSize;
+  final fontWeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(width > 1200 ? width * 0.08 : 10, 0, 0, 10),
+      child: AutoSizeText(
+        text,
+        style: TextStyle(
+            fontFamily: this.font,
+            fontSize: this.fontSize,
+            fontWeight: this.fontWeight,
+            color: const Color(0xFF586167)),
+      ),
+    );
+  }
+}
+
+class HomePageSecondSection extends StatelessWidget {
+  const HomePageSecondSection(
+      {Key? key, required this.width, required this.constraints})
+      : super(key: key);
+
+  final double width;
+  final constraints;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
+                child: MyButton(title: "For Rent"),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
+                child: MyButton(title: "For Buy"),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          width < 700
+              ? const PropertySearchMobileView()
+              : width < 950
+                  ? const PropertySearchTabletView()
+                  : const PropertySearchPanel(),
+          SizedBox(
+            height: constraints.maxWidth < 900 ? 50 : 250,
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+propertiesForText({heading, subheading, width}){
+  return [
+    PaddedTextHeading(
+        font: GoogleFonts.montserrat().toString(),
+        fontWeight: FontWeight.w700,
+        width: width,
+        text: heading),
+    PaddedTextHeading(
+        font: GoogleFonts.roboto().toString(),
+        width: width,
+        text: subheading,
+        fontSize: 19),
+  ];
 }
