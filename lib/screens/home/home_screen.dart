@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                SizedBox(width: width, child: FooterPage()),
+                SizedBox(width: width, child: const FooterPage()),
               ],
             ),
           );
@@ -127,7 +127,7 @@ class HomePageSecondSection extends StatelessWidget {
       : super(key: key);
 
   final double width;
-  final constraints;
+  final BoxConstraints constraints;
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class HomePageSecondSection extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
-                child: MyButton(title: "For Rent"),
+                child: MyButton(title: "For Rrrrent"),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
