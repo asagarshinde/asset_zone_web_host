@@ -27,7 +27,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final String title = 'The Assets Zone';
+  final String title = 'The Assets Tone';
   List<PropertyDetails> lstPropDetails = <PropertyDetails>[];
 
   @override
