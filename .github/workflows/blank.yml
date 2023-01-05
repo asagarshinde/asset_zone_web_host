@@ -1,32 +1,37 @@
-name: Flutter Web
+
+name: Deploy
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
+
 jobs:
-  build:
-    name: Build Web
-    env:
-      my_secret: ${{secrets.commit_secret}}
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.x'
-          channel: 'stable'
-      - run: flutter config --enable-web
-      - run: flutter pub get
-      - run: flutter build web --release
-      - run: |
-          cd build/web
-          git config --global user.email asagarshinde@gmail.com
-          git config --global user.name asagarshinde
-          git init
-          git status
-#          # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-#          git remote add origin https://${{secrets.commit_secret}}@github.com/asagarshinde/asset_zone_web.git
-#          git checkout -b gh-pages
-#          git add --all
-#          git commit -m "update"
-#          git push origin gh-pages -f
+          flutter-version: '3.3.0'
+          channel: 'stable' # Required for web
+
+      - name: Enable Flutter Web
+        run: flutter config --enable-web
+
+      - name: Download Dependencies
+        run: flutter pub get
+
+      - name: Build
+        run: flutter build web
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          force_orphan: true
+          user_name: 'github-ci[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Publish to gh-pages'
