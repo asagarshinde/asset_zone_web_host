@@ -87,9 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               // SizedBox(
                               //     height: width * 0.8,
                               //     child: const testinominal()),
-                              const SizedBox(
-                                height: 50,
-                              ),
+                              // const SizedBox(
+                              //   height: 50,
+                              // ),
                               // SizedBox(
                               //     height: width * 0.8,
                               //     child: WhatAreYouLookingFor(

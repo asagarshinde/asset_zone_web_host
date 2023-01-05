@@ -1,37 +1,50 @@
-name: Deploy to GitHub Pages
+name: Flutter Web CI
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
+    env:
+      my_secret: ${{secrets.GH_DEPLOY}}
     steps:
-      - uses: actions/checkout@v2
-
+      - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '3.3.x' 
-          channel: 'beta' # Required for web
-
-      - name: Enable Flutter Web
-        run: flutter config --enable-web
-
-      - name: Download Dependencies
-        run: flutter pub get
-
-      - name: Build
-        run: flutter build web
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+          channel: beta
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      #     - run: flutter test
+      - run: flutter build web
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          force_orphan: true
-          user_name: 'github-ci[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Publish to gh-pages'
+          name: web-build
+          path: build/web
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: web-build
+      - name: Display structure of build files
+        run: ls -R
+        working-directory: ./web
+      - name: Deploy to GH Pages
+        run: |
+          cd build/web
+          git init
+          # type configurations: your user.email and user.name followed lines
+          # git config --global user.email your_email
+          # git config --global user.name your_name
+          git config --global user.email ranubhardwaj89@gmail.com
+          git config --global user.name himanshusharma89
+          git status
+          # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
+          git remote add origin https://${{secrets.GH_DEPLOY}}@github.com/himanshusharma89/dev.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
