@@ -41,7 +41,7 @@ class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
               children: [
                 ...propertiesForText(
                     width: widget.width,
-                    heading: "Properties for rent",
+                    heading: "Properties ${widget.propertiesFor}",
                     subheading:
                         "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening"),
                 const SizedBox(height: 20),

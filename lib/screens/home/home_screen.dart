@@ -143,7 +143,7 @@ class HomePageSecondSection extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
-                child: MyButton(title: "For Rrrrent"),
+                child: MyButton(title: "For Rent"),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
