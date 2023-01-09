@@ -168,3 +168,13 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
+
+
+class SimpleNavigationBar extends StatelessWidget {
+  const SimpleNavigationBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
