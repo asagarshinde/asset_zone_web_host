@@ -100,10 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // SizedBox(
                               //     height: width * 0.8,
                               //     child: const FindProperty()),
-                              // SizedBox(
-                              //   height: width * 0.8,
-                              //   child: const LookingToBuyNewProperty(),
-                              // )
+                              SizedBox(height: MediaQuery.of(context).size.height , child: const LookingToBuyNewProperty())
                             ],
                           ),
                         ],
