@@ -14,6 +14,8 @@ const menus = {
   "city": ["Nashik", "Igatpuri"]
 };
 
+const menuList = ["home", "property", "about us", "city" ];
+
 const propertySearch = {
   "Property Type": ["Residential", "Commercial", "Plot", "Industrial"]
 };
