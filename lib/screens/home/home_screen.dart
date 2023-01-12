@@ -68,44 +68,41 @@ class _HomeScreenState extends State<HomeScreen> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          // Column(
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     const HomePageText(),
-                          //     HomePageSecondSection(
-                          //         width: width, constraints: constraints),
-                          //     PropertiesForCardsView(
-                          //         width: width, propertiesFor: "For Rent"),
-                          //     PropertiesForCardsView(
-                          //         width: width, propertiesFor: "For sale"),
-                          //     PropertiesForCardsView(
-                          //         width: width, propertiesFor: "For Buy"),
-                          //     featuredProject(context: context, width: width),
-                          //     const SizedBox(height: 50),
-                          //     const DeveloperWorkWithUs(),
-                          //     const SizedBox(height: 50),
-                          //     // SizedBox(
-                          //     //     height: width * 0.8,
-                          //     //     child: const testinominal()),
-                          //     // const SizedBox(
-                          //     //   height: 50,
-                          //     // ),
-                          //     // SizedBox(
-                          //     //     height: width * 0.8,
-                          //     //     child: WhatAreYouLookingFor(
-                          //     //         propertyDetails: lstPropDetails)),
-                          //     // const SizedBox(
-                          //     //   height: 50,
-                          //     // ),
-                          //     // SizedBox(
-                          //     //     height: width * 0.8,
-                          //     //     child: const FindProperty()),
-                          //     // SizedBox(
-                          //     //   height: width * 0.8,
-                          //     //   child: const LookingToBuyNewProperty(),
-                          //     // )
-                          //   ],
-                          // ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const HomePageText(),
+                              HomePageSecondSection(
+                                  width: width, constraints: constraints),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For Rent"),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For sale"),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For Buy"),
+                              featuredProject(context: context, width: width),
+                              const SizedBox(height: 50),
+                              const DeveloperWorkWithUs(),
+                              const SizedBox(height: 50),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: const testinominal()),
+                              // const SizedBox(
+                              //   height: 50,
+                              // ),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: WhatAreYouLookingFor(
+                              //         propertyDetails: lstPropDetails)),
+                              // const SizedBox(
+                              //   height: 50,
+                              // ),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: const FindProperty()),
+                              SizedBox(height: MediaQuery.of(context).size.height , child: const LookingToBuyNewProperty())
+                            ],
+                          ),
                         ],
                       ),
                     ),

@@ -265,4 +265,3 @@ class SimpleMenuBar extends StatelessWidget {
     );
   }
 }
-
