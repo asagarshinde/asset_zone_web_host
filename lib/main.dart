@@ -26,6 +26,7 @@ import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
 import 'package:the_asset_zone_web/text.dart';
 
 import 'controllers/home_page_card_controller.dart';
+import 'controllers/nav_bar_controller.dart';
 import 'screens/test_screen/test_screen.dart';
 
 // void main() {
@@ -44,64 +45,24 @@ void main() async {
         messagingSenderId: "1001122158865",
         appId: "1:1001122158865:web:e458ae8a32388d4b2d54b0"),
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
+  final _navigationBarController = Get.put(NavBarController());
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
     return MaterialApp.router(
-      routerConfig: _router,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
-      //home: LookingToBuyNewProperty(),
-      // home: const HomeScreen(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-final _router = GoRouter(
-  routes: <GoRoute>[
-    GoRoute(
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen(title: "The Asset Zone");
-      },
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen(title: "The Asset Zone");
-      },
-    ),
-    GoRoute(
-      path: '/property',
-      builder: (BuildContext context, GoRouterState state) {
-        return const PropertyScreen();
-      },
-    ),
-    GoRoute(
-      path: '/project',
-      builder: (BuildContext context, GoRouterState state) {
-        return const ProjectScreen();
-      },
-    ),
-    GoRoute(
-      path: '/services',
-      builder: (BuildContext context, GoRouterState state) {
-        return const ServicesScreen();
-      },
-    ),
-    GoRoute(
-      path: '/city',
-      builder: (BuildContext context, GoRouterState state) {
-        return const CityScreen();
-      },
-    ),
-  ],
-);
+

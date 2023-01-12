@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
               preferredSize: Size(MediaQuery.of(context).size.width, 70),
-              child: const MyNavigationBar(),
+              child: SimpleMenuBar(),
             )
           : AppBar(
               backgroundColor: kPrimaryColor,
