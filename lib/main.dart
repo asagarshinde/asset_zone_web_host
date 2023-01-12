@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
     return MaterialApp.router(
-      routerConfig: _navigationBarController.router,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'The Assets Zone',
       theme: themeData,
