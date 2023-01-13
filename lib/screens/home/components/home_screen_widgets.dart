@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 import '../../../widgets/helper_widgets.dart';
+import 'package:the_asset_zone_web/controllers/nav_bar_controller.dart';
 
 class HomePageText extends StatelessWidget {
   const HomePageText({Key? key}) : super(key: key);
@@ -49,7 +51,10 @@ class HomePageText extends StatelessWidget {
               softWrap: true,
               textScaleFactor: width < 500 ? 0.8 : 1,
               'Residences can be classified by and connected to residences. Different types of housing can be use \nsame physical type.',
-              style: GoogleFonts.rubik(fontSize: 18, color: Colors.black, ),
+              style: GoogleFonts.rubik(
+                fontSize: 18,
+                color: Colors.black,
+              ),
               textAlign: TextAlign.start),
         ],
       ),
@@ -57,8 +62,7 @@ class HomePageText extends StatelessWidget {
   }
 }
 
-
-class propertyTile extends StatefulWidget {
+class PropertyTile extends StatefulWidget {
   final String inputImagePath;
 
   final String propertyType;
@@ -67,13 +71,21 @@ class propertyTile extends StatefulWidget {
   final List<String> values;
   final propertyDetails;
 
-  propertyTile({Key? key, required this.inputImagePath, required this.propertyType, required this.propertyStatus, required this.price, required this.values, required this.propertyDetails}) : super(key: key);
+  const PropertyTile(
+      {Key? key,
+      required this.inputImagePath,
+      required this.propertyType,
+      required this.propertyStatus,
+      required this.price,
+      required this.values,
+      required this.propertyDetails})
+      : super(key: key);
 
   @override
-  State<propertyTile> createState() => _propertyTileState();
+  State<PropertyTile> createState() => _PropertyTileState();
 }
 
-class _propertyTileState extends State<propertyTile> {
+class _PropertyTileState extends State<PropertyTile> {
   bool _isHover = false;
 
   @override
@@ -97,11 +109,13 @@ class _propertyTileState extends State<propertyTile> {
         }
       },
       onTap: () {
+        // GoRouter.of(context).go("/city");
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SinglePagePropertyView(widget.propertyDetails)),
+          MaterialPageRoute(
+              builder: (context) =>
+                  SinglePagePropertyView(widget.propertyDetails)),
         );
-        print("Clicked on property card");
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -177,7 +191,7 @@ class _propertyTileState extends State<propertyTile> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
                       child: MyButton(
-                          title: "Details",
+                        title: "Details",
                       ),
                     ),
                   ],
@@ -186,7 +200,9 @@ class _propertyTileState extends State<propertyTile> {
                   AnimatedOpacity(
                       opacity: _isHover ? 1 : 0,
                       duration: Duration(milliseconds: _isHover ? 1000 : 100),
-                      child: onHoverStrip(values: widget.values,))
+                      child: onHoverStrip(
+                        values: widget.values,
+                      ))
               ],
             ),
           ),
@@ -209,6 +225,7 @@ class onHoverStrip extends StatelessWidget {
   ];
   List<String> text1 = ["Beds", "Baths", "Carpet Area"];
   final List<String> values;
+
   // List<String> text2 = values;
 
   List<Widget> getTiles() {

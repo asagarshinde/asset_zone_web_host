@@ -42,17 +42,14 @@ class PropertiesList {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];
     var properties = await dbservice.retrievePropertyDetails(propety_for);
-    // print(properties);
     for (var property in properties) {
-      print("received property is");
-      print(property);
-      Widget dummy = Text(property.toString());
+      // Widget dummy = Text(property.toString());
       List<String> values = [
         property["property_about"]["bedrooms"].toString(),
         property["property_about"]["bathroom"].toString(),
         property["property_about"]["property_size"].toString(),
       ];
-      Widget tile = propertyTile(
+      Widget tile = PropertyTile(
           propertyStatus: property["property_about"]["property_status"],
           propertyType: property["property_about"]["property_type"],
           inputImagePath: property["gallery"][0],
@@ -76,7 +73,7 @@ class PropertiesList {
         property["property_about"]["bathroom"].toString(),
         property["property_about"]["property_size"].toString(),
       ];
-      Widget tile = propertyTile(
+      Widget tile = PropertyTile(
           propertyStatus: property["property_about"]["property_status"],
           propertyType: property["property_about"]["property_type"],
           inputImagePath: property["gallery"][0],
@@ -100,7 +97,7 @@ class PropertiesList {
         property["property_about"]["bathroom"].toString(),
         property["property_about"]["property_size"].toString(),
       ];
-      Widget tile = propertyTile(
+      Widget tile = PropertyTile(
           propertyStatus: property["property_about"]["property_status"],
           propertyType: property["property_about"]["property_type"],
           inputImagePath: property["gallery"][0],
