@@ -32,7 +32,7 @@ TextStyle kMenuItemStyle = GoogleFonts.rubik(fontSize: 15, fontWeight: FontWeigh
 const kIconColor = Color.fromRGBO(243, 68, 81, 1);
 const kIconBackgroundColor = Color.fromRGBO(254, 237, 238, 1);
 const kTextColor = Color(0xFF586167);
-
+TextStyle kTitleStyle = GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 24);
 const kdropDownTitleStyle = 14.0;
 TextStyle khomePagePropertySearchPanelDDPanel =
     GoogleFonts.rubik(fontSize: kdropDownTitleStyle, color: Colors.black);

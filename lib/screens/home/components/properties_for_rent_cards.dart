@@ -9,9 +9,10 @@ class PropertiesForCardsView extends StatefulWidget {
   final double width;
 
   final String propertiesFor;
-
+  final bool showDescription;
+  final int limit;
   const PropertiesForCardsView(
-      {Key? key, required this.width, required this.propertiesFor})
+      {Key? key, required this.width, required this.propertiesFor, this.showDescription = true, int this.limit = 3})
       : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class PropertiesForCardsView extends StatefulWidget {
 class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
   Future<List<Widget>?> getData() async {
     PropertiesList propertiesList = PropertiesList();
-    List<Widget>? pl = await propertiesList.propertyList(widget.propertiesFor);
+    List<Widget>? pl = await propertiesList.propertyList(widget.propertiesFor, limit: widget.limit);
     // await Future.delayed(Duration(seconds: 5));
     return pl;
   }
@@ -35,11 +36,11 @@ class _PropertiesForCardsViewState extends State<PropertiesForCardsView> {
           List<Widget> data = snapshot.data! as List<Widget>;
           return Padding(
             padding: EdgeInsets.fromLTRB(
-                widget.width > 1200 ? widget.width * 0.08 : 10, 0, 0, 10),
+                widget.width > 1200 ? widget.width * 0.085 : 10, 0, 0, 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...propertiesForText(
+               children: [
+                 if (widget.showDescription) ...propertiesForText(
                     width: widget.width,
                     heading: "Properties ${widget.propertiesFor}",
                     subheading:

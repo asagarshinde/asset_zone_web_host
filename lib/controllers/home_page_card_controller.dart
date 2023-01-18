@@ -24,24 +24,54 @@ class PropertyDetailsFirestore extends GetxController {
     await firestoreDB.collection("PropertyDetails").doc(documentId).delete();
   }
 
-  Future<List<Map>> retrievePropertyDetails(String status, {int limit: 3}) async {
-    QuerySnapshot<Map<String, dynamic>> snapshot =
-        await firestoreDB.collection("PropertyDetails").where("property_about.property_status",  isEqualTo: status).limit(limit).get();
-    return snapshot.docs.map((docSnapshot) {
-      Map out = {};
-      out..addAll(docSnapshot.data());
-      out["id"] = docSnapshot.id;
-      return out;
-    }).toList();
+  Future<void> getPropertyFromId({required propertyId}) async {
+    await firestoreDB.collection("propertyDetails").doc(propertyId).get();
   }
 
+  Future<List<PropertyDetails>> retrieveAllPropertyDetails() async {
+    var snapshot =
+        await firestoreDB.collection("PropertyDetails").limit(4).get();
+        return snapshot.docs.map((docSnapshot) {
+         return PropertyDetails.fromMap(docSnapshot.data());
+        }).toList();
+  }
+
+
+  Future<List<Map>> retrievePropertyDetails(String status,
+      {int limit: 3}) async {
+    if (status == "all") {
+      QuerySnapshot<Map<String, dynamic>> snapshot =
+          await firestoreDB.collection("PropertyDetails").limit(limit).get();
+      return snapshot.docs.map((docSnapshot) {
+        Map out = {};
+        out.addAll(docSnapshot.data());
+        out["id"] = docSnapshot.id;
+        return out;
+      }).toList();
+    } else {
+      QuerySnapshot<Map<String, dynamic>> snapshot = await firestoreDB
+          .collection("PropertyDetails")
+          .where("property_about.property_status", isEqualTo: status)
+          .limit(limit)
+          .get();
+      return snapshot.docs.map(
+        (docSnapshot) {
+          Map out = {};
+          out.addAll(docSnapshot.data());
+          out["id"] = docSnapshot.id;
+          return out;
+        },
+      ).toList();
+    }
+  }
 }
 
 class PropertiesList {
-  Future<List<Widget>?> propertyList(propety_for) async {
+  Future<List<Widget>?> propertyList(propety_for, {limit = 3}) async {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];
-    var properties = await dbservice.retrievePropertyDetails(propety_for);
+    var properties =
+        await dbservice.retrievePropertyDetails(propety_for, limit: limit);
     for (var property in properties) {
       // Widget dummy = Text(property.toString());
       List<String> values = [
@@ -60,6 +90,7 @@ class PropertiesList {
     }
     return property_list;
   }
+
   Future<List<Widget>?> propertyListSale() async {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];
@@ -84,6 +115,7 @@ class PropertiesList {
     }
     return property_list;
   }
+
   Future<List<Widget>?> propertyListBuy() async {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];

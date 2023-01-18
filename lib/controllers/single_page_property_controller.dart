@@ -7,4 +7,5 @@ class SinglePagePropertyController extends GetxController {
 
   }.obs;
   final middle_widget = "ABOUT".obs;
+
 }

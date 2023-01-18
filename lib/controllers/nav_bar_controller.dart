@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
 import 'package:the_asset_zone_web/screens/property/property_screen.dart';
 import 'package:the_asset_zone_web/screens/services/services_screen.dart';
+import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
 
 class NavBarController extends GetxController {
   // reactive map is not working. when clicked on any menu color is not changing.
@@ -48,7 +50,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const  HomeScreen(title: "The Asset Zone");
+        return const  PropertyScreen();
       },
     ),
     GoRoute(
@@ -81,10 +83,18 @@ GoRouter router = GoRouter(
         return const CityScreen();
       },
     ),
+    GoRoute(
+      path: '/singleproperty',
+      builder: (BuildContext context, GoRouterState state) {
+        print(state.extra);
+        return SinglePagePropertyView(state.extra);
+      },
+    ),
   ],
 );
 
 class MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+  // https://medium.flutterdevs.com/tracking-screen-transition-by-route-observer-flutter-dadd8773699c
   // without route observer when back button pressed last clicked menu remains selected.
   // e.g if i click on home --> city --> property and pressed back button screen moves to city but property remains highlighted.
   final _navigationBarController = Get.put(NavBarController());

@@ -109,7 +109,10 @@ class _PropertyTileState extends State<PropertyTile> {
         }
       },
       onTap: () {
-        // GoRouter.of(context).go("/city");
+        // GoRouter.of(context).go("/singleproperty",
+        //     extra: widget.propertyDetails);
+        // print(widget.propertyDetails);
+        getSinglePageProperty(propertyId: widget.propertyDetails["id"]);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -199,7 +202,7 @@ class _PropertyTileState extends State<PropertyTile> {
                 if (_isHover)
                   AnimatedOpacity(
                       opacity: _isHover ? 1 : 0,
-                      duration: Duration(milliseconds: _isHover ? 1000 : 100),
+                      duration: Duration(milliseconds: _isHover ? 10000 : 5000),
                       child: onHoverStrip(
                         values: widget.values,
                       ))
@@ -218,10 +221,10 @@ class onHoverStrip extends StatelessWidget {
   onHoverStrip({Key? key, required this.values}) : super(key: key);
   List<Widget> items = [];
   List<Color> colors = [
-    Colors.black38,
-    Colors.black45,
-    Colors.black54,
-    Colors.black87
+    Colors.white12,
+    Colors.white30,
+    Colors.white60,
+    Colors.white70,
   ];
   List<String> text1 = ["Beds", "Baths", "Carpet Area"];
   final List<String> values;
