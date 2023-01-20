@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
 import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 import 'PropertySearchWidgets.dart';
 
 class PropertySearchMobileView extends StatelessWidget {
-  const PropertySearchMobileView({Key? key}) : super(key: key);
-
+  PropertySearchMobileView({Key? key}) : super(key: key);
+  final _searchPanelController = Get.put(SearchPanelController());
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -29,7 +31,7 @@ class PropertySearchMobileView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Budget ",
                         style: khomePagePropertySearchPanelDDPanel,
@@ -41,8 +43,15 @@ class PropertySearchMobileView extends StatelessWidget {
                         select: "end"),
                   ],
                 ),
-                SizedBox(height: 20,),
-                Center(child: MyButton(title: "Search", height: 40,)),
+                const SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: MyButton(
+                    title: "Search",
+                    height: 40,
+                  ),
+                ),
                 const SizedBox(
                   height: 30,
                 )

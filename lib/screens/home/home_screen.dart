@@ -150,7 +150,7 @@ class HomePageSecondSection extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           width < 700
-              ? const PropertySearchMobileView()
+              ? PropertySearchMobileView()
               : width < 950
                   ? const PropertySearchTabletView()
                   : const PropertySearchPanel(),

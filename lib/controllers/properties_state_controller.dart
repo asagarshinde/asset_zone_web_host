@@ -6,6 +6,7 @@ import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.d
 
 class PropertyDetailsFirestore extends GetxController {
   var firestoreDB = FirebaseFirestore.instance;
+  var propertiesList = [].obs;
 
   addPropertyDetails(PropertyDetails propertyDetails) async {
     await firestoreDB

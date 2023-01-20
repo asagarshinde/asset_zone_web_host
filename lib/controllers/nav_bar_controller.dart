@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:go_router/go_router.dart';
-import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
@@ -23,17 +21,11 @@ class NavBarController extends GetxController {
 
   bool homeSelected = true;
 
-
-
-
   setSelectedMenu(menu) {
     menuSelectedMap.forEach(
       (key, value) {
-        // key = key.replaceAll(" ", "replace");
         if (menu == key) {
-          // print("clicked menu is $menu");
           menuSelectedMap[key] = true;
-          // print(menuSelectedMap);
         } else {
           menuSelectedMap[key] = false;
         }
@@ -50,7 +42,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const  PropertyScreen();
+        return const HomeScreen(title: "The Asset Zone");
       },
     ),
     GoRoute(
@@ -98,18 +90,17 @@ class MyRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   // without route observer when back button pressed last clicked menu remains selected.
   // e.g if i click on home --> city --> property and pressed back button screen moves to city but property remains highlighted.
   final _navigationBarController = Get.put(NavBarController());
+
   void _sendScreenView(PageRoute<dynamic> route) {
     var screenName = route.settings.name?.replaceAll("/", "");
-    if (screenName == "aboutus"){
+    if (screenName == "aboutus") {
       screenName = "about us";
-    }
-    else if (screenName == ""){
+    } else if (screenName == "") {
       screenName = "home";
     }
     _navigationBarController.setSelectedMenu(screenName);
     // do something with it, ie. send it to your analytics service collector
   }
-
 
   @override
   void didPush(Route route, Route? previousRoute) {

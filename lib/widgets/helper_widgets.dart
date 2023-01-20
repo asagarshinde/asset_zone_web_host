@@ -1,19 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_asset_zone_web/controllers/home_page_card_controller.dart';
+import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/controllers/properties_state_controller.dart';
+import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
-import 'package:the_asset_zone_web/search/search_page.dart';
-
-import '../constants/constants.dart';
+import 'package:the_asset_zone_web/constants/constants.dart';
 
 class MyButton extends StatefulWidget {
   final String title;
-  var height;
-  var width;
-  var onTap;
+  final height;
+  final width;
+  final onTap;
 
-  MyButton({Key? key, required this.title, this.height, this.width, this.onTap})
+  const MyButton(
+      {Key? key, required this.title, this.height, this.width, this.onTap})
       : super(key: key);
 
   @override
@@ -22,67 +22,6 @@ class MyButton extends StatefulWidget {
 
 class _MyButtonState extends State<MyButton> {
   List<PropertyDetails> lstPD = [];
-
-  @override
-  void initState() {
-    fetchRecords();
-    super.initState();
-  }
-
-  fetchRecords() async {
-    var records =
-        await FirebaseFirestore.instance.collection('PropertyDetails').get();
-    mapRecords(records);
-  }
-
-  mapRecords(QuerySnapshot<Map<String, dynamic>> records) {
-    try {
-      var properties = records.docs.map((docSnapshot) {
-        Map out = {};
-        out.addAll(docSnapshot.data());
-        out["id"] = docSnapshot.id;
-        return out;
-      }).toList();
-
-      setState(
-        () {
-          for (var property in properties) {
-            var propertyAbout = PropertyAbout(
-                property_type: property["property_about"]["property_type"],
-                bathroom: property["property_about"]["bathroom"],
-                property_id: property["property_about"]["property_id"],
-                property_status: property["property_about"]["property_status"],
-                city: property["property_about"]["city"],
-                bedrooms: property["property_about"]["bedrooms"],
-                price: property["property_about"]["price"],
-                property_size: property["property_about"]["property_size"],
-                balcony: property["property_about"]["balcony"]);
-
-            List<String> lstGallery = [];
-            for (var gallery in property["gallery"]) {
-              lstGallery.add(gallery);
-            }
-
-            var propertyDetails = PropertyDetails(
-                property["id"],
-                lstGallery,
-                propertyAbout,
-                property["video"],
-                property["floor_plan"],
-                {
-                  "lon": property["location"]["lon"],
-                  "lat": property["location"]["lat"]
-                },
-                property['upload_date']);
-
-            lstPD.add(propertyDetails);
-          }
-        },
-      );
-    } catch (e) {
-      print("GettingError: $e");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,21 +36,9 @@ class _MyButtonState extends State<MyButton> {
         onTap: () {
           setState(
             () {
-              // print("video from list : ${lstPD.length}");
+              searchProperty(context);
             },
           );
-
-          List<PropertyDetails> lstPropertyDetails = <PropertyDetails>[];
-
-          lstPropertyDetails.addAll(lstPD);
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => SearchButtonNavigatorPage(
-          //       propertyDetails: lstPropertyDetails,
-          //     ),
-          //   ),
-          // );
         },
         child: Center(
           child: Text(
@@ -122,4 +49,38 @@ class _MyButtonState extends State<MyButton> {
       ),
     );
   }
+}
+
+searchProperty(context) async {
+  final searchPanelController = Get.put(SearchPanelController());
+  final propertyDetailsFirestore = Get.put(PropertyDetailsFirestore());
+  String propertySubType = searchPanelController.selectedPropertySubType.value;
+  String propertyType = searchPanelController.selectedPropertyType.value;
+  String searchLocation = searchPanelController.searchLocation;
+  print(
+      "propertySubType : $propertySubType, propertyType: $propertyType, searchLocation: $searchLocation");
+  final querySnapshot = await propertyDetailsFirestore.firestoreDB
+      .collection("PropertyDetails")
+      .where("property_about.locality", isEqualTo: searchLocation)
+      .where("property_about.property_type",
+          isEqualTo: propertyType.toLowerCase())
+      .where("property_about.property_type",
+          isEqualTo: propertySubType.toLowerCase())
+      .get();
+  var docs_map = querySnapshot.docs.map((docSnapshot) {
+    propertyDetailsFirestore.propertiesList.add(docSnapshot);
+    print(docSnapshot);
+    print(propertyDetailsFirestore.propertiesList);
+    // return PropertyDetails.fromMap(docSnapshot.data());
+  }).toList();
+  docs_map.forEach((element) {
+    print(element);
+  });
+  print(propertyDetailsFirestore.propertiesList);
+  // try {
+  //   GoRouter.of(context).go('/singleproperty', extra: propertiesList);
+  // }
+  // catch (e){
+  //   return Text("$e");
+  // }
 }
