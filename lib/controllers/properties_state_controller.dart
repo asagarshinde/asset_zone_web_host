@@ -1,17 +1,56 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 
 class PropertyDetailsFirestore extends GetxController {
   var firestoreDB = FirebaseFirestore.instance;
-  var propertiesList = [].obs;
+  var dummy_var = "".obs;
+  late final propertiesList = [].obs;
 
   addPropertyDetails(PropertyDetails propertyDetails) async {
     await firestoreDB
         .collection("PropertyDetails")
         .add(propertyDetails.toMap());
+  }
+
+  String getRandString(int len) {
+    var random = Random.secure();
+    var values = List<int>.generate(len, (i) => random.nextInt(255));
+    return base64UrlEncode(values);
+  }
+
+  searchProperty() {
+    final tempPropertyList = [];
+    final searchPanelController = Get.put(SearchPanelController());
+    String propertySubType =
+        searchPanelController.selectedPropertySubType.value;
+    String propertyType = searchPanelController.selectedPropertyType.value;
+    String searchLocation = searchPanelController.searchLocation;
+
+    var querySnapshot = firestoreDB
+        .collection("PropertyDetails")
+        .where("property_about.locality", isEqualTo: searchLocation)
+        .where("property_about.property_type",
+        isEqualTo: propertyType.toLowerCase())
+        .where("property_about.property_sub_type",
+        isEqualTo: propertySubType.toLowerCase())
+        .get();
+
+    querySnapshot.then(
+          (value) {
+        for (var doc in value.docs) {
+          tempPropertyList.add(PropertyDetails.fromMap(doc.data()));
+          propertiesList.value = tempPropertyList;
+        }
+      },
+    );
+    dummy_var.value = getRandString(5);
   }
 
   updatePropertyDetails(PropertyDetails propertyDetails) async {
@@ -31,18 +70,17 @@ class PropertyDetailsFirestore extends GetxController {
 
   Future<List<PropertyDetails>> retrieveAllPropertyDetails() async {
     var snapshot =
-        await firestoreDB.collection("PropertyDetails").limit(4).get();
-        return snapshot.docs.map((docSnapshot) {
-         return PropertyDetails.fromMap(docSnapshot.data());
-        }).toList();
+    await firestoreDB.collection("PropertyDetails").limit(4).get();
+    return snapshot.docs.map((docSnapshot) {
+      return PropertyDetails.fromMap(docSnapshot.data());
+    }).toList();
   }
-
 
   Future<List<Map>> retrievePropertyDetails(String status,
       {int limit: 3}) async {
     if (status == "all") {
       QuerySnapshot<Map<String, dynamic>> snapshot =
-          await firestoreDB.collection("PropertyDetails").limit(limit).get();
+      await firestoreDB.collection("PropertyDetails").limit(limit).get();
       return snapshot.docs.map((docSnapshot) {
         Map out = {};
         out.addAll(docSnapshot.data());
@@ -56,7 +94,7 @@ class PropertyDetailsFirestore extends GetxController {
           .limit(limit)
           .get();
       return snapshot.docs.map(
-        (docSnapshot) {
+            (docSnapshot) {
           Map out = {};
           out.addAll(docSnapshot.data());
           out["id"] = docSnapshot.id;
@@ -72,7 +110,7 @@ class PropertiesList {
     PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
     List<Widget> property_list = [];
     var properties =
-        await dbservice.retrievePropertyDetails(propety_for, limit: limit);
+    await dbservice.retrievePropertyDetails(propety_for, limit: limit);
     for (var property in properties) {
       // Widget dummy = Text(property.toString());
       List<String> values = [

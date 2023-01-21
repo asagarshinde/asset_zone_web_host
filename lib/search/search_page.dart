@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
@@ -71,9 +70,10 @@ class SearchButtonNavigatorPage extends StatelessWidget {
                           // PropertyPhotoCarousel(),
                           const SizedBox(
                             width: 200,
-                          )
+                          ),
                         ],
                       ),
+                      ReactiveContainer(),
                     ],
                   ),
                 ),
@@ -86,8 +86,18 @@ class SearchButtonNavigatorPage extends StatelessWidget {
   }
 }
 
+class ReactiveContainer extends StatelessWidget {
+  ReactiveContainer({Key? key}) : super(key: key);
+
+  var controller = Get.put(PropertyDetailsFirestore());
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => Container(child: Text(controller.dummy_var.value, style: TextStyle(fontSize: 77),),));
+  }
+}
+
 class PropertyCardGridView extends StatefulWidget {
-  PropertyCardGridView({
+  const PropertyCardGridView({
     Key? key,
     required this.propertyDetails,
   }) : super(key: key);
@@ -102,10 +112,10 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
   final propertiesController = Get.put(PropertyDetailsFirestore());
 
   initState(){
-  get_all_properties();
+  getAllProperties();
   }
 
-  get_all_properties() async {
+  getAllProperties() async {
     List<PropertyDetails> allProperties = await propertiesController.retrieveAllPropertyDetails();
     setState(() {
       for(var property in allProperties){
@@ -438,3 +448,31 @@ class _PropertyPhotoCarouselState extends State<PropertyPhotoCarousel> {
     );
   }
 }
+
+// class AutoCompleteTextField extends StatefulWidget {
+//   const AutoCompleteTextField({Key? key}) : super(key: key);
+//   static const List<String> _kOption = <String> [
+//     "rajiv nagar",
+//     "sapana nagar"
+//   ];
+//   @override
+//   State<AutoCompleteTextField> createState() => _AutoCompleteTextFieldState();
+// }
+//
+// class _AutoCompleteTextFieldState extends State<AutoCompleteTextField> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Autocomplete<String>(
+//       optionsBuilder: (TextEditingValue textEditingValue){
+//         if (textEditingValue.text == ""){
+//           return const Iterable<String>.empty();
+//         }
+//         return AutoCompleteTextField._kOption.where((option) {
+//           return option.contains(textEditingValue.text.toLowerCase());
+//         });
+//       },
+//       onSelected: (String selection){
+//         debugPrint('You just selected $selection');
+//       },);
+//   }
+// }

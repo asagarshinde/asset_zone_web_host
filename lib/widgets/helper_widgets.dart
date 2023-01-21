@@ -21,6 +21,7 @@ class MyButton extends StatefulWidget {
 }
 
 class _MyButtonState extends State<MyButton> {
+  final propertyDetailsFirestore = Get.put(PropertyDetailsFirestore());
   List<PropertyDetails> lstPD = [];
 
   @override
@@ -36,7 +37,8 @@ class _MyButtonState extends State<MyButton> {
         onTap: () {
           setState(
             () {
-              searchProperty(context);
+              print("are clicked re bho");
+              propertyDetailsFirestore.searchProperty();
             },
           );
         },
@@ -50,6 +52,7 @@ class _MyButtonState extends State<MyButton> {
     );
   }
 }
+
 
 searchProperty(context) async {
   final searchPanelController = Get.put(SearchPanelController());

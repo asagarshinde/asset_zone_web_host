@@ -12,11 +12,11 @@ class SearchPanelController extends GetxController {
   var minBudget = 100000.0.obs;
   var maxBudget = 1000000.0.obs;
   List<String> items2 = ["1", "2", "3"].obs;
-  var currentRangeValuesPrice = RangeValues(100000, 1000000).obs;
+  var currentRangeValuesPrice = const RangeValues(100000, 1000000).obs;
   List<DropdownMenuItem<String>> propertySubTypeMenu = [
     const DropdownMenuItem<String>(
-        child: Center(child: Text("Property Sub Type")),
-        value: "Property Sub Type")
+        value: "Property Sub Type",
+        child: Center(child: Text("Property Sub Type")))
   ].obs();
 
   setSelectedPropertyType(value) {

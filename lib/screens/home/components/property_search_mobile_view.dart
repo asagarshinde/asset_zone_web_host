@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
+// import 'package:the_asset_zone_web/search/search_page.dart';
 import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 import 'PropertySearchWidgets.dart';
 
 class PropertySearchMobileView extends StatelessWidget {
   PropertySearchMobileView({Key? key}) : super(key: key);
-  final _searchPanelController = Get.put(SearchPanelController());
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -22,7 +20,8 @@ class PropertySearchMobileView extends StatelessWidget {
             margin: const EdgeInsets.all(0.0),
             child: Column(
               children: [
-                const PropertySearchCardSearchField(),
+                AutoCompleteTextField(),
+                // const PropertySearchCardSearchField(),
                 const PropertyTypeDropDown(),
                 PropertySubTypeDropDown(),
                 const PropertySearchCardSearchRangeSlider(),
@@ -46,7 +45,7 @@ class PropertySearchMobileView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Center(
+                const Center(
                   child: MyButton(
                     title: "Search",
                     height: 40,

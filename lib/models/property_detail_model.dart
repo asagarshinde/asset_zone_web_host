@@ -21,19 +21,10 @@ class PropertyDetails {
         upload_date = doc.data()!["upload_date"],
         property_about = PropertyAbout.fromMap(doc.data()!["property_about"]);
 
-  // factory PropertyDetails.fromJson(Map<String, dynamic> json) => _propertyFromJson(json);
-  //
-  // Map<String, dynamic> toJson() => _propertyFromJson(this);
-
-  // PropertyDetails _propertyFromJson(Map<String, dynamic> json) {
-  //   return PropertyDetails(json['id'], json['gallery'] as List<String>, property_about, video, floor_plan, location, upload_date)
-  // }
 
   PropertyDetails.fromMap(Map property_map)
       : id = property_map["id"],
         gallery = List<String>.from(property_map["gallery"]), // to avoid expected a value of type List<String>? but got one of the type
-  //List<dynamic>
-  //       gallery = property_map["gallery"],
         property_about = PropertyAbout.fromMap(property_map["property_about"]),
         video = property_map["video"],
         floor_plan = property_map["floor_plan"],

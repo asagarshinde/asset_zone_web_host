@@ -29,7 +29,6 @@ class PropertyScreen extends StatelessWidget {
   }
 }
 
-
 Future<Widget> getPropertyView() async {
   PropertyDetailsFirestore dbService = PropertyDetailsFirestore();
   List<PropertyDetails> propertiesList = [];
