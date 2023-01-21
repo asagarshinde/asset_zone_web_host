@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/controllers/nav_bar_controller.dart';
+import 'package:the_asset_zone_web/screens/add_property/form_add_firebase.dart';
 import 'package:the_asset_zone_web/screens/login/auth_dialog.dart';
-import 'package:the_asset_zone_web/screens/test_screen/form_add_firebase.dart';
 import '../../../constants/constants.dart';
 
 class MyNavigationBar extends StatefulWidget {
@@ -244,7 +242,8 @@ class SimpleMenuBar extends StatelessWidget {
                 flex: 6,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: getMenuList(_navigationBarController.menuSelectedMap),
+                  children:
+                      getMenuList(_navigationBarController.menuSelectedMap),
                 )),
             const SizedBox(width: 20),
             Expanded(

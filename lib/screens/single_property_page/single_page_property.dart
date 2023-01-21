@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-import 'package:the_asset_zone_web/controllers/properties_state_controller.dart';
+import 'package:the_asset_zone_web/controllers/properties_controller.dart';
 import 'package:the_asset_zone_web/responsive.dart';
 import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/components/short_detail_card.dart';
@@ -70,6 +70,6 @@ class SinglePagePropertyView extends StatelessWidget {
 }
 
 getSinglePageProperty({@required propertyId}) {
-  PropertyDetailsFirestore property = PropertyDetailsFirestore();
+  PropertyController property = PropertyController();
   var property_details = property.getPropertyFromId(propertyId: propertyId);
 }

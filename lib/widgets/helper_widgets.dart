@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import 'package:the_asset_zone_web/controllers/properties_state_controller.dart';
-import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
+import 'package:the_asset_zone_web/controllers/properties_controller.dart';
+import 'package:the_asset_zone_web/controllers/search_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 
@@ -21,7 +20,7 @@ class MyButton extends StatefulWidget {
 }
 
 class _MyButtonState extends State<MyButton> {
-  final propertyDetailsFirestore = Get.put(PropertyDetailsFirestore());
+  final propertyDetailsFirestore = Get.put(PropertyController());
   List<PropertyDetails> lstPD = [];
 
   @override
@@ -53,10 +52,9 @@ class _MyButtonState extends State<MyButton> {
   }
 }
 
-
 searchProperty(context) async {
-  final searchPanelController = Get.put(SearchPanelController());
-  final propertyDetailsFirestore = Get.put(PropertyDetailsFirestore());
+  final searchPanelController = Get.put(SearchController());
+  final propertyDetailsFirestore = Get.put(PropertyController());
   String propertySubType = searchPanelController.selectedPropertySubType.value;
   String propertyType = searchPanelController.selectedPropertyType.value;
   String searchLocation = searchPanelController.searchLocation;

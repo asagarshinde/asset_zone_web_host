@@ -1,24 +1,25 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
+import 'package:the_asset_zone_web/controllers/properties_controller.dart';
+import 'package:the_asset_zone_web/controllers/search_controller.dart';
+import 'constants/firebase.dart';
 import 'controllers/nav_bar_controller.dart';
+import 'controllers/single_page_property_controller.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: const FirebaseOptions(
-        apiKey: "AIzaSyBxh2B6H7ynAbIOCsHcqPndPN1e2ADRqfs",
-        authDomain: "assets-zone.firebaseapp.com",
-        projectId: "assets-zone",
-        storageBucket: "assets-zone.appspot.com",
-        messagingSenderId: "1001122158865",
-        appId: "1:1001122158865:web:e458ae8a32388d4b2d54b0"),
+  await initialization.then((value) {
+    Get.put(NavBarController());
+    Get.put(PropertyController());
+    Get.put(SearchController());
+    Get.put(SinglePagePropertyController());
+  }
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

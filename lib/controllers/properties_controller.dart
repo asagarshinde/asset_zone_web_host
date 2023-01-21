@@ -4,11 +4,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:the_asset_zone_web/controllers/search_panel_controller.dart';
+import 'package:the_asset_zone_web/controllers/search_controller.dart';
 import 'package:the_asset_zone_web/models/property_detail_model.dart';
 import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
 
-class PropertyDetailsFirestore extends GetxController {
+class PropertyController extends GetxController {
+  static PropertyController instance = Get.find();
   var firestoreDB = FirebaseFirestore.instance;
   var dummy_var = "".obs;
   late final propertiesList = [].obs;
@@ -27,7 +28,7 @@ class PropertyDetailsFirestore extends GetxController {
 
   searchProperty() {
     final tempPropertyList = [];
-    final searchPanelController = Get.put(SearchPanelController());
+    final searchPanelController = Get.put(SearchController());
     String propertySubType =
         searchPanelController.selectedPropertySubType.value;
     String propertyType = searchPanelController.selectedPropertyType.value;
@@ -107,7 +108,7 @@ class PropertyDetailsFirestore extends GetxController {
 
 class PropertiesList {
   Future<List<Widget>?> propertyList(propety_for, {limit = 3}) async {
-    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    PropertyController dbservice = PropertyController();
     List<Widget> property_list = [];
     var properties =
     await dbservice.retrievePropertyDetails(propety_for, limit: limit);
@@ -131,7 +132,7 @@ class PropertiesList {
   }
 
   Future<List<Widget>?> propertyListSale() async {
-    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    PropertyController dbservice = PropertyController();
     List<Widget> property_list = [];
     var properties = await dbservice.retrievePropertyDetails("For sale");
     // print(properties);
@@ -156,7 +157,7 @@ class PropertiesList {
   }
 
   Future<List<Widget>?> propertyListBuy() async {
-    PropertyDetailsFirestore dbservice = PropertyDetailsFirestore();
+    PropertyController dbservice = PropertyController();
     List<Widget> property_list = [];
     var properties = await dbservice.retrievePropertyDetails("For Buy");
     // print(properties);

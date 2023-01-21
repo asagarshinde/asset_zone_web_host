@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constants/constants.dart';
-import '../../../controllers/search_panel_controller.dart';
+import '../../../controllers/search_controller.dart';
 
 
 class AutoCompleteTextField extends StatefulWidget {
@@ -11,7 +11,7 @@ class AutoCompleteTextField extends StatefulWidget {
     "rajiv nagar",
     "sapana nagar"
   ];
-  final _searchPanelController = Get.put(SearchPanelController());
+  final _searchPanelController = Get.put(SearchController());
 
   @override
   State<AutoCompleteTextField> createState() => _AutoCompleteTextFieldState();
@@ -75,7 +75,7 @@ class PropertySearchCardSearchField extends StatefulWidget {
 
 class _PropertySearchCardSearchFieldState
     extends State<PropertySearchCardSearchField> {
-  final _searchPanelController = Get.put(SearchPanelController());
+  final _searchPanelController = Get.put(SearchController());
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class PropertySearchCardSearchRangeSlider extends StatefulWidget {
 
 class _PropertySearchCardSearchRangeSliderState
     extends State<PropertySearchCardSearchRangeSlider> {
-  final _searchPanelController = Get.put(SearchPanelController());
+  final _searchPanelController = Get.put(SearchController());
 
   @override // const SizedBox(
   //   width: 120,
@@ -158,7 +158,7 @@ class PropertySearchCardSearchRangeSliderSelectedValue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final _searchPanelController = Get.put(SearchPanelController());
+      final _searchPanelController = Get.put(SearchController());
       var myselect = select == "end"
           ? _searchPanelController.currentRangeValuesPrice.value.end
           : _searchPanelController.currentRangeValuesPrice.value.start;
@@ -172,7 +172,7 @@ class PropertySearchCardSearchRangeSliderSelectedValue extends StatelessWidget {
 }
 
 class dummyTextWidget extends StatelessWidget {
-  final _searchPanelController = Get.put(SearchPanelController());
+  final _searchPanelController = Get.put(SearchController());
 
   dummyTextWidget({Key? key}) : super(key: key);
 
@@ -193,7 +193,7 @@ class PropertyTypeDropDown extends StatefulWidget {
 class _PropertyTypeDropDownState extends State<PropertyTypeDropDown> {
   @override
   Widget build(BuildContext context) {
-    final searchPanelController = Get.put(SearchPanelController());
+    final searchPanelController = Get.put(SearchController());
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),
       child: DecoratedBox(
@@ -240,7 +240,7 @@ class _PropertySubTypeDropDownState extends State<PropertySubTypeDropDown> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final searchPanelController = Get.put(SearchPanelController());
+      final searchPanelController = Get.put(SearchController());
       return DropdownButtonHideUnderline(
         child: Padding(
             padding: const EdgeInsets.fromLTRB(15, 30, 15, 5),

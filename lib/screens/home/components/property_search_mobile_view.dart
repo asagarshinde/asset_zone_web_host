@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-// import 'package:the_asset_zone_web/search/search_page.dart';
+// import 'package:the_asset_zone_web/search/propety_screen.dart';
 import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 import 'PropertySearchWidgets.dart';
 

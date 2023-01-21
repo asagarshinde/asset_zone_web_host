@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/screens/about_us/about_us_screen.dart';
 import 'package:the_asset_zone_web/screens/city/city_screen.dart';
 import 'package:the_asset_zone_web/screens/home/home_screen.dart';
 import 'package:the_asset_zone_web/screens/project/project_screen.dart';
-import 'package:the_asset_zone_web/screens/property/property_screen.dart';
-import 'package:the_asset_zone_web/screens/services/services_screen.dart';
 import 'package:the_asset_zone_web/screens/single_property_page/single_page_property.dart';
+import 'package:the_asset_zone_web/screens/property/propety_screen.dart';
 
 class NavBarController extends GetxController {
+  static NavBarController instance = Get.find();
   // reactive map is not working. when clicked on any menu color is not changing.
   // after converting the Map to RxMap it started working.
   // Ref:- https://stackoverflow.com/questions/68249333/flutter-getx-updating-item-in-children-list-is-not-reactive
@@ -54,7 +55,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: '/property',
       builder: (BuildContext context, GoRouterState state) {
-        return const PropertyScreen();
+        return PropertyScreen();
       },
     ),
     GoRoute(
