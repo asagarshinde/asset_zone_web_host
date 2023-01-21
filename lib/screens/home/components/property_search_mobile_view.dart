@@ -33,7 +33,7 @@ class PropertySearchMobileView extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Budget ",
-                        style: khomePagePropertySearchPanelDDPanel,
+                        style: kTextDefaultStyle,
                       ),
                     ),
                     PropertySearchCardSearchRangeSliderSelectedValue(

@@ -80,7 +80,7 @@ class _SinglePagePropertyMiddleDesktopState
                         padding: const EdgeInsets.all(16.0),
                         child: AutoSizeText(
                           "Similar properties",
-                          style: kTitleStyle,
+                          style: kTextHeader1Style,
                         ),
                       ),
                       PropertiesForCardsView(

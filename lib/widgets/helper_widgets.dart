@@ -44,7 +44,7 @@ class _MyButtonState extends State<MyButton> {
         child: Center(
           child: Text(
             widget.title,
-            style: buttonStyle,
+            style: kButtonStyle,
           ),
         ),
       ),

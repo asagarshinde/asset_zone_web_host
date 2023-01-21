@@ -165,7 +165,7 @@ class PropertySearchCardSearchRangeSliderSelectedValue extends StatelessWidget {
       return AutoSizeText(
         select == "end" ? "${myselect / 1000}K" : "${myselect / 1000}K - ",
         // "${_currentRangeValuesPrice.end.toInt()}",
-        style: khomePagePropertySearchPanelDDPanel,
+        style: kTextDefaultStyle,
       );
     });
   }
