@@ -49,11 +49,10 @@ class PropertyScreen extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          SizedBox(width: 200),
-                          // vertical advance search
+                          // SizedBox(width: 200),
                           AdvanceSearchVerticalPanel(),
                           PropertyCardGridView(),
-                          SizedBox(width: 200),
+                          // SizedBox(width: 200),
                         ],
                       ),
                     ],

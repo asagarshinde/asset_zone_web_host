@@ -83,7 +83,7 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
               const Divider(),
               Container(
                 padding: const EdgeInsets.all(8),
-                height: 650,
+                height: 800,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 20,
@@ -92,77 +92,79 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                   padding: kDefaultPadding,
                   itemCount: propertyController.propertiesList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: kElevation,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          PropertyPhotoCarousel(
-                              imageList: propertyController
-                                  .propertiesList[index].gallery),
-                          //widget.propertyDetails[index].gallery),
-                          Row(
-                            children: [
-                              Container(
-                                padding:
-                                    const EdgeInsets.fromLTRB(30, 10, 0, 0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AutoSizeText(
-                                        (propertyController
-                                            .propertiesList[index]
-                                            .property_about
-                                            .city
-                                            .toUpperCase()),
-                                        style: kTextDefaultStyle.copyWith(
-                                            letterSpacing: 3)),
-                                    kDefaultSizedBox,
-                                    AutoSizeText("Little Acorn Farm",
-                                        style: kTextHeader2Style),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: kDefaultSizedBoxWidth),
-                                      child: AutoSizeText(
+                    return SizedBox(
+                      width: 300,
+                      child: Card(
+                        elevation: kElevation,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            PropertyPhotoCarousel(
+                                imageList: propertyController
+                                    .propertiesList[index].gallery),
+                            Row(
+                              children: [
+                                Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(30, 10, 0, 0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      AutoSizeText(
                                           (propertyController
                                               .propertiesList[index]
                                               .property_about
-                                              .price
-                                              .toString()),
-                                          style: kTextHeader2Style.copyWith(
-                                              color: kSecondaryColor)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: kDefaultSizedBoxWidth),
-                                      child: IntrinsicHeight(
-                                        child: Row(
-                                          children:
-                                              getIconDescriptionRow(index),
+                                              .city
+                                              .toUpperCase()),
+                                          style: kTextDefaultStyle.copyWith(
+                                              letterSpacing: 3)),
+                                      kDefaultSizedBox,
+                                      AutoSizeText("Little Acorn Farm",
+                                          style: kTextHeader2Style),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: kDefaultSizedBoxWidth),
+                                        child: AutoSizeText(
+                                            (propertyController
+                                                .propertiesList[index]
+                                                .property_about
+                                                .price
+                                                .toString()),
+                                            style: kTextHeader2Style.copyWith(
+                                                color: kSecondaryColor)),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: kDefaultSizedBoxWidth),
+                                        child: IntrinsicHeight(
+                                          child: Row(
+                                            children:
+                                                getIconDescriptionRow(index),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(kDateformat.format(
-                                            propertyController
-                                                .propertiesList[index]
-                                                .upload_date
-                                                .toDate())),
-                                        const SizedBox(width: 40),
-                                        const MyButton(
-                                          title: "Details",
-                                          height: 40,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
+                                      Row(
+                                        children: [
+                                          Text(kDateformat.format(
+                                              propertyController
+                                                  .propertiesList[index]
+                                                  .upload_date
+                                                  .toDate())),
+                                          const SizedBox(width: 40),
+                                          const MyButton(
+                                            title: "Details",
+                                            height: 40,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

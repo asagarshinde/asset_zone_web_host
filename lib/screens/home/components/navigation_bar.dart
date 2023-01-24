@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:the_asset_zone_web/constants/controllers.dart';
 import 'package:the_asset_zone_web/controllers/nav_bar_controller.dart';
 import 'package:the_asset_zone_web/screens/login/auth_dialog.dart';
 import '../../../constants/constants.dart';
@@ -128,8 +129,6 @@ class MyMenuButton extends StatelessWidget {
 class SimpleMenuBar extends StatelessWidget {
   SimpleMenuBar({Key? key}) : super(key: key);
 
-  final _navigationBarController = Get.put(NavBarController());
-
   List<Widget> getMenuList(menuSelectedMap) {
     List<Widget> menuWidgets = [];
     menuSelectedMap.forEach((key, value) {
@@ -161,8 +160,7 @@ class SimpleMenuBar extends StatelessWidget {
                 flex: 6,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children:
-                      getMenuList(_navigationBarController.menuSelectedMap),
+                  children: getMenuList(navBarController.menuSelectedMap),
                 )),
             const SizedBox(width: 20),
             Expanded(
