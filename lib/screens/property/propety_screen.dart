@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
+import 'package:the_asset_zone_web/footer_section/footer_page.dart';
 import 'package:the_asset_zone_web/responsive.dart';
 import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
 import 'components/advance_search_vertical_panel.dart';
@@ -26,40 +27,54 @@ class PropertyScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height + 400,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      Expanded(
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 800,
-                              child: Image.asset(
-                                'assets/inner-background.jpg',
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ],
+                const SizedBox(height: 20),
+                Stack(
+                  children: [
+                    if (Responsive.isDesktop( context) || Responsive.isTablet(context))
+                    SizedBox(
+                      width: double.infinity,
+                      height: 800,
+                      child: Image.asset(
+                        'assets/inner-background.jpg',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    if (Responsive.isMobile(context))
+                      SizedBox(
+                        width: double.infinity,
+                        height: 400,
+                        child: Image.asset(
+                          'assets/inner-background.jpg',
+                          fit: BoxFit.fitHeight,
                         ),
                       ),
-                      const SizedBox(height: 80),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          // SizedBox(width: 200),
-                          AdvanceSearchVerticalPanel(),
-                          PropertyCardGridView(),
-                          // SizedBox(width: 200),
-                        ],
-                      ),
+                  ],
+                ),
+                const SizedBox(height: 80),
+                if (Responsive.isDesktop(context) ||
+                    Responsive.isTablet(context))
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Expanded(flex: 2, child: AdvanceSearchVerticalPanel()),
+                      Expanded(flex: 5, child: PropertyCardGridView()),
                     ],
                   ),
-                ),
+                if (Responsive.isMobile(context))
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Center(child: AdvanceSearchVerticalPanel()),
+                      PropertyCardGridView(),
+                    ],
+                  ),
               ],
             ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: const FooterPage()),
           )
         ],
       ),

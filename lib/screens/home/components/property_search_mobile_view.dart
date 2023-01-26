@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 // import 'package:the_asset_zone_web/search/propety_screen.dart';
@@ -31,7 +32,9 @@ class PropertySearchMobileView extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
+                      child: AutoSizeText(
+                        softWrap: true,
+                        maxLines: 2,
                         "Budget ",
                         style: kTextDefaultStyle,
                       ),

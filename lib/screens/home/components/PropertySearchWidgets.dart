@@ -163,6 +163,7 @@ class PropertySearchCardSearchRangeSliderSelectedValue extends StatelessWidget {
           ? _searchPanelController.currentRangeValuesPrice.value.end
           : _searchPanelController.currentRangeValuesPrice.value.start;
       return AutoSizeText(
+        overflow: TextOverflow.clip,
         select == "end" ? "${myselect / 1000}K" : "${myselect / 1000}K - ",
         // "${_currentRangeValuesPrice.end.toInt()}",
         style: kTextDefaultStyle,

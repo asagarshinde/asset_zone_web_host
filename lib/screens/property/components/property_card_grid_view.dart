@@ -52,6 +52,7 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
   }
 
   getAllProperties() async {
+    propertyController.propertiesList.value = [];
     List<PropertyDetails> allProperties =
         await propertyController.retrieveAllPropertyDetails();
     setState(
@@ -65,35 +66,36 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    debugPrint("PropertyCardGridView: ${height}X${width}");
     return Obx(
       () => MediaQuery.removePadding(
         context: context,
         removeTop: true,
         removeLeft: true,
         removeRight: true,
-        child: Expanded(
-          flex: 3,
-          child: Column(
-            children: [
-              AutoSizeText(
-                "Properties Listing",
-                style: GoogleFonts.rubik(
-                    fontSize: 24, fontWeight: FontWeight.w700),
-              ),
-              const Divider(),
-              Container(
-                padding: const EdgeInsets.all(8),
-                height: 800,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                      crossAxisCount: 2),
-                  padding: kDefaultPadding,
-                  itemCount: propertyController.propertiesList.length,
-                  itemBuilder: (BuildContext context, int index) {
+        child: Column(
+          children: [
+            AutoSizeText(
+              "Properties Listing",
+              style:
+                  GoogleFonts.rubik(fontSize: 24, fontWeight: FontWeight.w700),
+            ),
+            const Divider(),
+            Container(
+              padding: const EdgeInsets.all(8),
+              height: 800,
+              child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 700, childAspectRatio: 1.3, mainAxisExtent: 535),// mainAxisExtent to fix vertical size
+                padding: kDefaultPadding,
+                itemCount: propertyController.propertiesList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return LayoutBuilder(builder: (context, constraits) {
                     return SizedBox(
-                      width: 300,
+                      width: 250,
                       child: Card(
                         elevation: kElevation,
                         child: Column(
@@ -103,13 +105,14 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                             PropertyPhotoCarousel(
                                 imageList: propertyController
                                     .propertiesList[index].gallery),
-                            Row(
+                            Wrap(
                               children: [
                                 Container(
                                   padding:
                                       const EdgeInsets.fromLTRB(30, 10, 0, 0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       AutoSizeText(
                                           (propertyController
@@ -124,7 +127,8 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                                           style: kTextHeader2Style),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: kDefaultSizedBoxWidth),
+                                            vertical:
+                                                kDefaultSizedBoxWidth / 2),
                                         child: AutoSizeText(
                                             (propertyController
                                                 .propertiesList[index]
@@ -136,15 +140,16 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: kDefaultSizedBoxWidth),
+                                            vertical:
+                                                kDefaultSizedBoxWidth / 2),
                                         child: IntrinsicHeight(
-                                          child: Row(
+                                          child: Wrap(
                                             children:
                                                 getIconDescriptionRow(index),
                                           ),
                                         ),
                                       ),
-                                      Row(
+                                      Wrap(
                                         children: [
                                           Text(kDateformat.format(
                                               propertyController
@@ -167,11 +172,11 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                         ),
                       ),
                     );
-                  },
-                ),
+                  });
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -189,7 +194,7 @@ class DescriptionRowElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
       children: [
         Icon(icon),
         const SizedBox(width: 5),

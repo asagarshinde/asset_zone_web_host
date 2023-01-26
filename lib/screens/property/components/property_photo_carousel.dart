@@ -21,7 +21,6 @@ class _PropertyPhotoCarouselState extends State<PropertyPhotoCarousel> {
     }
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final weight = constraints.maxWidth;
         return Stack(
           alignment: Alignment.center,
           children: [
