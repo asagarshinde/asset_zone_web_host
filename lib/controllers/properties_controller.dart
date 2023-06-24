@@ -28,7 +28,7 @@ class PropertyController extends GetxController {
 
   searchProperty() {
     final tempPropertyList = [];
-    final searchPanelController = Get.put(SearchController());
+    final searchPanelController = Get.put(MySearchController());
     String propertySubType =
         searchPanelController.selectedPropertySubType.value;
     String propertyType = searchPanelController.selectedPropertyType.value;

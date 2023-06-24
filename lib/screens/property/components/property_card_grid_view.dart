@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
 import 'package:the_asset_zone_web/constants/controllers.dart';
@@ -10,16 +11,21 @@ import 'package:the_asset_zone_web/widgets/helper_widgets.dart';
 
 class PropertyCardGridView extends StatefulWidget {
   const PropertyCardGridView({Key? key}) : super(key: key);
-
   @override
   State<PropertyCardGridView> createState() => _PropertyCardGridViewState();
 }
 
 class _PropertyCardGridViewState extends State<PropertyCardGridView> {
+  late PropertyDetails property;
   @override
   initState() {
     super.initState();
     getAllProperties();
+  }
+
+
+  void _onTap(PropertyDetails property){
+    GoRouter.of(context).go('/singleproperty', extra: property.toMap());
   }
 
   List<Widget> getIconDescriptionRow(index) {
@@ -93,12 +99,14 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                 padding: kDefaultPadding,
                 itemCount: propertyController.propertiesList.length,
                 itemBuilder: (BuildContext context, int index) {
+                  PropertyDetails property = propertyController.propertiesList[index];
                   return LayoutBuilder(builder: (context, constraits) {
                     return SizedBox(
                       width: 250,
                       child: Card(
                         elevation: kElevation,
                         child: Column(
+                          mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -157,10 +165,12 @@ class _PropertyCardGridViewState extends State<PropertyCardGridView> {
                                                   .upload_date
                                                   .toDate())),
                                           const SizedBox(width: 40),
-                                          const MyButton(
-                                            title: "Details",
-                                            height: 40,
-                                          ),
+                                          // MyButton(
+                                          //   title: "Details",
+                                          //   width: 50,
+                                          //   height: 10,
+                                          //   onTap: _onTap,
+                                          // ),
                                         ],
                                       ),
                                     ],
