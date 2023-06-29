@@ -10,8 +10,7 @@ class MyButton extends StatefulWidget {
   final width;
   var onTap;
 
-  MyButton(
-      {Key? key, required this.title, this.height, this.width, this.onTap})
+  MyButton({Key? key, required this.title, this.height, this.width, this.onTap})
       : super(key: key);
 
   @override
@@ -21,6 +20,7 @@ class MyButton extends StatefulWidget {
 class _MyButtonState extends State<MyButton> {
   final propertyDetailsFirestore = Get.put(PropertyController());
   List<PropertyDetails> lstPD = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,3 +44,28 @@ class _MyButtonState extends State<MyButton> {
   }
 }
 
+class DynamicButton extends StatelessWidget {
+  final String text;
+  final Color backgroundColor;
+  final Color textColor;
+  final double textSize;
+  final VoidCallback onTap;
+
+  const DynamicButton({
+    Key? key,
+    required this.text,
+    this.backgroundColor = Colors.blue,
+    this.textColor = Colors.white,
+    this.textSize = 16,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(onPressed: onTap, child: Text(
+      text,
+      style: kButtonStyle,
+    ),
+    );
+  }
+}

@@ -77,6 +77,13 @@ class PropertyController extends GetxController {
     }).toList();
   }
 
+  setPropertyList() async {
+    List<PropertyDetails> properties = await retrieveAllPropertyDetails();
+    for (var property in properties) {
+      propertiesList.add(property);
+    }
+  }
+
   Future<List<Map>> retrievePropertyDetails(String status,
       {int limit: 3}) async {
     if (status == "all") {
