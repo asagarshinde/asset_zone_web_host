@@ -184,7 +184,7 @@ class UploadFormController extends GetxController {
         "contact_details": {
           "name": nameController.text,
           "email": emailController.text,
-          "phone": phoneController.text,
+          "phone": int.parse(phoneController.text),
           "message": messageController.text,
           "pan": panController.text,
         },
@@ -194,7 +194,6 @@ class UploadFormController extends GetxController {
         "isFeatured": isFeatured.value,
       };
       PropertyAbout.fromMap(data["property_about"]);
-      print(data);
       await docRef.set(data);
     }
   }

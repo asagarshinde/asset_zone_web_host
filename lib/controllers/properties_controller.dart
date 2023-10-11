@@ -89,6 +89,7 @@ class PropertyController extends GetxController {
 
   setPropertyList() async {
     propertiesList.clear();
+    debugPrint(" ********* \n ${propertiesList.length.toString()} \n *******");
     List<PropertyDetails> properties = await retrieveAllPropertyDetails();
     for (var property in properties) {
       propertiesList.add(property);
