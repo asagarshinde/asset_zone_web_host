@@ -61,7 +61,7 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
         drawer: const MySimpleDrawer(),
         body: SingleChildScrollView(
           child: SizedBox(
-            height: 2100,
+            height: 3000,
             child: Center(
               child: Form(
                 key: formController.uploadFormKey, //formController.key,
@@ -104,7 +104,7 @@ class _FormAddFirebaseState extends State<FormAddFirebase> {
                         label: 'Garage',
                         icon: const Icon(Icons.garage),
                         options: formController.selectNumbers,
-                        selectedValue: formController.garage),
+                        selectedValue: formController.parking),
                     CustomDropDown(
                         label: 'Halls',
                         icon: const Icon(Icons.room_preferences_outlined),

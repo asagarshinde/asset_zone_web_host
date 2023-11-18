@@ -19,7 +19,7 @@ class UploadFormController extends GetxController {
   RxString terrace = "0".obs;
   RxString balcony = "0".obs;
   RxString bedrooms = "0".obs;
-  RxString garage = "0".obs;
+  RxString parking = "0".obs;
   RxString halls = "0".obs;
   RxBool isFeatured = false.obs;
   RxString selectedCity = "Nashik".obs;
@@ -65,6 +65,11 @@ class UploadFormController extends GetxController {
   TextEditingController builtUpAreaController = TextEditingController();
   TextEditingController salableAreaController = TextEditingController();
   TextEditingController propertyForController = TextEditingController();
+  TextEditingController buildingNameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController floorNumberController = TextEditingController();
+  TextEditingController securityDepositController = TextEditingController();
+  TextEditingController maintenanceController = TextEditingController();
 
   static UploadFormController instance = Get.find();
 
@@ -125,12 +130,42 @@ class UploadFormController extends GetxController {
         "validator": defaultTextValidators,
         "icon": const Icon(Icons.message)
       },
+      "Building Name": {
+        "controller": buildingNameController,
+        "hintText": "Enter Building Name",
+        "label": "Building Name",
+        "icon": const Icon(Icons.home)
+      },
+      "Address": {
+        "controller": addressController,
+        "hintText": "Enter address of property",
+        "label": "Address",
+        "icon": const Icon(Icons.location_on)
+      },
+      "Floor number": {
+        "controller": floorNumberController,
+        "hintText": "Enter floor number",
+        "label": "Floor number",
+        "icon": const Icon(Icons.elevator)
+      },
+      "Security Deposit": {
+        "controller": securityDepositController,
+        "hintText": "Enter security deposit amount",
+        "label": "Security Deposit",
+        "icon": const Icon(Icons.currency_rupee)
+      },
+      "Maintenance": {
+        "controller": maintenanceController,
+        "hintText": "Enter maintenance amount",
+        "label": "Maintenance",
+        "icon": const Icon(Icons.currency_rupee)
+      },
       "price": {
         "controller": priceController,
         "hintText": "Price",
         "label": "Price",
-        "icon": const Icon(Icons.price_change)
-      },
+        "icon": const Icon(Icons.currency_rupee)
+      }
     };
     return formFields;
   }
@@ -202,23 +237,31 @@ class UploadFormController extends GetxController {
       // TODO: use lat lon from location.
       Map<String, dynamic> data = {
         "property_about": {
-          "property_id": documentId,
           "balcony": int.parse(balcony.value),
           "bathrooms": int.parse(bathrooms.value),
           "bedrooms": int.parse(bedrooms.value),
-          "terrace": int.parse(terrace.value),
           "city": selectedCity.value,
-          "garage": int.parse(garage.value),
-          "hall": int.parse(halls.value),
-          "locality": locality.value,
           "price": double.parse(priceController.text),
-          "carpet_area": double.parse(carpetAreaController.text),
-          "built_up_area": double.parse(builtUpAreaController.text),
-          "salable_area": double.parse(salableAreaController.text),
           "property_status": selectedPropertyStatus.value,
           "property_type": selectedPropertyType.value,
+          "property_id": documentId,
+          "salable_area": double.parse(salableAreaController.text),
+          "terrace": int.parse(terrace.value),
+          "security_deposit": int.parse(securityDepositController.text),
+          "floor_number": int.parse(floorNumberController.text),
+          "maintenance": int.parse(maintenanceController.text),
+          "parking": int.parse(parking.value),
+          "address": addressController.text,
+          "halls": int.parse(halls.value),
+
+          "locality": locality.value,
+          "carpet_area": double.parse(carpetAreaController.text),
+          "built_up_area": double.parse(builtUpAreaController.text),
           "property_sub_type": selectedPropertySubType.value,
-          "property_for": selectedPropertyFor.value
+          "property_for": selectedPropertyFor.value,
+
+
+
         },
         "location": {
           "lat": 76.43698832653855,
@@ -235,7 +278,9 @@ class UploadFormController extends GetxController {
         "gallery": imagesUrlList,
         "floor_plan": floorPlanController.text,
         "isFeatured": isFeatured.value,
+        "message": messageController.text
       };
+      print(data);
       PropertyAbout.fromMap(data["property_about"]);
       // print(data.toString());
       await docRef.set(data);
