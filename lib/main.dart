@@ -1,28 +1,28 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:the_asset_zone_web/constants/theme_data.dart';
-import 'package:the_asset_zone_web/screens/home/home_screen.dart';
+import 'package:the_asset_zone_web/controllers/auth_controller.dart';
+import 'package:the_asset_zone_web/controllers/properties_controller.dart';
+import 'package:the_asset_zone_web/controllers/search_controller.dart';
+import 'package:the_asset_zone_web/controllers/upload_form_controller.dart';
+import 'constants/firebase.dart';
+import 'controllers/nav_bar_controller.dart';
+import 'controllers/single_page_property_controller.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: const FirebaseOptions(
-        apiKey: "AIzaSyBxh2B6H7ynAbIOCsHcqPndPN1e2ADRqfs",
-        authDomain: "assets-zone.firebaseapp.com",
-        projectId: "assets-zone",
-        storageBucket: "assets-zone.appspot.com",
-        messagingSenderId: "1001122158865",
-        appId: "1:1001122158865:web:e458ae8a32388d4b2d54b0"),
+  await initialization.then((value) {
+    Get.put(NavBarController());
+    Get.put(PropertyController());
+    Get.put(MySearchController());
+    Get.put(SinglePagePropertyController());
+    Get.put(UploadFormController());
+    Get.put(AuthController());
+  }
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
-    return GetMaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'The Assets Zone',
       theme: themeData,
-      home: const HomeScreen(title: 'Flutter Demo Home Page'),
     );
   }
 }

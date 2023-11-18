@@ -1,146 +1,167 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:the_asset_zone_web/constants/constants.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/feature_property.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/featured_project.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/home_screen_widgets.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/navigation_bar.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/properties_for_rent_cards.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_desktop_view.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_mobile_view.dart';
-import 'package:the_asset_zone_web/screens/home/widgets/property_search_tablet_view.dart';
+import 'package:the_asset_zone_web/constants/controllers.dart';
+import 'package:the_asset_zone_web/controllers/auth_controller.dart';
+import 'package:the_asset_zone_web/footer_section/footer_page.dart';
+import 'package:the_asset_zone_web/review/developer_work_with_us.dart';
+import 'package:the_asset_zone_web/review/looking_to_buy_new_property.dart';
+import 'package:the_asset_zone_web/screens/home/components/featured_project.dart';
+import 'package:the_asset_zone_web/screens/home/components/home_screen_widgets.dart';
+import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
+import 'package:the_asset_zone_web/screens/home/components/properties_for_rent_cards.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_desktop_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_mobile_view.dart';
+import 'package:the_asset_zone_web/screens/home/components/property_search_tablet_view.dart';
+import '../../models/property_detail_model.dart';
 import '../../responsive.dart';
 import '../../widgets/helper_widgets.dart';
 
-class HomeScreen extends StatelessWidget {
-  final String title = '';
-
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required String title}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final String title = 'The Assets Tone';
+  List<PropertyDetails> lstPropDetails = <PropertyDetails>[];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // TODO: remove after work done
+    print("is user authenticated ${authController.isAuthenticated}");
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: Responsive.isDesktop(context)
           ? PreferredSize(
               preferredSize: Size(MediaQuery.of(context).size.width, 70),
-              child: const MyNavigationBar(),
+              child: SimpleMenuBar(),
             )
-          : AppBar(backgroundColor: kPrimaryColor),
-      drawer: const MyDrawer(),
+          : AppBar(
+              backgroundColor: kPrimaryColor,
+            ),
+      drawer: const MySimpleDrawer(),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return SingleChildScrollView(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
               children: [
-                Expanded(
-                  // when row not starting with start of axis then use expanded.
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 1000,
-                        child: Image.asset(
-                          'assets/building.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      // when row not starting with start of axis then use expanded.
+                      child: Stack(
                         children: [
-                          const HomePageText(),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                width > 1200 ? width * 0.12 : 10, 0, 0, 50),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 45, 8, 8),
-                                      child: MyButton(title: "For Rent"),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 45, 8, 8),
-                                      child: MyButton(title: "For Buy"),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 40),
-                                width < 700
-                                    ? const PropertySearchMobileView()
-                                    : width < 950
-                                        ? const PropertySearchTabletView()
-                                        : const PropertySearchPanel(),
-                                SizedBox(
-                                  height: constraints.maxWidth < 900 ? 50 : 250,
-                                ),
-                                AutoSizeText(
-                                  "Properties for rent.",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color(0xFF586167)),
-                                ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
-                                AutoSizeText(
-                                  "Elegant retreat in Coral Gables setting. This home provides entertaining spaces with kitchen opening",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 19, color: const Color(0xFF586167)),
-                                ),
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                              ],
+                          SizedBox(
+                            width: double.infinity,
+                            height: 1000,
+                            child: Image.asset(
+                              'assets/building.jpg',
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          // const Expanded(child: PropertiesForRentGrid()),
-                          // width< 950 ? const PropertiesForRentTablet() : const PropertiesForRentCards(),
-                          const SizedBox(
-                            height: 100,
-                          ),
-                          const FeaturedProject(
-                            firstImageName: 'assets/banner-3.jpg',
-                            secondImageName: 'assets/2.jpg',
-                            cityName: "nashik city",
-                            projectDescription: "Different types of housing can be use same physical type. connected \nresidences might be owned by a single entity or owned separately with an \naggrement covering the relationship between units and common areas \nand concerns",
-                            projectType: "Open house",
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 32.0),
-                            child: Text(
-                              "Featured Property",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 45, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Text(
-                            "Residences can be classified into different type of housing tenure can used for same physical type.",
-                            style: GoogleFonts.rubik(fontSize: 20),
-                          ),
-                          width < 950 ? FeaturePropertyTablet(): FeatureProperty(),
-                          const SizedBox(
-                            height: 100,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const HomePageText(),
+                              HomePageSecondSection(
+                                  width: width, constraints: constraints),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For Rent"),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For Sale"),
+                              PropertiesForCardsView(
+                                  width: width, propertiesFor: "For Buy"),
+                              featuredProject(context: context, width: width),
+                              const SizedBox(height: 50),
+                              const DeveloperWorkWithUs(),
+                              const SizedBox(height: 50),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: const testinominal()),
+                              // const SizedBox(
+                              //   height: 50,
+                              // ),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: WhatAreYouLookingFor(
+                              //         propertyDetails: lstPropDetails)),
+                              // const SizedBox(
+                              //   height: 50,
+                              // ),
+                              // SizedBox(
+                              //     height: width * 0.8,
+                              //     child: const FindProperty()),
+                              SizedBox(
+                                  height: MediaQuery.of(context).size.height,
+                                  child: const LookingToBuyNewProperty())
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+                SizedBox(width: width, child: const FooterPage()),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class HomePageSecondSection extends StatelessWidget {
+  const HomePageSecondSection(
+      {Key? key, required this.width, required this.constraints})
+      : super(key: key);
+
+  final double width;
+  final BoxConstraints constraints;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(width > 1200 ? width * 0.08 : 10, 0, 0, 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          Row(
+            children:  [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
+                child: MyButton(title: "For Rent"),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 45, 8, 8),
+                child: MyButton(title: "For Buy"),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          width < 700
+              ? PropertySearchMobileView()
+              : width < 950
+                  ? const PropertySearchTabletView()
+                  : const PropertySearchPanel(),
+          SizedBox(
+            height: constraints.maxWidth < 900 ? 50 : 250,
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+        ],
       ),
     );
   }
