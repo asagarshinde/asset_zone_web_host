@@ -54,7 +54,7 @@ import 'package:the_asset_zone_web/screens/home/components/navigation_bar.dart';
 //       Map<String, dynamic> data = {
 //         'gallery': galleryFiles.map((file) => file.path).toList(),
 //         'property_about': {
-//           'property_type': propertyTypeController.text,
+//           'property_type': propepropertySizertyTypeController.text,
 //           'bathroom': int.parse(bathroomController.text),
 //           'property_id': propertyIDController.text,
 //           'property_status': propertyStatusController.text,

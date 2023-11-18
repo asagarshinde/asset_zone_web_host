@@ -52,53 +52,58 @@ class PropertyDetails {
 }
 
 class PropertyAbout {
-  late String propertyType;
-  late int bathroom;
-  late String propertyId;
-  late String propertyStatus;
-  late String city;
-
-  late int bedrooms;
-  late int price;
-
-  late int propertySize;
   late int balcony;
+  late int bathrooms;
+  late int bedrooms;
+  late String city;
+  late int price;
+  late String propertyStatus;
+  late String propertyType;
+  late String propertyId;
+  late int salableArea;
+  late int terrace;
+
+  // garage
+  // halls
+  // locality
 
   PropertyAbout({
     required this.propertyType,
-    required this.bathroom,
+    required this.bathrooms,
     required this.propertyId,
     required this.propertyStatus,
     required this.city,
     required this.bedrooms,
     required this.price,
-    required this.propertySize,
     required this.balcony,
+    required this.salableArea,
+    required this.terrace,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'property_type': propertyType,
-      'bathroom': bathroom,
+      'bathroom': bathrooms,
       'property_id': propertyId,
       'property_status': propertyStatus,
       'city': city,
       'bedrooms': bedrooms,
       'price': price,
-      'property_size': propertySize,
+      'property_size': salableArea,
       'balcony': balcony,
+      'terrace': terrace
     };
   }
 
   PropertyAbout.fromMap(Map<String, dynamic> propertyAboutMap)
       : propertyType = propertyAboutMap["property_type"],
-        bathroom = propertyAboutMap["bathroom"],
+        bathrooms = propertyAboutMap["bathrooms"],
         propertyId = propertyAboutMap["property_id"],
         propertyStatus = propertyAboutMap["property_status"],
         city = propertyAboutMap["city"],
         bedrooms = propertyAboutMap["bedrooms"],
         price = propertyAboutMap["price"],
-        propertySize = propertyAboutMap["property_size"],
+        salableArea = propertyAboutMap["salable_area"],
         balcony = propertyAboutMap["balcony"];
 }
 

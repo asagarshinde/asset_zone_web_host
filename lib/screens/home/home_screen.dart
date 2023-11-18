@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               PropertiesForCardsView(
                                   width: width, propertiesFor: "For Rent"),
                               PropertiesForCardsView(
-                                  width: width, propertiesFor: "For sale"),
+                                  width: width, propertiesFor: "For Sale"),
                               PropertiesForCardsView(
                                   width: width, propertiesFor: "For Buy"),
                               featuredProject(context: context, width: width),

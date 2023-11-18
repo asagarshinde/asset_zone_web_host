@@ -23,8 +23,8 @@ class PropertyCardGridViewStateless extends StatelessWidget {
     PropertyDetails property = propertyController.propertiesList[index];
     List<String> values = [
       property.propertyAbout.bedrooms.toString(),
-      property.propertyAbout.bathroom.toString(),
-      property.propertyAbout.propertySize.toString()
+      property.propertyAbout.bathrooms.toString(),
+      property.propertyAbout.salableArea.toString()
     ];
 
     for (int i = 0; i < icons.length; i++) {
